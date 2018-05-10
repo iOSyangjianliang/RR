@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B304583204FEC54004C43E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B304582204FEC54004C43E4 /* AppDelegate.m */; };
+		2B304589204FEC54004C43E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B304587204FEC54004C43E4 /* Main.storyboard */; };
+		2B30458B204FEC54004C43E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B30458A204FEC54004C43E4 /* Assets.xcassets */; };
+		2B30458E204FEC54004C43E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B30458C204FEC54004C43E4 /* LaunchScreen.storyboard */; };
+		2B304591204FEC54004C43E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B304590204FEC54004C43E4 /* main.m */; };
+		2B30459A2050CA3B004C43E4 /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045992050CA3B004C43E4 /* RootTableViewController.m */; };
+		2B3045A02050CD6F004C43E4 /* ButtonBasicUseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B30459F2050CD6F004C43E4 /* ButtonBasicUseController.m */; };
+		2B3045A42050CF58004C43E4 /* UIRRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045A32050CF58004C43E4 /* UIRRButton.m */; };
+		2B3045A72050CFB2004C43E4 /* tab_btn1_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B3045A62050CFB2004C43E4 /* tab_btn1_sel@2x.png */; };
+		2B3045AA2051449E004C43E4 /* UIButtonIncompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045A92051449E004C43E4 /* UIButtonIncompleteController.m */; };
+		2B3045B4205144BB004C43E4 /* BBIrregularImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045AE205144BB004C43E4 /* BBIrregularImageButton.m */; };
+		2B3045B5205144BB004C43E4 /* BBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045B0205144BB004C43E4 /* BBShapedButton.m */; };
+		2B3045B6205144BB004C43E4 /* button-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B3045B1205144BB004C43E4 /* button-normal.png */; };
+		2B3045B7205144BB004C43E4 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3045B3205144BB004C43E4 /* UIImage+ColorAtPixel.m */; };
+		2B6692BF206CD72000781A71 /* pic-jingzhenyujin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6692BE206CD72000781A71 /* pic-jingzhenyujin@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B30457E204FEC54004C43E4 /* RR_UIButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RR_UIButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B304581204FEC54004C43E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B304582204FEC54004C43E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B304588204FEC54004C43E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B30458A204FEC54004C43E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B30458D204FEC54004C43E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B30458F204FEC54004C43E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B304590204FEC54004C43E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B3045982050CA3B004C43E4 /* RootTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootTableViewController.h; sourceTree = "<group>"; };
+		2B3045992050CA3B004C43E4 /* RootTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootTableViewController.m; sourceTree = "<group>"; };
+		2B30459E2050CD6F004C43E4 /* ButtonBasicUseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonBasicUseController.h; sourceTree = "<group>"; };
+		2B30459F2050CD6F004C43E4 /* ButtonBasicUseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonBasicUseController.m; sourceTree = "<group>"; };
+		2B3045A22050CF58004C43E4 /* UIRRButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIRRButton.h; sourceTree = "<group>"; };
+		2B3045A32050CF58004C43E4 /* UIRRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIRRButton.m; sourceTree = "<group>"; };
+		2B3045A62050CFB2004C43E4 /* tab_btn1_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_btn1_sel@2x.png"; sourceTree = "<group>"; };
+		2B3045A82051449E004C43E4 /* UIButtonIncompleteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIButtonIncompleteController.h; sourceTree = "<group>"; };
+		2B3045A92051449E004C43E4 /* UIButtonIncompleteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIButtonIncompleteController.m; sourceTree = "<group>"; };
+		2B3045AD205144BB004C43E4 /* BBIrregularImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBIrregularImageButton.h; sourceTree = "<group>"; };
+		2B3045AE205144BB004C43E4 /* BBIrregularImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBIrregularImageButton.m; sourceTree = "<group>"; };
+		2B3045AF205144BB004C43E4 /* BBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBShapedButton.h; sourceTree = "<group>"; };
+		2B3045B0205144BB004C43E4 /* BBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBShapedButton.m; sourceTree = "<group>"; };
+		2B3045B1205144BB004C43E4 /* button-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-normal.png"; sourceTree = "<group>"; };
+		2B3045B2205144BB004C43E4 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		2B3045B3205144BB004C43E4 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		2B6692BE206CD72000781A71 /* pic-jingzhenyujin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic-jingzhenyujin@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B30457B204FEC54004C43E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B304575204FEC54004C43E4 = {
+			isa = PBXGroup;
+			children = (
+				2B304580204FEC54004C43E4 /* RR_UIButton */,
+				2B30457F204FEC54004C43E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B30457F204FEC54004C43E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B30457E204FEC54004C43E4 /* RR_UIButton.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B304580204FEC54004C43E4 /* RR_UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				2B3045A52050CFA4004C43E4 /* Source */,
+				2B3045A12050CF38004C43E4 /* Vender */,
+				2B3045972050C9FE004C43E4 /* Controllers */,
+				2B304581204FEC54004C43E4 /* AppDelegate.h */,
+				2B304582204FEC54004C43E4 /* AppDelegate.m */,
+				2B3045982050CA3B004C43E4 /* RootTableViewController.h */,
+				2B3045992050CA3B004C43E4 /* RootTableViewController.m */,
+				2B304587204FEC54004C43E4 /* Main.storyboard */,
+				2B30458A204FEC54004C43E4 /* Assets.xcassets */,
+				2B30458C204FEC54004C43E4 /* LaunchScreen.storyboard */,
+				2B30458F204FEC54004C43E4 /* Info.plist */,
+				2B304590204FEC54004C43E4 /* main.m */,
+			);
+			path = RR_UIButton;
+			sourceTree = "<group>";
+		};
+		2B3045972050C9FE004C43E4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B30459E2050CD6F004C43E4 /* ButtonBasicUseController.h */,
+				2B30459F2050CD6F004C43E4 /* ButtonBasicUseController.m */,
+				2B3045A82051449E004C43E4 /* UIButtonIncompleteController.h */,
+				2B3045A92051449E004C43E4 /* UIButtonIncompleteController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2B3045A12050CF38004C43E4 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				2B3045AC205144BB004C43E4 /* 不规则按钮 */,
+				2B3045AB205144A5004C43E4 /* UIRRButton */,
+			);
+			path = Vender;
+			sourceTree = "<group>";
+		};
+		2B3045A52050CFA4004C43E4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2B3045A62050CFB2004C43E4 /* tab_btn1_sel@2x.png */,
+				2B6692BE206CD72000781A71 /* pic-jingzhenyujin@2x.png */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2B3045AB205144A5004C43E4 /* UIRRButton */ = {
+			isa = PBXGroup;
+			children = (
+				2B3045A22050CF58004C43E4 /* UIRRButton.h */,
+				2B3045A32050CF58004C43E4 /* UIRRButton.m */,
+			);
+			path = UIRRButton;
+			sourceTree = "<group>";
+		};
+		2B3045AC205144BB004C43E4 /* 不规则按钮 */ = {
+			isa = PBXGroup;
+			children = (
+				2B3045AD205144BB004C43E4 /* BBIrregularImageButton.h */,
+				2B3045AE205144BB004C43E4 /* BBIrregularImageButton.m */,
+				2B3045AF205144BB004C43E4 /* BBShapedButton.h */,
+				2B3045B0205144BB004C43E4 /* BBShapedButton.m */,
+				2B3045B1205144BB004C43E4 /* button-normal.png */,
+				2B3045B2205144BB004C43E4 /* UIImage+ColorAtPixel.h */,
+				2B3045B3205144BB004C43E4 /* UIImage+ColorAtPixel.m */,
+			);
+			path = "不规则按钮";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B30457D204FEC54004C43E4 /* RR_UIButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B304594204FEC54004C43E4 /* Build configuration list for PBXNativeTarget "RR_UIButton" */;
+			buildPhases = (
+				2B30457A204FEC54004C43E4 /* Sources */,
+				2B30457B204FEC54004C43E4 /* Frameworks */,
+				2B30457C204FEC54004C43E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RR_UIButton;
+			productName = RR_UIButton;
+			productReference = 2B30457E204FEC54004C43E4 /* RR_UIButton.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B304576204FEC54004C43E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = yangjianliang;
+				TargetAttributes = {
+					2B30457D204FEC54004C43E4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2B304579204FEC54004C43E4 /* Build configuration list for PBXProject "RR_UIButton" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B304575204FEC54004C43E4;
+			productRefGroup = 2B30457F204FEC54004C43E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B30457D204FEC54004C43E4 /* RR_UIButton */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B30457C204FEC54004C43E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B30458E204FEC54004C43E4 /* LaunchScreen.storyboard in Resources */,
+				2B30458B204FEC54004C43E4 /* Assets.xcassets in Resources */,
+				2B6692BF206CD72000781A71 /* pic-jingzhenyujin@2x.png in Resources */,
+				2B3045B6205144BB004C43E4 /* button-normal.png in Resources */,
+				2B3045A72050CFB2004C43E4 /* tab_btn1_sel@2x.png in Resources */,
+				2B304589204FEC54004C43E4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B30457A204FEC54004C43E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B3045B5205144BB004C43E4 /* BBShapedButton.m in Sources */,
+				2B304591204FEC54004C43E4 /* main.m in Sources */,
+				2B3045AA2051449E004C43E4 /* UIButtonIncompleteController.m in Sources */,
+				2B3045A42050CF58004C43E4 /* UIRRButton.m in Sources */,
+				2B3045B4205144BB004C43E4 /* BBIrregularImageButton.m in Sources */,
+				2B3045B7205144BB004C43E4 /* UIImage+ColorAtPixel.m in Sources */,
+				2B304583204FEC54004C43E4 /* AppDelegate.m in Sources */,
+				2B30459A2050CA3B004C43E4 /* RootTableViewController.m in Sources */,
+				2B3045A02050CD6F004C43E4 /* ButtonBasicUseController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B304587204FEC54004C43E4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B304588204FEC54004C43E4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B30458C204FEC54004C43E4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B30458D204FEC54004C43E4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B304592204FEC54004C43E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2B304593204FEC54004C43E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B304595204FEC54004C43E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VZHX58HUJ;
+				INFOPLIST_FILE = RR_UIButton/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microants.haishi.RR-UIButton";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B304596204FEC54004C43E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VZHX58HUJ;
+				INFOPLIST_FILE = RR_UIButton/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microants.haishi.RR-UIButton";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B304579204FEC54004C43E4 /* Build configuration list for PBXProject "RR_UIButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B304592204FEC54004C43E4 /* Debug */,
+				2B304593204FEC54004C43E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B304594204FEC54004C43E4 /* Build configuration list for PBXNativeTarget "RR_UIButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B304595204FEC54004C43E4 /* Debug */,
+				2B304596204FEC54004C43E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B304576204FEC54004C43E4 /* Project object */;
+}
