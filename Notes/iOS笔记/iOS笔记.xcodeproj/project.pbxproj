@@ -95,14 +95,14 @@
 		2BED100E1FB009C500BB474F /* UIAccessibilityIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityIdentification.h; sourceTree = "<group>"; };
 		2BED100F1FB009C500BB474F /* UIAccessibilityLocationDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityLocationDescriptor.h; sourceTree = "<group>"; };
 		2BED10101FB009C500BB474F /* UIAccessibilityZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityZoom.h; sourceTree = "<group>"; };
-		2BED10111FB009C500BB474F /* UIActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionSheet.h; sourceTree = "<group>"; };
+		2BED10111FB009C500BB474F /* UIActionSheet(废弃).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet(废弃).h"; sourceTree = "<group>"; };
 		2BED10121FB009C500BB474F /* UIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActivity.h; sourceTree = "<group>"; };
 		2BED10131FB009C500BB474F /* UIActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActivityIndicatorView.h; sourceTree = "<group>"; };
 		2BED10141FB009C500BB474F /* UIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActivityItemProvider.h; sourceTree = "<group>"; };
 		2BED10151FB009C500BB474F /* UIActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActivityViewController.h; sourceTree = "<group>"; };
 		2BED10161FB009C500BB474F /* UIAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlert.h; sourceTree = "<group>"; };
 		2BED10171FB009C500BB474F /* UIAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertController.h; sourceTree = "<group>"; };
-		2BED10181FB009C500BB474F /* UIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertView.h; sourceTree = "<group>"; };
+		2BED10181FB009C500BB474F /* UIAlertView(废弃).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView(废弃).h"; sourceTree = "<group>"; };
 		2BED10191FB009C500BB474F /* UIAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAppearance.h; sourceTree = "<group>"; };
 		2BED101A1FB009C500BB474F /* UIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIApplication.h; sourceTree = "<group>"; };
 		2BED101B1FB009C500BB474F /* UIApplicationShortcutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIApplicationShortcutItem.h; sourceTree = "<group>"; };
@@ -311,23 +311,45 @@
 			path = WebKit;
 			sourceTree = "<group>";
 		};
-		2B304570204FE8B7004C43E4 /* UIBaseViews */ = {
+		2B304570204FE8B7004C43E4 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-				2BED105B1FB009C500BB474F /* UIImageView.h */,
+				2BED10111FB009C500BB474F /* UIActionSheet(废弃).h */,
+				2BED10181FB009C500BB474F /* UIAlertView(废弃).h */,
+				2BED105D1FB009C500BB474F /* UIInputView.h */,
+				2BED10A21FB009C500BB474F /* UIStackView.h */,
 				2BED10961FB009C500BB474F /* UIScrollView.h */,
+				2BED10D21FB009C500BB474F /* UIWebView.h */,
+				2BED10971FB009C500BB474F /* UISearchBar.h */,
+				2BED10AC1FB009C500BB474F /* UITabBar.h */,
+				2BED10D11FB009C500BB474F /* UIVisualEffectView.h */,
+				2BED107C1FB009C500BB474F /* UIPopoverBackgroundView.h */,
+				2BED10C41FB009C500BB474F /* UIToolbar.h */,
+				2BED10D31FB009C500BB474F /* UIWindow.h */,
+				2BED105B1FB009C500BB474F /* UIImageView.h */,
 				2BED10641FB009C500BB474F /* UILabel.h */,
-				2BED10AB1FB009C500BB474F /* UISwitch.h */,
-				2BED10C11FB009C500BB474F /* UITextView.h */,
 				2BED10CA1FB009C500BB474F /* UIView.h */,
+				2BED108C1FB009C500BB474F /* UIProgressView.h */,
+				2BED106D1FB009C500BB474F /* UINavigationBar.h */,
+				2BED10131FB009C500BB474F /* UIActivityIndicatorView.h */,
+				2BED107A1FB009C500BB474F /* UIPickerView.h */,
 			);
-			path = UIBaseViews;
+			path = UIViews;
 			sourceTree = "<group>";
 		};
 		2B304571204FE957004C43E4 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
+				2BED10301FB009C500BB474F /* UIControl.h */,
+				2BED10BB1FB009C500BB474F /* UITextField.h */,
+				2BED109D1FB009C500BB474F /* UISlider.h */,
+				2BED10A41FB009C500BB474F /* UIStepper.h */,
+				2BED10AB1FB009C500BB474F /* UISwitch.h */,
 				2BED10231FB009C500BB474F /* UIButton.h */,
+				2BED10331FB009C500BB474F /* UIDatePicker.h */,
+				2BED10741FB009C500BB474F /* UIPageControl.h */,
+				2BED108F1FB009C500BB474F /* UIRefreshControl.h */,
+				2BED109B1FB009C500BB474F /* UISegmentedControl.h */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -342,12 +364,13 @@
 			path = UIViewControllers;
 			sourceTree = "<group>";
 		};
-		2B461CF020A17A7900638189 /* A富文本 */ = {
+		2B461CF020A17A7900638189 /* NSAttributedString相关 */ = {
 			isa = PBXGroup;
 			children = (
+				2BED0FFE1FB009C500BB474F /* NSParagraphStyle.h */,
 				2BED0FF61FB009C500BB474F /* NSAttributedString.h */,
 			);
-			path = "A富文本";
+			path = "NSAttributedString相关";
 			sourceTree = "<group>";
 		};
 		2B9275341FDA518700D177E1 /* Headers */ = {
@@ -394,6 +417,50 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		2B980A1020AD227700DFDCB7 /* TextKit相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED0FFD1FB009C500BB474F /* NSLayoutManager.h */,
+				2BED10031FB009C500BB474F /* NSTextContainer.h */,
+				2BED10041FB009C500BB474F /* NSTextStorage.h */,
+				2BED10C11FB009C500BB474F /* UITextView.h */,
+			);
+			path = "TextKit相关";
+			sourceTree = "<group>";
+		};
+		2B980A1120AD302700DFDCB7 /* TableView相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10AF1FB009C500BB474F /* UITableView.h */,
+				2BED10B01FB009C500BB474F /* UITableViewCell.h */,
+				2BED10B11FB009C500BB474F /* UITableViewController.h */,
+				2BED10B21FB009C500BB474F /* UITableViewHeaderFooterView.h */,
+			);
+			path = "TableView相关";
+			sourceTree = "<group>";
+		};
+		2B980A1220AD303400DFDCB7 /* CollectionView相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10251FB009C500BB474F /* UICollectionView.h */,
+				2BED10261FB009C500BB474F /* UICollectionViewCell.h */,
+				2BED10271FB009C500BB474F /* UICollectionViewController.h */,
+				2BED10281FB009C500BB474F /* UICollectionViewFlowLayout.h */,
+				2BED10291FB009C500BB474F /* UICollectionViewLayout.h */,
+				2BED102A1FB009C500BB474F /* UICollectionViewTransitionLayout.h */,
+			);
+			path = "CollectionView相关";
+			sourceTree = "<group>";
+		};
+		2B980A1320AD349700DFDCB7 /* UIResponders */ = {
+			isa = PBXGroup;
+			children = (
+				2BED101A1FB009C500BB474F /* UIApplication.h */,
+				2BED10911FB009C500BB474F /* UIResponder.h */,
+			);
+			path = UIResponders;
+			sourceTree = "<group>";
+		};
 		2BEA132C1F3D43A00085F550 = {
 			isa = PBXGroup;
 			children = (
@@ -438,7 +505,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2BED0FF51FB009C500BB474F /* Headers */ = {
+		2BED0FF51FB009C500BB474F /* AAAAAHeaders */ = {
 			isa = PBXGroup;
 			children = (
 				2BED0FF71FB009C500BB474F /* NSDataAsset.h */,
@@ -447,14 +514,10 @@
 				2BED0FFA1FB009C500BB474F /* NSItemProvider+UIKitAdditions.h */,
 				2BED0FFB1FB009C500BB474F /* NSLayoutAnchor.h */,
 				2BED0FFC1FB009C500BB474F /* NSLayoutConstraint.h */,
-				2BED0FFD1FB009C500BB474F /* NSLayoutManager.h */,
-				2BED0FFE1FB009C500BB474F /* NSParagraphStyle.h */,
 				2BED0FFF1FB009C500BB474F /* NSShadow.h */,
 				2BED10001FB009C500BB474F /* NSStringDrawing.h */,
 				2BED10011FB009C500BB474F /* NSText.h */,
 				2BED10021FB009C500BB474F /* NSTextAttachment.h */,
-				2BED10031FB009C500BB474F /* NSTextContainer.h */,
-				2BED10041FB009C500BB474F /* NSTextStorage.h */,
 				2BED10051FB009C500BB474F /* UIAccelerometer.h */,
 				2BED10061FB009C500BB474F /* UIAccessibility.h */,
 				2BED10071FB009C500BB474F /* UIAccessibilityAdditions.h */,
@@ -467,16 +530,12 @@
 				2BED100E1FB009C500BB474F /* UIAccessibilityIdentification.h */,
 				2BED100F1FB009C500BB474F /* UIAccessibilityLocationDescriptor.h */,
 				2BED10101FB009C500BB474F /* UIAccessibilityZoom.h */,
-				2BED10111FB009C500BB474F /* UIActionSheet.h */,
 				2BED10121FB009C500BB474F /* UIActivity.h */,
-				2BED10131FB009C500BB474F /* UIActivityIndicatorView.h */,
 				2BED10141FB009C500BB474F /* UIActivityItemProvider.h */,
 				2BED10151FB009C500BB474F /* UIActivityViewController.h */,
 				2BED10161FB009C500BB474F /* UIAlert.h */,
 				2BED10171FB009C500BB474F /* UIAlertController.h */,
-				2BED10181FB009C500BB474F /* UIAlertView.h */,
 				2BED10191FB009C500BB474F /* UIAppearance.h */,
-				2BED101A1FB009C500BB474F /* UIApplication.h */,
 				2BED101B1FB009C500BB474F /* UIApplicationShortcutItem.h */,
 				2BED101C1FB009C500BB474F /* UIAttachmentBehavior.h */,
 				2BED101D1FB009C500BB474F /* UIBarButtonItem.h */,
@@ -486,21 +545,13 @@
 				2BED10211FB009C500BB474F /* UIBezierPath.h */,
 				2BED10221FB009C500BB474F /* UIBlurEffect.h */,
 				2BED10241FB009C500BB474F /* UICloudSharingController.h */,
-				2BED10251FB009C500BB474F /* UICollectionView.h */,
-				2BED10261FB009C500BB474F /* UICollectionViewCell.h */,
-				2BED10271FB009C500BB474F /* UICollectionViewController.h */,
-				2BED10281FB009C500BB474F /* UICollectionViewFlowLayout.h */,
-				2BED10291FB009C500BB474F /* UICollectionViewLayout.h */,
-				2BED102A1FB009C500BB474F /* UICollectionViewTransitionLayout.h */,
 				2BED102B1FB009C500BB474F /* UICollisionBehavior.h */,
 				2BED102C1FB009C500BB474F /* UIColor.h */,
 				2BED102D1FB009C500BB474F /* UIContentSizeCategory.h */,
 				2BED102E1FB009C500BB474F /* UIContentSizeCategoryAdjusting.h */,
 				2BED102F1FB009C500BB474F /* UIContextualAction.h */,
-				2BED10301FB009C500BB474F /* UIControl.h */,
 				2BED10311FB009C500BB474F /* UIDataDetectors.h */,
 				2BED10321FB009C500BB474F /* UIDataSourceTranslating.h */,
-				2BED10331FB009C500BB474F /* UIDatePicker.h */,
 				2BED10341FB009C500BB474F /* UIDevice.h */,
 				2BED10351FB009C500BB474F /* UIDocument.h */,
 				2BED10361FB009C500BB474F /* UIDocumentInteractionController.h */,
@@ -541,7 +592,6 @@
 				2BED10591FB009C500BB474F /* UIImageAsset.h */,
 				2BED105A1FB009C500BB474F /* UIImagePickerController.h */,
 				2BED105C1FB009C500BB474F /* UIImpactFeedbackGenerator.h */,
-				2BED105D1FB009C500BB474F /* UIInputView.h */,
 				2BED105E1FB009C500BB474F /* UIInputViewController.h */,
 				2BED105F1FB009C500BB474F /* UIInteraction.h */,
 				2BED10601FB009C500BB474F /* UIInterface.h */,
@@ -556,21 +606,17 @@
 				2BED106A1FB009C500BB474F /* UIManagedDocument.h */,
 				2BED106B1FB009C500BB474F /* UIMenuController.h */,
 				2BED106C1FB009C500BB474F /* UIMotionEffect.h */,
-				2BED106D1FB009C500BB474F /* UINavigationBar.h */,
 				2BED106F1FB009C500BB474F /* UINavigationItem.h */,
 				2BED10701FB009C500BB474F /* UINib.h */,
 				2BED10711FB009C500BB474F /* UINibDeclarations.h */,
 				2BED10721FB009C500BB474F /* UINibLoading.h */,
 				2BED10731FB009C500BB474F /* UINotificationFeedbackGenerator.h */,
-				2BED10741FB009C500BB474F /* UIPageControl.h */,
 				2BED10751FB009C500BB474F /* UIPageViewController.h */,
 				2BED10761FB009C500BB474F /* UIPanGestureRecognizer.h */,
 				2BED10771FB009C500BB474F /* UIPasteboard.h */,
 				2BED10781FB009C500BB474F /* UIPasteConfiguration.h */,
 				2BED10791FB009C500BB474F /* UIPasteConfigurationSupporting.h */,
-				2BED107A1FB009C500BB474F /* UIPickerView.h */,
 				2BED107B1FB009C500BB474F /* UIPinchGestureRecognizer.h */,
-				2BED107C1FB009C500BB474F /* UIPopoverBackgroundView.h */,
 				2BED107D1FB009C500BB474F /* UIPopoverController.h */,
 				2BED107E1FB009C500BB474F /* UIPopoverPresentationController.h */,
 				2BED107F1FB009C500BB474F /* UIPopoverSupport.h */,
@@ -586,42 +632,29 @@
 				2BED10891FB009C500BB474F /* UIPrintInteractionController.h */,
 				2BED108A1FB009C500BB474F /* UIPrintPageRenderer.h */,
 				2BED108B1FB009C500BB474F /* UIPrintPaper.h */,
-				2BED108C1FB009C500BB474F /* UIProgressView.h */,
 				2BED108D1FB009C500BB474F /* UIPushBehavior.h */,
 				2BED108E1FB009C500BB474F /* UIReferenceLibraryViewController.h */,
-				2BED108F1FB009C500BB474F /* UIRefreshControl.h */,
 				2BED10901FB009C500BB474F /* UIRegion.h */,
-				2BED10911FB009C500BB474F /* UIResponder.h */,
 				2BED10921FB009C500BB474F /* UIRotationGestureRecognizer.h */,
 				2BED10931FB009C500BB474F /* UIScreen.h */,
 				2BED10941FB009C500BB474F /* UIScreenEdgePanGestureRecognizer.h */,
 				2BED10951FB009C500BB474F /* UIScreenMode.h */,
-				2BED10971FB009C500BB474F /* UISearchBar.h */,
 				2BED10981FB009C500BB474F /* UISearchContainerViewController.h */,
 				2BED10991FB009C500BB474F /* UISearchController.h */,
 				2BED109A1FB009C500BB474F /* UISearchDisplayController.h */,
-				2BED109B1FB009C500BB474F /* UISegmentedControl.h */,
 				2BED109C1FB009C500BB474F /* UISelectionFeedbackGenerator.h */,
-				2BED109D1FB009C500BB474F /* UISlider.h */,
 				2BED109E1FB009C500BB474F /* UISnapBehavior.h */,
 				2BED109F1FB009C500BB474F /* UISplitViewController.h */,
 				2BED10A01FB009C500BB474F /* UISpringLoadedInteraction.h */,
 				2BED10A11FB009C500BB474F /* UISpringLoadedInteractionSupporting.h */,
-				2BED10A21FB009C500BB474F /* UIStackView.h */,
 				2BED10A31FB009C500BB474F /* UIStateRestoration.h */,
-				2BED10A41FB009C500BB474F /* UIStepper.h */,
 				2BED10A51FB009C500BB474F /* UIStoryboard.h */,
 				2BED10A61FB009C500BB474F /* UIStoryboardPopoverSegue.h */,
 				2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */,
 				2BED10A81FB009C500BB474F /* UIStringDrawing.h */,
 				2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */,
 				2BED10AA1FB009C500BB474F /* UISwipeGestureRecognizer.h */,
-				2BED10AC1FB009C500BB474F /* UITabBar.h */,
 				2BED10AE1FB009C500BB474F /* UITabBarItem.h */,
-				2BED10AF1FB009C500BB474F /* UITableView.h */,
-				2BED10B01FB009C500BB474F /* UITableViewCell.h */,
-				2BED10B11FB009C500BB474F /* UITableViewController.h */,
-				2BED10B21FB009C500BB474F /* UITableViewHeaderFooterView.h */,
 				2BED10B31FB009C500BB474F /* UITapGestureRecognizer.h */,
 				2BED10B41FB009C500BB474F /* UITargetedDragPreview.h */,
 				2BED10B51FB009C500BB474F /* UITextChecker.h */,
@@ -630,7 +663,6 @@
 				2BED10B81FB009C500BB474F /* UITextDragURLPreviews.h */,
 				2BED10B91FB009C500BB474F /* UITextDropping.h */,
 				2BED10BA1FB009C500BB474F /* UITextDropProposal.h */,
-				2BED10BB1FB009C500BB474F /* UITextField.h */,
 				2BED10BC1FB009C500BB474F /* UITextInput.h */,
 				2BED10BD1FB009C500BB474F /* UITextInputTraits.h */,
 				2BED10BE1FB009C500BB474F /* UITextInteraction.h */,
@@ -638,7 +670,6 @@
 				2BED10C01FB009C500BB474F /* UITextPasteDelegate.h */,
 				2BED10C21FB009C500BB474F /* UITimingCurveProvider.h */,
 				2BED10C31FB009C500BB474F /* UITimingParameters.h */,
-				2BED10C41FB009C500BB474F /* UIToolbar.h */,
 				2BED10C51FB009C500BB474F /* UITouch.h */,
 				2BED10C61FB009C500BB474F /* UITraitCollection.h */,
 				2BED10C71FB009C500BB474F /* UIUserNotificationSettings.h */,
@@ -649,20 +680,21 @@
 				2BED10CE1FB009C500BB474F /* UIViewControllerTransitioning.h */,
 				2BED10CF1FB009C500BB474F /* UIViewPropertyAnimator.h */,
 				2BED10D01FB009C500BB474F /* UIVisualEffect.h */,
-				2BED10D11FB009C500BB474F /* UIVisualEffectView.h */,
-				2BED10D21FB009C500BB474F /* UIWebView.h */,
-				2BED10D31FB009C500BB474F /* UIWindow.h */,
 			);
-			path = Headers;
+			path = AAAAAHeaders;
 			sourceTree = "<group>";
 		};
 		2BED11B61FB0315300BB474F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				2B461CF020A17A7900638189 /* A富文本 */,
-				2BED0FF51FB009C500BB474F /* Headers */,
-				2B304570204FE8B7004C43E4 /* UIBaseViews */,
+				2BED0FF51FB009C500BB474F /* AAAAAHeaders */,
+				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
+				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
+				2B980A1120AD302700DFDCB7 /* TableView相关 */,
+				2B980A1020AD227700DFDCB7 /* TextKit相关 */,
+				2B304570204FE8B7004C43E4 /* UIViews */,
 				2B304571204FE957004C43E4 /* UIControls */,
+				2B980A1320AD349700DFDCB7 /* UIResponders */,
 				2B304572204FE991004C43E4 /* UIViewControllers */,
 			);
 			path = UIKit;

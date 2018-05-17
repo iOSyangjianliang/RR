@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // This category provides convenience methods to make it easier to use an NSIndexPath to represent a section and row/item, for use with UITableView and UICollectionView.
+//此类提供了便利的方法，以便使用NSIndexPath来表示节和行/项，以便与UITableView和UICollectionView一起使用。
 @interface NSIndexPath (UIKitAdditions)
 
 + (instancetype)indexPathForRow:(NSInteger)row inSection:(NSInteger)section;
