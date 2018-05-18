@@ -688,14 +688,14 @@
 			isa = PBXGroup;
 			children = (
 				2BED0FF51FB009C500BB474F /* AAAAAHeaders */,
-				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
 				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
+				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
 				2B980A1120AD302700DFDCB7 /* TableView相关 */,
 				2B980A1020AD227700DFDCB7 /* TextKit相关 */,
-				2B304570204FE8B7004C43E4 /* UIViews */,
 				2B304571204FE957004C43E4 /* UIControls */,
 				2B980A1320AD349700DFDCB7 /* UIResponders */,
 				2B304572204FE991004C43E4 /* UIViewControllers */,
+				2B304570204FE8B7004C43E4 /* UIViews */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";

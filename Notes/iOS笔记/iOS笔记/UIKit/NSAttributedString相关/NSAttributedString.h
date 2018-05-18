@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 //NSStrikethroughColorAttributeName 设置删除线颜色，UIColor对象，默认是黑色
 //NSUnderlineStyleAttributeName     设置下划线，NSNumber对象 NSUnderlineStyle枚举值
 //NSUnderlineColorAttributeName     设置下划线颜色，UIColor对象，默认是黑色
-//NSStrokeWidthAttributeName        设置笔画宽度，NSNumber对象 正数中空 负数填充
+//NSStrokeWidthAttributeName        设置笔画宽度，包含浮点值的NSNumber，以字体磅值的百分比表示，默认为0
 //NSStrokeColorAttributeName        设置填充部分颜色，不是指字体颜色，UIColor对象
 //NSShadowAttributeName             设置阴影属性，取值为NSShadow对象
 //NSTextEffectAttributeName         设置文本特殊效果 NSString对象 只有图版印刷效果可用
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 //NSObliquenessAttributeName        设置字体倾斜度，NSNumber float对象，正数右倾斜，负数左倾斜
 //NSExpansionAttributeName          设置文本横向拉伸属性，NSNumber float对象，正数横向拉伸文本，负数压缩
 //NSWritingDirectionAttributeName   设置文字书写方向，从左向右或者右向左
-//NSVerticalGlyphFormAttributeName  设置文本排版方向，NSNumber对象。0 横向排版，1 竖向排版
+//NSVerticalGlyphFormAttributeName  设置文本排版方向，NSNumber对象。0 横向排版，1 竖向排版,目前设置无效
 //NSLinkAttributeName               设置文本超链接，点击可以打开指定URL地址
 //NSAttachmentAttributeName         设置文本附件，取值为NSTextAttachment对象，一般为图文混排
 //NSParagraphStyleAttributeName     设置文本段落排版，为NSParagraphStyle对象
@@ -63,8 +63,9 @@ UIKIT_EXTERN NSAttributedStringKey const NSObliquenessAttributeName NS_AVAILABLE
 UIKIT_EXTERN NSAttributedStringKey const NSExpansionAttributeName NS_AVAILABLE(10_0, 7_0);           // NSNumber containing floating point value; log of expansion factor to be applied to glyphs, default 0: no expansion
 
 UIKIT_EXTERN NSAttributedStringKey const NSWritingDirectionAttributeName NS_AVAILABLE(10_6, 7_0);    // NSArray of NSNumbers representing the nested levels of writing direction overrides as defined by Unicode LRE, RLE, LRO, and RLO characters.  The control characters can be obtained by masking NSWritingDirection and NSWritingDirectionFormatType values.  LRE: NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding, RLE: NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding, LRO: NSWritingDirectionLeftToRight|NSWritingDirectionOverride, RLO: NSWritingDirectionRightToLeft|NSWritingDirectionOverride,
+//表示嵌套的写入方向级别的NSNumber的NSArray覆盖由Unicode LRE，RLE，LRO和RLO字符定义的覆盖级别。 控制字符可以通过屏蔽NSWritingDirection和NSWritingDirectionFormatType值来获得。 LRE：NSWritingDirectionLeftToRight | NSWritingDirectionEmbedding，RLE：NSWritingDirectionRightToLeft | NSWritingDirectionEmbedding，LRO：NSWritingDirectionLeftToRight | NSWritingDirectionOverride，RLO：NSWritingDirectionRightToLeft | NSWritingDirectionOverride，
 
-UIKIT_EXTERN NSAttributedStringKey const NSVerticalGlyphFormAttributeName NS_AVAILABLE(10_7, 6_0);   // An NSNumber containing an integer value.  0 means horizontal text.  1 indicates vertical text.  If not specified, it could follow higher-level vertical orientation settings.  Currently on iOS, it's always horizontal.  The behavior for any other value is undefined.
+UIKIT_EXTERN NSAttributedStringKey const NSVerticalGlyphFormAttributeName NS_AVAILABLE(10_7, 6_0);   // An NSNumber containing an integer value.  0 means horizontal text.  1 indicates vertical text.  If not specified, it could follow higher-level vertical orientation settings.  Currently on iOS, it's always horizontal.  The behavior for any other value is undefined.包含整数值的NSNumber。 0表示水平文本。 1表示垂直文字。 如果未指定，则可以遵循更高级别的垂直方向设置。 目前在iOS上，它始终是水平的。 任何其他值的行为都是未定义的。
 
 
 

@@ -149,7 +149,7 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UIScrollView : UIView <NSCoding>
 @property(nonatomic,readonly,getter=isDragging)     BOOL dragging;        // returns YES if user has started scrolling. this may require some time and or distance to move to initiate dragging 如果用户已经开始滚动，返回YES。这可能需要一些时间和距离来启动拖拽
 
 //判断视图是否开始减速（用户停止拖动但视图仍在滚动:惯性）
-@property(nonatomic,readonly,getter=isDecelerating) BOOL decelerating;    // returns YES if user isn't dragging (touch up) but scroll view is still moving 如果用户没有拖拽(触摸)，返回YES，但是滚动视图仍然在移动
+@property(nonatomic,readonly,getter=isDecelerating) BOOL decelerating;    // returns YES if user isn't dragging (touch up) but scroll view is still moving 滚动视图仍然在移动,但是用户没有拖拽(触摸)，返回YES
 
 //设置视图是否延迟处理触摸事件（会将消息传递给子视图）默认YES
 @property(nonatomic) BOOL delaysContentTouches;       // default is YES. if NO, we immediately call -touchesShouldBegin:withEvent:inContentView:. this has no effect on presses 默认是YES的。如果NO,我们立刻调用- touchesShouldBegin:withEvent:inContentView:.这对按压没有影响
