@@ -3,7 +3,7 @@
 //  UIKit
 //
 //  Copyright (c) 2009-2017 Apple Inc. All rights reserved.
-//
+//轻扫手势
 
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIGestureRecognizer.h>

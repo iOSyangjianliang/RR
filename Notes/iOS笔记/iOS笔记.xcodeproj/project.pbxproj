@@ -303,6 +303,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B05EFE320B69D3B00781145 /* UIPrint打印相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10841FB009C500BB474F /* UIPrinter.h */,
+				2BED10851FB009C500BB474F /* UIPrinterPickerController.h */,
+				2BED10861FB009C500BB474F /* UIPrintError.h */,
+				2BED10871FB009C500BB474F /* UIPrintFormatter.h */,
+				2BED10881FB009C500BB474F /* UIPrintInfo.h */,
+				2BED10891FB009C500BB474F /* UIPrintInteractionController.h */,
+				2BED108A1FB009C500BB474F /* UIPrintPageRenderer.h */,
+				2BED108B1FB009C500BB474F /* UIPrintPaper.h */,
+			);
+			path = "UIPrint打印相关";
+			sourceTree = "<group>";
+		};
+		2B05EFE420B69EB000781145 /* UIGesture手势相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED104F1FB009C500BB474F /* UIGestureRecognizer.h */,
+				2BED10501FB009C500BB474F /* UIGestureRecognizerSubclass.h */,
+				2BED10AA1FB009C500BB474F /* UISwipeGestureRecognizer.h */,
+				2BED10B31FB009C500BB474F /* UITapGestureRecognizer.h */,
+				2BED10691FB009C500BB474F /* UILongPressGestureRecognizer.h */,
+				2BED10761FB009C500BB474F /* UIPanGestureRecognizer.h */,
+				2BED107B1FB009C500BB474F /* UIPinchGestureRecognizer.h */,
+				2BED10921FB009C500BB474F /* UIRotationGestureRecognizer.h */,
+				2BED10941FB009C500BB474F /* UIScreenEdgePanGestureRecognizer.h */,
+			);
+			path = "UIGesture手势相关";
+			sourceTree = "<group>";
+		};
+		2B05EFE520B6A55100781145 /* UITabBar相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10AD1FB009C500BB474F /* UITabBarController.h */,
+				2BED10AC1FB009C500BB474F /* UITabBar.h */,
+				2BED10AE1FB009C500BB474F /* UITabBarItem.h */,
+			);
+			path = "UITabBar相关";
+			sourceTree = "<group>";
+		};
+		2B05EFE620B6A5E800781145 /* UINavigation相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED106E1FB009C500BB474F /* UINavigationController.h */,
+				2BED106D1FB009C500BB474F /* UINavigationBar.h */,
+				2BED106F1FB009C500BB474F /* UINavigationItem.h */,
+			);
+			path = "UINavigation相关";
+			sourceTree = "<group>";
+		};
+		2B05EFE720B6A66900781145 /* UIBarButtonItem相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10201FB009C500BB474F /* UIBarItem.h */,
+				2BED101D1FB009C500BB474F /* UIBarButtonItem.h */,
+				2BED101E1FB009C500BB474F /* UIBarButtonItemGroup.h */,
+			);
+			path = "UIBarButtonItem相关";
+			sourceTree = "<group>";
+		};
 		2B1C35981FB3EED900ADDE24 /* WebKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +382,6 @@
 				2BED10961FB009C500BB474F /* UIScrollView.h */,
 				2BED10D21FB009C500BB474F /* UIWebView.h */,
 				2BED10971FB009C500BB474F /* UISearchBar.h */,
-				2BED10AC1FB009C500BB474F /* UITabBar.h */,
 				2BED10D11FB009C500BB474F /* UIVisualEffectView.h */,
 				2BED107C1FB009C500BB474F /* UIPopoverBackgroundView.h */,
 				2BED10C41FB009C500BB474F /* UIToolbar.h */,
@@ -330,7 +390,6 @@
 				2BED10641FB009C500BB474F /* UILabel.h */,
 				2BED10CA1FB009C500BB474F /* UIView.h */,
 				2BED108C1FB009C500BB474F /* UIProgressView.h */,
-				2BED106D1FB009C500BB474F /* UINavigationBar.h */,
 				2BED10131FB009C500BB474F /* UIActivityIndicatorView.h */,
 				2BED107A1FB009C500BB474F /* UIPickerView.h */,
 			);
@@ -357,9 +416,9 @@
 		2B304572204FE991004C43E4 /* UIViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B05EFE620B6A5E800781145 /* UINavigation相关 */,
+				2B05EFE520B6A55100781145 /* UITabBar相关 */,
 				2BED10CC1FB009C500BB474F /* UIViewController.h */,
-				2BED10AD1FB009C500BB474F /* UITabBarController.h */,
-				2BED106E1FB009C500BB474F /* UINavigationController.h */,
 			);
 			path = UIViewControllers;
 			sourceTree = "<group>";
@@ -505,7 +564,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2BED0FF51FB009C500BB474F /* AAAAAHeaders */ = {
+		2BED0FF51FB009C500BB474F /* OtherHeaders */ = {
 			isa = PBXGroup;
 			children = (
 				2BED0FF71FB009C500BB474F /* NSDataAsset.h */,
@@ -538,10 +597,7 @@
 				2BED10191FB009C500BB474F /* UIAppearance.h */,
 				2BED101B1FB009C500BB474F /* UIApplicationShortcutItem.h */,
 				2BED101C1FB009C500BB474F /* UIAttachmentBehavior.h */,
-				2BED101D1FB009C500BB474F /* UIBarButtonItem.h */,
-				2BED101E1FB009C500BB474F /* UIBarButtonItemGroup.h */,
 				2BED101F1FB009C500BB474F /* UIBarCommon.h */,
-				2BED10201FB009C500BB474F /* UIBarItem.h */,
 				2BED10211FB009C500BB474F /* UIBezierPath.h */,
 				2BED10221FB009C500BB474F /* UIBlurEffect.h */,
 				2BED10241FB009C500BB474F /* UICloudSharingController.h */,
@@ -579,8 +635,6 @@
 				2BED104C1FB009C500BB474F /* UIFontDescriptor.h */,
 				2BED104D1FB009C500BB474F /* UIFontMetrics.h */,
 				2BED104E1FB009C500BB474F /* UIGeometry.h */,
-				2BED104F1FB009C500BB474F /* UIGestureRecognizer.h */,
-				2BED10501FB009C500BB474F /* UIGestureRecognizerSubclass.h */,
 				2BED10511FB009C500BB474F /* UIGraphics.h */,
 				2BED10521FB009C500BB474F /* UIGraphicsImageRenderer.h */,
 				2BED10531FB009C500BB474F /* UIGraphicsPDFRenderer.h */,
@@ -602,21 +656,17 @@
 				2BED10661FB009C500BB474F /* UILexicon.h */,
 				2BED10671FB009C500BB474F /* UILocalizedIndexedCollation.h */,
 				2BED10681FB009C500BB474F /* UILocalNotification.h */,
-				2BED10691FB009C500BB474F /* UILongPressGestureRecognizer.h */,
 				2BED106A1FB009C500BB474F /* UIManagedDocument.h */,
 				2BED106B1FB009C500BB474F /* UIMenuController.h */,
 				2BED106C1FB009C500BB474F /* UIMotionEffect.h */,
-				2BED106F1FB009C500BB474F /* UINavigationItem.h */,
 				2BED10701FB009C500BB474F /* UINib.h */,
 				2BED10711FB009C500BB474F /* UINibDeclarations.h */,
 				2BED10721FB009C500BB474F /* UINibLoading.h */,
 				2BED10731FB009C500BB474F /* UINotificationFeedbackGenerator.h */,
 				2BED10751FB009C500BB474F /* UIPageViewController.h */,
-				2BED10761FB009C500BB474F /* UIPanGestureRecognizer.h */,
 				2BED10771FB009C500BB474F /* UIPasteboard.h */,
 				2BED10781FB009C500BB474F /* UIPasteConfiguration.h */,
 				2BED10791FB009C500BB474F /* UIPasteConfigurationSupporting.h */,
-				2BED107B1FB009C500BB474F /* UIPinchGestureRecognizer.h */,
 				2BED107D1FB009C500BB474F /* UIPopoverController.h */,
 				2BED107E1FB009C500BB474F /* UIPopoverPresentationController.h */,
 				2BED107F1FB009C500BB474F /* UIPopoverSupport.h */,
@@ -624,20 +674,10 @@
 				2BED10811FB009C500BB474F /* UIPress.h */,
 				2BED10821FB009C500BB474F /* UIPressesEvent.h */,
 				2BED10831FB009C500BB474F /* UIPreviewInteraction.h */,
-				2BED10841FB009C500BB474F /* UIPrinter.h */,
-				2BED10851FB009C500BB474F /* UIPrinterPickerController.h */,
-				2BED10861FB009C500BB474F /* UIPrintError.h */,
-				2BED10871FB009C500BB474F /* UIPrintFormatter.h */,
-				2BED10881FB009C500BB474F /* UIPrintInfo.h */,
-				2BED10891FB009C500BB474F /* UIPrintInteractionController.h */,
-				2BED108A1FB009C500BB474F /* UIPrintPageRenderer.h */,
-				2BED108B1FB009C500BB474F /* UIPrintPaper.h */,
 				2BED108D1FB009C500BB474F /* UIPushBehavior.h */,
 				2BED108E1FB009C500BB474F /* UIReferenceLibraryViewController.h */,
 				2BED10901FB009C500BB474F /* UIRegion.h */,
-				2BED10921FB009C500BB474F /* UIRotationGestureRecognizer.h */,
 				2BED10931FB009C500BB474F /* UIScreen.h */,
-				2BED10941FB009C500BB474F /* UIScreenEdgePanGestureRecognizer.h */,
 				2BED10951FB009C500BB474F /* UIScreenMode.h */,
 				2BED10981FB009C500BB474F /* UISearchContainerViewController.h */,
 				2BED10991FB009C500BB474F /* UISearchController.h */,
@@ -653,9 +693,6 @@
 				2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */,
 				2BED10A81FB009C500BB474F /* UIStringDrawing.h */,
 				2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */,
-				2BED10AA1FB009C500BB474F /* UISwipeGestureRecognizer.h */,
-				2BED10AE1FB009C500BB474F /* UITabBarItem.h */,
-				2BED10B31FB009C500BB474F /* UITapGestureRecognizer.h */,
 				2BED10B41FB009C500BB474F /* UITargetedDragPreview.h */,
 				2BED10B51FB009C500BB474F /* UITextChecker.h */,
 				2BED10B61FB009C500BB474F /* UITextDragging.h */,
@@ -681,20 +718,23 @@
 				2BED10CF1FB009C500BB474F /* UIViewPropertyAnimator.h */,
 				2BED10D01FB009C500BB474F /* UIVisualEffect.h */,
 			);
-			path = AAAAAHeaders;
+			path = OtherHeaders;
 			sourceTree = "<group>";
 		};
 		2BED11B61FB0315300BB474F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				2BED0FF51FB009C500BB474F /* AAAAAHeaders */,
-				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
+				2BED0FF51FB009C500BB474F /* OtherHeaders */,
 				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
+				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
 				2B980A1120AD302700DFDCB7 /* TableView相关 */,
 				2B980A1020AD227700DFDCB7 /* TextKit相关 */,
 				2B304571204FE957004C43E4 /* UIControls */,
+				2B05EFE420B69EB000781145 /* UIGesture手势相关 */,
+				2B05EFE320B69D3B00781145 /* UIPrint打印相关 */,
 				2B980A1320AD349700DFDCB7 /* UIResponders */,
 				2B304572204FE991004C43E4 /* UIViewControllers */,
+				2B05EFE720B6A66900781145 /* UIBarButtonItem相关 */,
 				2B304570204FE8B7004C43E4 /* UIViews */,
 			);
 			path = UIKit;

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // the extensions in this header are to be used only by subclasses of UIGestureRecognizer
 // code that uses UIGestureRecognizers must never call these
+//这个头文件中的扩展名只能被UIGestureRecognizer的子类使用
+//使用UIGestureRecognizers的代码不能调用这些代码
 
 @interface UIGestureRecognizer (UIGestureRecognizerProtected)
 

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(5_0) @interface UIStoryboardSegue : NSObject
 
-// Convenience constructor for returning a segue that performs a handler block in its -perform method.
+// Convenience constructor for returning a segue that performs a handler block in its -perform method.方便的构造函数，用于返回在其-perform方法中执行处理程序块的segue。
 + (instancetype)segueWithIdentifier:(nullable NSString *)identifier source:(UIViewController *)source destination:(UIViewController *)destination performHandler:(void (^)(void))performHandler NS_AVAILABLE_IOS(6_0);
 
 - (instancetype)initWithIdentifier:(nullable NSString *)identifier source:(UIViewController *)source destination:(UIViewController *)destination NS_DESIGNATED_INITIALIZER;

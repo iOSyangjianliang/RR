@@ -6,6 +6,9 @@
 //  Copyright (c) 2008-2017 Apple Inc. All rights reserved.
 //
 
+//VoiceOver 是 苹果手机上一个给视力不好或者盲人使用应用程序的语音辅助软件 ， 即使你看不见也不成问题。轻触屏幕即可听到你手指划过的内容，然后运用手势来控制设备。VoiceOver 支持 iPhone、iPad 或 iPod touch 所配备的 app。
+//但是 VoiceOver 并不是万能的，并不能兼容开发者自定义的控件和视图，因此作为开发者，需要通过一些额外的工作让 APP 可以支持无障碍使用。
+
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKitDefines.h>
