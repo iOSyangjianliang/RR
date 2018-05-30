@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 是否允许对文本中的富文本进行操作（10+）
 - (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction NS_AVAILABLE_IOS(10_0);
 
+//10+后被以上两个替换了
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange NS_DEPRECATED_IOS(7_0, 10_0, "Use textView:shouldInteractWithURL:inRange:forInteractionType: instead");
 - (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange NS_DEPRECATED_IOS(7_0, 10_0, "Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType: instead");
 
@@ -118,7 +119,7 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UITextView : UIScrollView <UITextInput, U
 @end
 
 #endif
-
+//通知在相应代理之后执行
 UIKIT_EXTERN NSNotificationName const UITextViewTextDidBeginEditingNotification;
 UIKIT_EXTERN NSNotificationName const UITextViewTextDidChangeNotification;
 UIKIT_EXTERN NSNotificationName const UITextViewTextDidEndEditingNotification;
