@@ -119,7 +119,7 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UIButton : UIControl <NSCoding>
 - (CGRect)imageRectForContentRect:(CGRect)contentRect;
 @end
 
-//废弃了
+//3.0开始废弃了
 @interface UIButton(UIButtonDeprecated)
 
 @property(nonatomic,strong) UIFont         *font              NS_DEPRECATED_IOS(2_0, 3_0) __TVOS_PROHIBITED;

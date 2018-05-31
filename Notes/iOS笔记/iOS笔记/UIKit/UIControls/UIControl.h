@@ -70,45 +70,59 @@ typedef NS_OPTIONS(NSUInteger, UIControlState) {
 
 NS_CLASS_AVAILABLE_IOS(2_0) @interface UIControl : UIView
 
+//默认是YES。 如果否，则忽略触摸事件，并且子类可能以不同方式绘制
+@property(nonatomic,getter=isEnabled) BOOL enabled;
+//默认为NO可能会被某些子类或应用程序使用
+@property(nonatomic,getter=isSelected) BOOL selected;
+//默认为NO。高亮状态、在追踪期间触摸进入/退出并在清除时自动清除
+@property(nonatomic,getter=isHighlighted) BOOL highlighted;
+//如何在控件内部垂直放置内容。默认是居中
+@property(nonatomic) UIControlContentVerticalAlignment contentVerticalAlignment;
+//如何在控件内部水平放置内容。 默认是居中
+@property(nonatomic) UIControlContentHorizontalAlignment contentHorizontalAlignment;
+//如何在控件内部水平定位内容，保证返回任何'左对齐'或'右对齐'的'左'或'右'边
+@property(nonatomic, readonly) UIControlContentHorizontalAlignment effectiveContentHorizontalAlignment;
 
-@property(nonatomic,getter=isEnabled) BOOL enabled;                                  // default is YES. if NO, ignores touch events and subclasses may draw differently
-@property(nonatomic,getter=isSelected) BOOL selected;                                // default is NO may be used by some subclasses or by application
-@property(nonatomic,getter=isHighlighted) BOOL highlighted;                          // default is NO. this gets set/cleared automatically when touch enters/exits during tracking and cleared on up
-@property(nonatomic) UIControlContentVerticalAlignment contentVerticalAlignment;     // how to position content vertically inside control. default is center
-@property(nonatomic) UIControlContentHorizontalAlignment contentHorizontalAlignment; // how to position content horizontally inside control. default is center
-@property(nonatomic, readonly) UIControlContentHorizontalAlignment effectiveContentHorizontalAlignment; // how to position content horizontally inside control, guaranteed to return 'left' or 'right' for any 'leading' or 'trailing'
-
-@property(nonatomic,readonly) UIControlState state;                  // could be more than one state (e.g. disabled|selected). synthesized from other flags.
+//可以是多个状态（例如，disabled|selected）。 从其他标志合成。
+@property(nonatomic,readonly) UIControlState state;
 @property(nonatomic,readonly,getter=isTracking) BOOL tracking;
-@property(nonatomic,readonly,getter=isTouchInside) BOOL touchInside; // valid during tracking only
+//仅在tracking期间有效
+@property(nonatomic,readonly,getter=isTouchInside) BOOL touchInside;
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;
-- (void)endTrackingWithTouch:(nullable UITouch *)touch withEvent:(nullable UIEvent *)event; // touch is sometimes nil if cancelTracking calls through to this.
-- (void)cancelTrackingWithEvent:(nullable UIEvent *)event;   // event may be nil if cancelled for non-event reasons, e.g. removed from window
+//如果cancelTracking调用这个，touch有时为nil。
+- (void)endTrackingWithTouch:(nullable UITouch *)touch withEvent:(nullable UIEvent *)event;
+//如果因非事件原因而被取消，则事件可能为nil。 从窗口中移除
+- (void)cancelTrackingWithEvent:(nullable UIEvent *)event;
 
-// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event.
-// passing in nil as the target goes up the responder chain. The action may optionally include the sender and the event in that order
-// the action cannot be NULL. Note that the target is not retained.
+//为特定事件添加目标target/动作action。 您可以多次调用此选项，并且您可以为特定事件指定多个目标/操作。
+//当目标沿着响应者链传递时，传入nil。 该操作可以选择包括发件人和事件的顺序
+//该操作不能为NULL。 请注意，目标target不会retained保留。
 - (void)addTarget:(nullable id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
-// remove the target/action for a set of events. pass in NULL for the action to remove all actions for that target
+//为一组事件移除target/action。 action传入NULL以删除该目标的所有操作
 - (void)removeTarget:(nullable id)target action:(nullable SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
-// get info about target & actions. this makes it possible to enumerate all target/actions by checking for each event kind
+//获取有关目标和行动的信息。 这可以通过检查每个事件类型来枚举所有目标/操作
 #if UIKIT_DEFINE_AS_PROPERTIES
 @property(nonatomic,readonly) NSSet *allTargets;
-@property(nonatomic,readonly) UIControlEvents allControlEvents;                            // list of all events that have at least one action
+//有至少一个动作的所有事件的列表
+@property(nonatomic,readonly) UIControlEvents allControlEvents;
 #else
-- (NSSet *)allTargets;                                                                     // set may include NSNull to indicate at least one nil target
-- (UIControlEvents)allControlEvents;                                                       // list of all events that have at least one action
+//set可能包含NSNull来表示至少有一个nil目标
+- (NSSet *)allTargets;
+//有至少一个动作的所有事件的列表
+- (UIControlEvents)allControlEvents;
 #endif
 
-- (nullable NSArray<NSString *> *)actionsForTarget:(nullable id)target forControlEvent:(UIControlEvents)controlEvent;    // single event. returns NSArray of NSString selector names. returns nil if none
+//单个事件。 返回NSString选择器名称的NSArray。 如果没有，则返回nil
+- (nullable NSArray<NSString *> *)actionsForTarget:(nullable id)target forControlEvent:(UIControlEvents)controlEvent;
 
-// send the action. the first method is called for the event and is a point at which you can observe or override behavior. it is called repeately by the second.
+//发送操作。 第一种方法被称为事件，并且您可以观察或重写行为。 它被第二个反复调用。
 - (void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;
-- (void)sendActionsForControlEvents:(UIControlEvents)controlEvents;                        // send all actions associated with events
+//发送与事件相关的所有操作
+- (void)sendActionsForControlEvents:(UIControlEvents)controlEvents;
 
 @end
 

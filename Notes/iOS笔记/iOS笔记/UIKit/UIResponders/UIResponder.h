@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(2_0) @interface UIResponder : NSObject <UIResponderStandardEditActions>
 
+//响应链怎么工作的 https://www.jianshu.com/p/53100391a920
 //返回接收下一个响应者，或者nil如果它有没有
 #if UIKIT_DEFINE_AS_PROPERTIES
 @property(nonatomic, readonly, nullable) UIResponder *nextResponder;
@@ -168,7 +169,7 @@ NS_CLASS_AVAILABLE_IOS(7_0) @interface UIKeyCommand : NSObject <NSCopying, NSSec
 //按键调节器
 @property (nonatomic,readonly) UIKeyModifierFlags modifierFlags;
 //按指定调节器键输入字符串并设置事件
-//显示给用户的快捷键标题
+//一个可选的标签，用来在发现层显示快捷键命令。只有设置了标题的键盘命令才会被列出。
 @property (nullable,nonatomic,copy) NSString *discoverabilityTitle NS_AVAILABLE_IOS(9_0);
 
 // The action for UIKeyCommands should accept a single (id)sender, as do the UIResponderStandardEditActions above

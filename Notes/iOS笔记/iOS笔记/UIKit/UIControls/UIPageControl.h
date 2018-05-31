@@ -12,18 +12,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(2_0) @interface UIPageControl : UIControl 
+//默认为0
+@property(nonatomic) NSInteger numberOfPages;
+//默认值为0.固定值为[0 numberOfPages-1]
+@property(nonatomic) NSInteger currentPage;
+//如果只有一个页面，隐藏指示器。默认为NO
+@property(nonatomic) BOOL hidesForSinglePage;
 
-@property(nonatomic) NSInteger numberOfPages;          // default is 0
-@property(nonatomic) NSInteger currentPage;            // default is 0. value pinned to 0..numberOfPages-1
+//如果设置，点击新页面将不会更新当前显示的页面，直到调用-updateCurrentPageDisplay才去更新。默认为NO
+@property(nonatomic) BOOL defersCurrentPageDisplay;
+//更新页面显示以匹配当前页面。如果defersCurrentPageDisplay为NO，则被忽略。直接设置page value将立即更新
+- (void)updateCurrentPageDisplay;
+//返回给定页数显示点所需的最小大小。如果页面数量可能发生变化，则可用于大小控制
+- (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;
 
-@property(nonatomic) BOOL hidesForSinglePage;          // hide the the indicator if there is only one page. default is NO
-
-@property(nonatomic) BOOL defersCurrentPageDisplay;    // if set, clicking to a new page won't update the currently displayed page until -updateCurrentPageDisplay is called. default is NO
-- (void)updateCurrentPageDisplay;                      // update page display to match the currentPage. ignored if defersCurrentPageDisplay is NO. setting the page value directly will update immediately
-
-- (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;   // returns minimum size required to display dots for given page count. can be used to size control if page count could change
-
+//非当前Page的颜色
 @property(nullable, nonatomic,strong) UIColor *pageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;
+//当前Page的颜色
 @property(nullable, nonatomic,strong) UIColor *currentPageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;
 
 @end
