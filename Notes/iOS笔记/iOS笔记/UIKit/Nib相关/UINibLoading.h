@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 UIKIT_EXTERN NSString * const UINibExternalObjects NS_AVAILABLE_IOS(3_0);
 
 @interface NSBundle(UINibLoadingAdditions)
+//
 - (nullable NSArray *)loadNibNamed:(NSString *)name owner:(nullable id)owner options:(nullable NSDictionary *)options;
 @end
 

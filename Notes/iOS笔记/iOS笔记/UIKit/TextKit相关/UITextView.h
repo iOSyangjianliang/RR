@@ -78,7 +78,6 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UITextView : UIScrollView <UITextInput, U
 //滚动到文本的某个段
 - (void)scrollRangeToVisible:(NSRange)range;
 
-
 // Presented when object becomes first responder.  If set to nil, reverts to following responder chain.  If
 // set while first responder, will not take effect until reloadInputViews is called.
 //当对象成为第一响应者时呈现。 如果设置为nil，则返回到以下响应者链。 如果
@@ -95,20 +94,17 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UITextView : UIScrollView <UITextInput, U
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer NS_AVAILABLE_IOS(7_0) NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
-// Get the text container for the text view
 //获取文本视图的文本容器。 定义了一个矩形区域用于存放已经进行了排版并设置好属性的文字
 @property(nonatomic,readonly) NSTextContainer *textContainer NS_AVAILABLE_IOS(7_0);
-// Inset the text container's layout area within the text view's content area
 //内容边距，默认值UIEdgeInsetsMake(8, 0, 8, 0)
 @property(nonatomic, assign) UIEdgeInsets textContainerInset NS_AVAILABLE_IOS(7_0);
 
-// Convenience accessors (access through the text container)
 //用于管理NSTextStorage其中的文字内容的排版布局
 @property(nonatomic,readonly) NSLayoutManager *layoutManager NS_AVAILABLE_IOS(7_0);
 //NSTextStorage保存并管理UITextView要展示的文字内容，该类是NSMutableAttributedString的子类，由于可以灵活地往文字添加或修改属性
 @property(nonatomic,readonly,strong) NSTextStorage *textStorage NS_AVAILABLE_IOS(7_0);
 
-// Style for links
+//链接的样式
 @property(null_resettable, nonatomic, copy) NSDictionary<NSString *, id> *linkTextAttributes NS_AVAILABLE_IOS(7_0);
 
 @end

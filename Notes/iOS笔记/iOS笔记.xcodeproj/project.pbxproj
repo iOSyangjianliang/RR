@@ -244,7 +244,7 @@
 		2BED10A31FB009C500BB474F /* UIStateRestoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStateRestoration.h; sourceTree = "<group>"; };
 		2BED10A41FB009C500BB474F /* UIStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStepper.h; sourceTree = "<group>"; };
 		2BED10A51FB009C500BB474F /* UIStoryboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStoryboard.h; sourceTree = "<group>"; };
-		2BED10A61FB009C500BB474F /* UIStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		2BED10A61FB009C500BB474F /* UIStoryboardPopoverSegue(废弃).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboardPopoverSegue(废弃).h"; sourceTree = "<group>"; };
 		2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStoryboardSegue.h; sourceTree = "<group>"; };
 		2BED10A81FB009C500BB474F /* UIStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStringDrawing.h; sourceTree = "<group>"; };
 		2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwipeActionsConfiguration.h; sourceTree = "<group>"; };
@@ -430,6 +430,19 @@
 				2BED0FF61FB009C500BB474F /* NSAttributedString.h */,
 			);
 			path = "NSAttributedString相关";
+			sourceTree = "<group>";
+		};
+		2B7C298720BFF5380010CB3A /* Nib相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10701FB009C500BB474F /* UINib.h */,
+				2BED10711FB009C500BB474F /* UINibDeclarations.h */,
+				2BED10721FB009C500BB474F /* UINibLoading.h */,
+				2BED10A51FB009C500BB474F /* UIStoryboard.h */,
+				2BED10A61FB009C500BB474F /* UIStoryboardPopoverSegue(废弃).h */,
+				2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */,
+			);
+			path = "Nib相关";
 			sourceTree = "<group>";
 		};
 		2B9275341FDA518700D177E1 /* Headers */ = {
@@ -659,9 +672,6 @@
 				2BED106A1FB009C500BB474F /* UIManagedDocument.h */,
 				2BED106B1FB009C500BB474F /* UIMenuController.h */,
 				2BED106C1FB009C500BB474F /* UIMotionEffect.h */,
-				2BED10701FB009C500BB474F /* UINib.h */,
-				2BED10711FB009C500BB474F /* UINibDeclarations.h */,
-				2BED10721FB009C500BB474F /* UINibLoading.h */,
 				2BED10731FB009C500BB474F /* UINotificationFeedbackGenerator.h */,
 				2BED10751FB009C500BB474F /* UIPageViewController.h */,
 				2BED10771FB009C500BB474F /* UIPasteboard.h */,
@@ -688,9 +698,6 @@
 				2BED10A01FB009C500BB474F /* UISpringLoadedInteraction.h */,
 				2BED10A11FB009C500BB474F /* UISpringLoadedInteractionSupporting.h */,
 				2BED10A31FB009C500BB474F /* UIStateRestoration.h */,
-				2BED10A51FB009C500BB474F /* UIStoryboard.h */,
-				2BED10A61FB009C500BB474F /* UIStoryboardPopoverSegue.h */,
-				2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */,
 				2BED10A81FB009C500BB474F /* UIStringDrawing.h */,
 				2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */,
 				2BED10B41FB009C500BB474F /* UITargetedDragPreview.h */,
@@ -725,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				2BED0FF51FB009C500BB474F /* OtherHeaders */,
+				2B7C298720BFF5380010CB3A /* Nib相关 */,
 				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
 				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
 				2B980A1120AD302700DFDCB7 /* TableView相关 */,

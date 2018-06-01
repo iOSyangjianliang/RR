@@ -12,28 +12,48 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, UIControlEvents) {
-    UIControlEventTouchDown                                         = 1 <<  0,      // on all touch downs
-    UIControlEventTouchDownRepeat                                   = 1 <<  1,      // on multiple touchdowns (tap count > 1)
+    //单点触摸按下事件：用户点触屏幕，或者又有新手指落下的时候。
+    UIControlEventTouchDown                                         = 1 <<  0,
+    //多点触摸按下事件，点触计数大于1：用户按下第二、三、或第四根手指的时候。
+    UIControlEventTouchDownRepeat                                   = 1 <<  1,
+    //当一次触摸在控件窗口内拖动时,不松手就触发事件，一直触发
     UIControlEventTouchDragInside                                   = 1 <<  2,
+    //当一次触摸在控件窗口之外拖动时,不松手就触发事件，一直触发
     UIControlEventTouchDragOutside                                  = 1 <<  3,
+    //当一次触摸从控件窗口之外拖动到内部时。
     UIControlEventTouchDragEnter                                    = 1 <<  4,
+    //当一次触摸从控件窗口内部拖动到外部时。不松手就触发事件，只触发一次
     UIControlEventTouchDragExit                                     = 1 <<  5,
+    //所有在控件之内触摸抬起事件。
     UIControlEventTouchUpInside                                     = 1 <<  6,
+    //所有在控件之外触摸抬起事件(点触必须开始与控件内部才会发送通知)。
     UIControlEventTouchUpOutside                                    = 1 <<  7,
+    //所有触摸取消事件，即一次触摸因为放上了太多手指而被取消，或者被上锁或者电话呼叫打断。
     UIControlEventTouchCancel                                       = 1 <<  8,
+    
+    //当控件的值发生改变时，发送通知。用于滑块、分段控件、以及其他取值的控件。你可以配置滑块控件何时发送通知，在滑块被放下时发送，或者在被拖动时发送。
+    UIControlEventValueChanged                                      = 1 << 12,
+    //当控件的首要行为被触发，例如button的点击事件，slider的滑动事件。
+    UIControlEventPrimaryActionTriggered NS_ENUM_AVAILABLE_IOS(9_0) = 1 << 13,
 
-    UIControlEventValueChanged                                      = 1 << 12,     // sliders, etc.
-    UIControlEventPrimaryActionTriggered NS_ENUM_AVAILABLE_IOS(9_0) = 1 << 13,     // semantic action: for buttons, etc.
-
-    UIControlEventEditingDidBegin                                   = 1 << 16,     // UITextField
+    //当文本控件中开始编辑时发送通知(UITextField)
+    UIControlEventEditingDidBegin                                   = 1 << 16,
+    //当文本控件中的文本被改变时发送通知。
     UIControlEventEditingChanged                                    = 1 << 17,
+    //当文本控件中编辑结束时发送通知
     UIControlEventEditingDidEnd                                     = 1 << 18,
-    UIControlEventEditingDidEndOnExit                               = 1 << 19,     // 'return key' ending editing
+    //当文本控件内通过按下return回车键（或等价行为）结束编辑时，发送通知,
+    UIControlEventEditingDidEndOnExit                               = 1 << 19,
 
+    //通知所有触摸事件。
     UIControlEventAllTouchEvents                                    = 0x00000FFF,  // for touch events
+    //通知所有关于文本编辑的事件。
     UIControlEventAllEditingEvents                                  = 0x000F0000,  // for UITextField
+    //预留给application（应用）使用的事件。
     UIControlEventApplicationReserved                               = 0x0F000000,  // range available for application use
+    //预留给internal framework（内部框架）使用的事件。
     UIControlEventSystemReserved                                    = 0xF0000000,  // range reserved for internal framework use
+    //通知所有事件。
     UIControlEventAllEvents                                         = 0xFFFFFFFF
 };
 
@@ -54,12 +74,19 @@ typedef NS_ENUM(NSInteger, UIControlContentHorizontalAlignment) {
 };
 
 typedef NS_OPTIONS(NSUInteger, UIControlState) {
+    //普通状态
     UIControlStateNormal       = 0,
+    //高亮状态
     UIControlStateHighlighted  = 1 << 0,                  // used when UIControl isHighlighted is set
+    //禁用状态
     UIControlStateDisabled     = 1 << 1,
-    UIControlStateSelected     = 1 << 2,                  // flag usable by app (see below)
+    //选中状态
+    UIControlStateSelected     = 1 << 2,                  // flag usable by app (see below)标志可用于应用程序（请参见下文
+    //仅当屏幕支持焦点时才适用
     UIControlStateFocused NS_ENUM_AVAILABLE_IOS(9_0) = 1 << 3, // Applicable only when the screen supports focus
+    //可用于应用程序的其他标志
     UIControlStateApplication  = 0x00FF0000,              // additional flags available for application use
+    //标记为内部框架使用保留
     UIControlStateReserved     = 0xFF000000               // flags reserved for internal framework use
 };
 

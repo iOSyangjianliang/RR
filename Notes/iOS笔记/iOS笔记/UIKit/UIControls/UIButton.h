@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, UIButtonType) {
 
 NS_CLASS_AVAILABLE_IOS(2_0) @interface UIButton : UIControl <NSCoding>
 //按照某种风格按钮初始化
+//对于注册页面定时器还有多少s可以点击，这个按秒的倒计时，System模式会有一闪一闪的隐式动画。
 + (instancetype)buttonWithType:(UIButtonType)buttonType;
 // 内容的内边距
 //设置按钮内容在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么内容就向上移动5个像素

@@ -26,9 +26,9 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UIPageControl : UIControl
 //返回给定页数显示点所需的最小大小。如果页面数量可能发生变化，则可用于大小控制
 - (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;
 
-//非当前Page的颜色
+//非当前page的颜色
 @property(nullable, nonatomic,strong) UIColor *pageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;
-//当前Page的颜色
+//当前page的颜色
 @property(nullable, nonatomic,strong) UIColor *currentPageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;
 
 @end
