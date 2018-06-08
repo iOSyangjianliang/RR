@@ -258,6 +258,8 @@ UIKIT_EXTERN NSString *const UIKeyInputLeftArrow       NS_AVAILABLE_IOS(7_0);//�
 UIKIT_EXTERN NSString *const UIKeyInputRightArrow      NS_AVAILABLE_IOS(7_0);//右按键
 UIKIT_EXTERN NSString *const UIKeyInputEscape          NS_AVAILABLE_IOS(7_0);//Esc按键
 
+
+//我们可以在一部iOS设备的某个应用上开始做一件事，然后在另一台iOS设备上继续做这件事。Handoff的基本思想是用户在一个应用里所做的任何操作都可以看作是一个Activity，一个Activity可以和一个特定iCloud用户的多台设备关联起来
 @interface UIResponder (ActivityContinuation)
 //封装由该响应器支持的用户活动的对象
 @property (nullable, nonatomic, strong) NSUserActivity *userActivity NS_AVAILABLE_IOS(8_0);
