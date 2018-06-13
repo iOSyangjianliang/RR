@@ -232,7 +232,7 @@
 		2BED10971FB009C500BB474F /* UISearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISearchBar.h; sourceTree = "<group>"; };
 		2BED10981FB009C500BB474F /* UISearchContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISearchContainerViewController.h; sourceTree = "<group>"; };
 		2BED10991FB009C500BB474F /* UISearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISearchController.h; sourceTree = "<group>"; };
-		2BED109A1FB009C500BB474F /* UISearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISearchDisplayController.h; sourceTree = "<group>"; };
+		2BED109A1FB009C500BB474F /* UISearchDisplayController(废弃).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchDisplayController(废弃).h"; sourceTree = "<group>"; };
 		2BED109B1FB009C500BB474F /* UISegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControl.h; sourceTree = "<group>"; };
 		2BED109C1FB009C500BB474F /* UISelectionFeedbackGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISelectionFeedbackGenerator.h; sourceTree = "<group>"; };
 		2BED109D1FB009C500BB474F /* UISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISlider.h; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 			path = WebKit;
 			sourceTree = "<group>";
 		};
-		2B304570204FE8B7004C43E4 /* UIViews */ = {
+		2B304570204FE8B7004C43E4 /* UIViews及子类 */ = {
 			isa = PBXGroup;
 			children = (
 				2BED10111FB009C500BB474F /* UIActionSheet(废弃).h */,
@@ -381,8 +381,6 @@
 				2BED10A21FB009C500BB474F /* UIStackView.h */,
 				2BED10961FB009C500BB474F /* UIScrollView.h */,
 				2BED10D21FB009C500BB474F /* UIWebView.h */,
-				2BED10971FB009C500BB474F /* UISearchBar.h */,
-				2BED10D11FB009C500BB474F /* UIVisualEffectView.h */,
 				2BED107C1FB009C500BB474F /* UIPopoverBackgroundView.h */,
 				2BED10C41FB009C500BB474F /* UIToolbar.h */,
 				2BED10D31FB009C500BB474F /* UIWindow.h */,
@@ -393,10 +391,10 @@
 				2BED10131FB009C500BB474F /* UIActivityIndicatorView.h */,
 				2BED107A1FB009C500BB474F /* UIPickerView.h */,
 			);
-			path = UIViews;
+			path = "UIViews及子类";
 			sourceTree = "<group>";
 		};
-		2B304571204FE957004C43E4 /* UIControls */ = {
+		2B304571204FE957004C43E4 /* UIControls及子类 */ = {
 			isa = PBXGroup;
 			children = (
 				2BED10301FB009C500BB474F /* UIControl.h */,
@@ -410,14 +408,12 @@
 				2BED108F1FB009C500BB474F /* UIRefreshControl.h */,
 				2BED109B1FB009C500BB474F /* UISegmentedControl.h */,
 			);
-			path = UIControls;
+			path = "UIControls及子类";
 			sourceTree = "<group>";
 		};
 		2B304572204FE991004C43E4 /* UIViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2B05EFE620B6A5E800781145 /* UINavigation相关 */,
-				2B05EFE520B6A55100781145 /* UITabBar相关 */,
 				2BED10CC1FB009C500BB474F /* UIViewController.h */,
 			);
 			path = UIViewControllers;
@@ -443,6 +439,59 @@
 				2BED10A71FB009C500BB474F /* UIStoryboardSegue.h */,
 			);
 			path = "Nib相关";
+			sourceTree = "<group>";
+		};
+		2B7C2A9020D108140010CB3A /* UIVisualEffect特效相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10221FB009C500BB474F /* UIBlurEffect.h */,
+				2BED10C81FB009C500BB474F /* UIVibrancyEffect.h */,
+				2BED10D01FB009C500BB474F /* UIVisualEffect.h */,
+				2BED10D11FB009C500BB474F /* UIVisualEffectView.h */,
+			);
+			path = "UIVisualEffect特效相关";
+			sourceTree = "<group>";
+		};
+		2B7C2A9120D11A8B0010CB3A /* UIActivity系统分享相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10121FB009C500BB474F /* UIActivity.h */,
+				2BED10141FB009C500BB474F /* UIActivityItemProvider.h */,
+				2BED10151FB009C500BB474F /* UIActivityViewController.h */,
+			);
+			path = "UIActivity系统分享相关";
+			sourceTree = "<group>";
+		};
+		2B7C2A9220D11CBE0010CB3A /* UISearch相关 */ = {
+			isa = PBXGroup;
+			children = (
+				2BED10981FB009C500BB474F /* UISearchContainerViewController.h */,
+				2BED10991FB009C500BB474F /* UISearchController.h */,
+				2BED109A1FB009C500BB474F /* UISearchDisplayController(废弃).h */,
+				2BED10971FB009C500BB474F /* UISearchBar.h */,
+			);
+			path = "UISearch相关";
+			sourceTree = "<group>";
+		};
+		2B7C2A9320D1203C0010CB3A /* Keyboards and Input */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Keyboards and Input";
+			sourceTree = "<group>";
+		};
+		2B7C2A9420D1203F0010CB3A /* NSTextStorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NSTextStorage;
+			sourceTree = "<group>";
+		};
+		2B7C2A9520D120410010CB3A /* Text Display and Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Text Display and Fonts";
 			sourceTree = "<group>";
 		};
 		2B9275341FDA518700D177E1 /* Headers */ = {
@@ -489,15 +538,22 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		2B980A1020AD227700DFDCB7 /* TextKit相关 */ = {
+		2B980A1020AD227700DFDCB7 /* Text相关 */ = {
 			isa = PBXGroup;
 			children = (
+				2B7C2A9520D120410010CB3A /* Text Display and Fonts */,
+				2B7C2A9420D1203F0010CB3A /* NSTextStorage */,
+				2B7C2A9320D1203C0010CB3A /* Keyboards and Input */,
+				2BED105E1FB009C500BB474F /* UIInputViewController.h */,
+				2BED10661FB009C500BB474F /* UILexicon.h */,
+				2BED10BC1FB009C500BB474F /* UITextInput.h */,
+				2BED10BD1FB009C500BB474F /* UITextInputTraits.h */,
 				2BED0FFD1FB009C500BB474F /* NSLayoutManager.h */,
 				2BED10031FB009C500BB474F /* NSTextContainer.h */,
 				2BED10041FB009C500BB474F /* NSTextStorage.h */,
 				2BED10C11FB009C500BB474F /* UITextView.h */,
 			);
-			path = "TextKit相关";
+			path = "Text相关";
 			sourceTree = "<group>";
 		};
 		2B980A1120AD302700DFDCB7 /* TableView相关 */ = {
@@ -524,13 +580,13 @@
 			path = "CollectionView相关";
 			sourceTree = "<group>";
 		};
-		2B980A1320AD349700DFDCB7 /* UIResponders */ = {
+		2B980A1320AD349700DFDCB7 /* UIResponders及子类 */ = {
 			isa = PBXGroup;
 			children = (
 				2BED101A1FB009C500BB474F /* UIApplication.h */,
 				2BED10911FB009C500BB474F /* UIResponder.h */,
 			);
-			path = UIResponders;
+			path = "UIResponders及子类";
 			sourceTree = "<group>";
 		};
 		2BEA132C1F3D43A00085F550 = {
@@ -602,9 +658,6 @@
 				2BED100E1FB009C500BB474F /* UIAccessibilityIdentification.h */,
 				2BED100F1FB009C500BB474F /* UIAccessibilityLocationDescriptor.h */,
 				2BED10101FB009C500BB474F /* UIAccessibilityZoom.h */,
-				2BED10121FB009C500BB474F /* UIActivity.h */,
-				2BED10141FB009C500BB474F /* UIActivityItemProvider.h */,
-				2BED10151FB009C500BB474F /* UIActivityViewController.h */,
 				2BED10161FB009C500BB474F /* UIAlert.h */,
 				2BED10171FB009C500BB474F /* UIAlertController.h */,
 				2BED10191FB009C500BB474F /* UIAppearance.h */,
@@ -612,7 +665,6 @@
 				2BED101C1FB009C500BB474F /* UIAttachmentBehavior.h */,
 				2BED101F1FB009C500BB474F /* UIBarCommon.h */,
 				2BED10211FB009C500BB474F /* UIBezierPath.h */,
-				2BED10221FB009C500BB474F /* UIBlurEffect.h */,
 				2BED10241FB009C500BB474F /* UICloudSharingController.h */,
 				2BED102B1FB009C500BB474F /* UICollisionBehavior.h */,
 				2BED102C1FB009C500BB474F /* UIColor.h */,
@@ -659,14 +711,12 @@
 				2BED10591FB009C500BB474F /* UIImageAsset.h */,
 				2BED105A1FB009C500BB474F /* UIImagePickerController.h */,
 				2BED105C1FB009C500BB474F /* UIImpactFeedbackGenerator.h */,
-				2BED105E1FB009C500BB474F /* UIInputViewController.h */,
 				2BED105F1FB009C500BB474F /* UIInteraction.h */,
 				2BED10601FB009C500BB474F /* UIInterface.h */,
 				2BED10611FB009C500BB474F /* UIKit.apinotes */,
 				2BED10621FB009C500BB474F /* UIKit.h */,
 				2BED10631FB009C500BB474F /* UIKitDefines.h */,
 				2BED10651FB009C500BB474F /* UILayoutGuide.h */,
-				2BED10661FB009C500BB474F /* UILexicon.h */,
 				2BED10671FB009C500BB474F /* UILocalizedIndexedCollation.h */,
 				2BED10681FB009C500BB474F /* UILocalNotification.h */,
 				2BED106A1FB009C500BB474F /* UIManagedDocument.h */,
@@ -689,9 +739,6 @@
 				2BED10901FB009C500BB474F /* UIRegion.h */,
 				2BED10931FB009C500BB474F /* UIScreen.h */,
 				2BED10951FB009C500BB474F /* UIScreenMode.h */,
-				2BED10981FB009C500BB474F /* UISearchContainerViewController.h */,
-				2BED10991FB009C500BB474F /* UISearchController.h */,
-				2BED109A1FB009C500BB474F /* UISearchDisplayController.h */,
 				2BED109C1FB009C500BB474F /* UISelectionFeedbackGenerator.h */,
 				2BED109E1FB009C500BB474F /* UISnapBehavior.h */,
 				2BED109F1FB009C500BB474F /* UISplitViewController.h */,
@@ -707,8 +754,6 @@
 				2BED10B81FB009C500BB474F /* UITextDragURLPreviews.h */,
 				2BED10B91FB009C500BB474F /* UITextDropping.h */,
 				2BED10BA1FB009C500BB474F /* UITextDropProposal.h */,
-				2BED10BC1FB009C500BB474F /* UITextInput.h */,
-				2BED10BD1FB009C500BB474F /* UITextInputTraits.h */,
 				2BED10BE1FB009C500BB474F /* UITextInteraction.h */,
 				2BED10BF1FB009C500BB474F /* UITextPasteConfigurationSupporting.h */,
 				2BED10C01FB009C500BB474F /* UITextPasteDelegate.h */,
@@ -717,13 +762,11 @@
 				2BED10C51FB009C500BB474F /* UITouch.h */,
 				2BED10C61FB009C500BB474F /* UITraitCollection.h */,
 				2BED10C71FB009C500BB474F /* UIUserNotificationSettings.h */,
-				2BED10C81FB009C500BB474F /* UIVibrancyEffect.h */,
 				2BED10C91FB009C500BB474F /* UIVideoEditorController.h */,
 				2BED10CB1FB009C500BB474F /* UIViewAnimating.h */,
 				2BED10CD1FB009C500BB474F /* UIViewControllerTransitionCoordinator.h */,
 				2BED10CE1FB009C500BB474F /* UIViewControllerTransitioning.h */,
 				2BED10CF1FB009C500BB474F /* UIViewPropertyAnimator.h */,
-				2BED10D01FB009C500BB474F /* UIVisualEffect.h */,
 			);
 			path = OtherHeaders;
 			sourceTree = "<group>";
@@ -736,14 +779,19 @@
 				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
 				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
 				2B980A1120AD302700DFDCB7 /* TableView相关 */,
-				2B980A1020AD227700DFDCB7 /* TextKit相关 */,
-				2B304571204FE957004C43E4 /* UIControls */,
+				2B980A1020AD227700DFDCB7 /* Text相关 */,
+				2B7C2A9120D11A8B0010CB3A /* UIActivity系统分享相关 */,
+				2B7C2A9020D108140010CB3A /* UIVisualEffect特效相关 */,
 				2B05EFE420B69EB000781145 /* UIGesture手势相关 */,
 				2B05EFE320B69D3B00781145 /* UIPrint打印相关 */,
-				2B980A1320AD349700DFDCB7 /* UIResponders */,
 				2B304572204FE991004C43E4 /* UIViewControllers */,
+				2B05EFE620B6A5E800781145 /* UINavigation相关 */,
+				2B05EFE520B6A55100781145 /* UITabBar相关 */,
+				2B7C2A9220D11CBE0010CB3A /* UISearch相关 */,
 				2B05EFE720B6A66900781145 /* UIBarButtonItem相关 */,
-				2B304570204FE8B7004C43E4 /* UIViews */,
+				2B980A1320AD349700DFDCB7 /* UIResponders及子类 */,
+				2B304570204FE8B7004C43E4 /* UIViews及子类 */,
+				2B304571204FE957004C43E4 /* UIControls及子类 */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
