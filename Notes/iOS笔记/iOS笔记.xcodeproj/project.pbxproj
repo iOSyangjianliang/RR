@@ -538,7 +538,7 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		2B980A1020AD227700DFDCB7 /* Text相关 */ = {
+		2B980A1020AD227700DFDCB7 /* TextKit相关 */ = {
 			isa = PBXGroup;
 			children = (
 				2B7C2A9520D120410010CB3A /* Text Display and Fonts */,
@@ -553,7 +553,7 @@
 				2BED10041FB009C500BB474F /* NSTextStorage.h */,
 				2BED10C11FB009C500BB474F /* UITextView.h */,
 			);
-			path = "Text相关";
+			path = "TextKit相关";
 			sourceTree = "<group>";
 		};
 		2B980A1120AD302700DFDCB7 /* TableView相关 */ = {
@@ -779,7 +779,7 @@
 				2B461CF020A17A7900638189 /* NSAttributedString相关 */,
 				2B980A1220AD303400DFDCB7 /* CollectionView相关 */,
 				2B980A1120AD302700DFDCB7 /* TableView相关 */,
-				2B980A1020AD227700DFDCB7 /* Text相关 */,
+				2B980A1020AD227700DFDCB7 /* TextKit相关 */,
 				2B7C2A9120D11A8B0010CB3A /* UIActivity系统分享相关 */,
 				2B7C2A9020D108140010CB3A /* UIVisualEffect特效相关 */,
 				2B05EFE420B69EB000781145 /* UIGesture手势相关 */,

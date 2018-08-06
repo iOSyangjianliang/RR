@@ -215,39 +215,63 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UITableView : UIScrollView <NSCoding, UID
 @property (nonatomic, weak, nullable) id <UITableViewDragDelegate> dragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 @property (nonatomic, weak, nullable) id <UITableViewDropDelegate> dropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 
-@property (nonatomic) CGFloat rowHeight;             // default is UITableViewAutomaticDimension
-@property (nonatomic) CGFloat sectionHeaderHeight;   // default is UITableViewAutomaticDimension
-@property (nonatomic) CGFloat sectionFooterHeight;   // default is UITableViewAutomaticDimension
-@property (nonatomic) CGFloat estimatedRowHeight NS_AVAILABLE_IOS(7_0); // default is UITableViewAutomaticDimension, set to 0 to disable
-@property (nonatomic) CGFloat estimatedSectionHeaderHeight NS_AVAILABLE_IOS(7_0); // default is UITableViewAutomaticDimension, set to 0 to disable
-@property (nonatomic) CGFloat estimatedSectionFooterHeight NS_AVAILABLE_IOS(7_0); // default is UITableViewAutomaticDimension, set to 0 to disable
+//行高 default is UITableViewAutomaticDimension
+@property (nonatomic) CGFloat rowHeight;
+//组头高度 default is UITableViewAutomaticDimension
+@property (nonatomic) CGFloat sectionHeaderHeight;
+//组尾高度 default is UITableViewAutomaticDimension
+@property (nonatomic) CGFloat sectionFooterHeight;
 
-@property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR; // allows customization of the frame of cell separators; see also the separatorInsetReference property. Use UITableViewAutomaticDimension for the automatic inset for that edge.
-@property (nonatomic) UITableViewSeparatorInsetReference separatorInsetReference API_AVAILABLE(ios(11.0), tvos(11.0)); // Changes how custom separatorInset values are interpreted. The default value is UITableViewSeparatorInsetFromCellEdges
+//估算行高，需要时设置非0即可， 默认 UITableViewAutomaticDimension,设置为0表示禁用，非0时需要设置rowHeight=UITableViewAutomaticDimension，否则在iOS8上自适应无效
+@property (nonatomic) CGFloat estimatedRowHeight NS_AVAILABLE_IOS(7_0);
+//估算组头高度，需要时设置非0即可， 默认 UITableViewAutomaticDimension,设置为0表示禁用
+@property (nonatomic) CGFloat estimatedSectionHeaderHeight NS_AVAILABLE_IOS(7_0);
+//估算组尾高度，需要时设置非0即可， 默认 UITableViewAutomaticDimension,设置为0表示禁用
+@property (nonatomic) CGFloat estimatedSectionFooterHeight NS_AVAILABLE_IOS(7_0);
 
-@property (nonatomic, strong, nullable) UIView *backgroundView NS_AVAILABLE_IOS(3_2); // the background view will be automatically resized to track the size of the table view.  this will be placed as a subview of the table view behind all cells and headers/footers.  default may be non-nil for some devices.
+//设置分割线上左下右间距; 另请参见separatorInsetReference属性。 使用UITableViewAutomaticDimension进行该边缘的自动插入。
+@property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR;
 
-// Info
+//更改自定义separatorInset值的解释方式。 默认值为UITableViewSeparatorInsetFromCellEdges
+@property (nonatomic) UITableViewSeparatorInsetReference separatorInsetReference API_AVAILABLE(ios(11.0), tvos(11.0));
+
+//背景视图将自动调整大小以跟踪表格视图的大小。 这将作为所有单元格和页眉/页脚后面的表格视图的子视图。 某些设备的默认值可能是非nil。
+@property (nonatomic, strong, nullable) UIView *backgroundView NS_AVAILABLE_IOS(3_2);
+
+
+#park - mark 列表信息
 
 @property (nonatomic, readonly) NSInteger numberOfSections;
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 
-- (CGRect)rectForSection:(NSInteger)section;                                    // includes header, footer and all rows
+//包括页眉，页脚和所有行的范围区域
+- (CGRect)rectForSection:(NSInteger)section;
+
 - (CGRect)rectForHeaderInSection:(NSInteger)section;
 - (CGRect)rectForFooterInSection:(NSInteger)section;
 - (CGRect)rectForRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (nullable NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point;                         // returns nil if point is outside of any row in the table
-- (nullable NSIndexPath *)indexPathForCell:(UITableViewCell *)cell;                      // returns nil if cell is not visible
-- (nullable NSArray<NSIndexPath *> *)indexPathsForRowsInRect:(CGRect)rect;                              // returns nil if rect not valid
+//如果point(点坐标参考系为tableView)在表中的任何行之外，则返回nil
+- (nullable NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point;
+//如果单元格不在可视范围，则返回nil
+- (nullable NSIndexPath *)indexPathForCell:(UITableViewCell *)cell;
 
-- (nullable __kindof UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;   // returns nil if cell is not visible or index path is out of range
+//如果rect(参考系为tableView)无效，则返回nil
+- (nullable NSArray<NSIndexPath *> *)indexPathsForRowsInRect:(CGRect)rect;
+
+//如果单元格不可见或索引路径超出范围，则返回nil
+- (nullable __kindof UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+//获取所有可视范围cell数组
 @property (nonatomic, readonly) NSArray<__kindof UITableViewCell *> *visibleCells;
+//获取所有可视范围cell的IndexPath数组
 @property (nonatomic, readonly, nullable) NSArray<NSIndexPath *> *indexPathsForVisibleRows;
 
+//获取某组的组头、组尾
 - (nullable UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section NS_AVAILABLE_IOS(6_0);
 - (nullable UITableViewHeaderFooterView *)footerViewForSection:(NSInteger)section NS_AVAILABLE_IOS(6_0);
 
+//滚动到指定indexPath，当使用[tableView reloadData];刷新数据时，不能直接在后面使用一下的函数(dispatch_async等带刷新完成操作)。
 - (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
 - (void)scrollToNearestSelectedRowAtScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
 

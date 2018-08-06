@@ -14,6 +14,11 @@
 // In -viewDidAppear:, it flashes the table's scroll indicators.
 // Implements -setEditing:animated: to toggle the editing state of the table.
 
+//创建具有正确尺寸的表视图并自动调整大小，将数据源和委托设置为self。
+//在-viewWillAppear：中，它重新加载表的数据，如果它是空的。 否则，如果clearsSelectionOnViewWillAppear为YES，则取消选择所有行（带或不带动画）。
+//在-viewDidAppear：中，它会闪烁表格的滚动指示符。
+// Implements -setEditing：animated：切换表的编辑状态。
+
 NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(2_0) @interface UITableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -23,8 +28,10 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface UITableViewController : UIViewController 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong, null_resettable) UITableView *tableView;
-@property (nonatomic) BOOL clearsSelectionOnViewWillAppear NS_AVAILABLE_IOS(3_2); // defaults to YES. If YES, any selection is cleared in viewWillAppear:
+//默认为YES。 如果是，则在viewWillAppear中清除任何选中
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear NS_AVAILABLE_IOS(3_2);
 
+//系统的刷新控件
 @property (nonatomic, strong, nullable) UIRefreshControl *refreshControl NS_AVAILABLE_IOS(6_0) __TVOS_PROHIBITED;
 
 @end
