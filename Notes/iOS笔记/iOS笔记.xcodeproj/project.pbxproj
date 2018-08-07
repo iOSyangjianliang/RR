@@ -563,6 +563,8 @@
 				2BED10B01FB009C500BB474F /* UITableViewCell.h */,
 				2BED10B11FB009C500BB474F /* UITableViewController.h */,
 				2BED10B21FB009C500BB474F /* UITableViewHeaderFooterView.h */,
+				2BED102F1FB009C500BB474F /* UIContextualAction.h */,
+				2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */,
 			);
 			path = "TableView相关";
 			sourceTree = "<group>";
@@ -670,7 +672,6 @@
 				2BED102C1FB009C500BB474F /* UIColor.h */,
 				2BED102D1FB009C500BB474F /* UIContentSizeCategory.h */,
 				2BED102E1FB009C500BB474F /* UIContentSizeCategoryAdjusting.h */,
-				2BED102F1FB009C500BB474F /* UIContextualAction.h */,
 				2BED10311FB009C500BB474F /* UIDataDetectors.h */,
 				2BED10321FB009C500BB474F /* UIDataSourceTranslating.h */,
 				2BED10341FB009C500BB474F /* UIDevice.h */,
@@ -746,7 +747,6 @@
 				2BED10A11FB009C500BB474F /* UISpringLoadedInteractionSupporting.h */,
 				2BED10A31FB009C500BB474F /* UIStateRestoration.h */,
 				2BED10A81FB009C500BB474F /* UIStringDrawing.h */,
-				2BED10A91FB009C500BB474F /* UISwipeActionsConfiguration.h */,
 				2BED10B41FB009C500BB474F /* UITargetedDragPreview.h */,
 				2BED10B51FB009C500BB474F /* UITextChecker.h */,
 				2BED10B61FB009C500BB474F /* UITextDragging.h */,

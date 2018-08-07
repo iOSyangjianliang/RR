@@ -54,6 +54,12 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 //右侧附件样式
 typedef NS_ENUM(NSInteger, UITableViewCellAccessoryType) {
+//    不同类型的accessoryType对应的view的宽度不同
+//    UITableViewCellAccessoryDisclosureIndicator    -> view.width = 18
+//    UITableViewCellAccessoryDetailDisclosureButton -> view.width = 52
+//    UITableViewCellAccessoryCheckmark              -> view.width = 24
+//    UITableViewCellAccessoryDetailButton           -> view.width = 32
+   
     //不显示任何的accessoryView
     UITableViewCellAccessoryNone,
     //浅灰色箭头图标
