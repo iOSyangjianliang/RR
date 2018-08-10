@@ -56,6 +56,25 @@
 		2B1C35BB1FB3EED900ADDE24 /* WKWebViewConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewConfiguration.h; sourceTree = "<group>"; };
 		2B1C35BC1FB3EED900ADDE24 /* WKWindowFeatures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWindowFeatures.h; sourceTree = "<group>"; };
 		2B1C35BD1FB3EED900ADDE24 /* WKWindowFeaturesPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWindowFeaturesPrivate.h; sourceTree = "<group>"; };
+		2B30E2DF211D875200D29958 /* ARLightEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLightEstimate.h; sourceTree = "<group>"; };
+		2B30E2E0211D875200D29958 /* ARFaceAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFaceAnchor.h; sourceTree = "<group>"; };
+		2B30E2E1211D875200D29958 /* ARSKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSKView.h; sourceTree = "<group>"; };
+		2B30E2E2211D875200D29958 /* ARHitTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHitTestResult.h; sourceTree = "<group>"; };
+		2B30E2E3211D875200D29958 /* ARReferenceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARReferenceImage.h; sourceTree = "<group>"; };
+		2B30E2E4211D875200D29958 /* ARVideoFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVideoFormat.h; sourceTree = "<group>"; };
+		2B30E2E5211D875200D29958 /* ARKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKit.h; sourceTree = "<group>"; };
+		2B30E2E6211D875200D29958 /* ARCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCamera.h; sourceTree = "<group>"; };
+		2B30E2E7211D875200D29958 /* ARPlaneGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPlaneGeometry.h; sourceTree = "<group>"; };
+		2B30E2E8211D875200D29958 /* ARFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFrame.h; sourceTree = "<group>"; };
+		2B30E2E9211D875200D29958 /* ARSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSession.h; sourceTree = "<group>"; };
+		2B30E2EA211D875200D29958 /* ARPlaneAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPlaneAnchor.h; sourceTree = "<group>"; };
+		2B30E2EB211D875200D29958 /* ARSCNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSCNView.h; sourceTree = "<group>"; };
+		2B30E2EC211D875200D29958 /* ARPointCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPointCloud.h; sourceTree = "<group>"; };
+		2B30E2ED211D875200D29958 /* ARConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConfiguration.h; sourceTree = "<group>"; };
+		2B30E2EE211D875200D29958 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
+		2B30E2EF211D875200D29958 /* ARAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAnchor.h; sourceTree = "<group>"; };
+		2B30E2F0211D875200D29958 /* ARFaceGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFaceGeometry.h; sourceTree = "<group>"; };
+		2B30E2F1211D875200D29958 /* ARImageAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARImageAnchor.h; sourceTree = "<group>"; };
 		2BEA13351F3D43A00085F550 /* iOS笔记.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS笔记.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BEA13391F3D43A00085F550 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2BEA133B1F3D43A00085F550 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -419,6 +438,40 @@
 			path = UIViewControllers;
 			sourceTree = "<group>";
 		};
+		2B30E2DD211D875200D29958 /* ARKit */ = {
+			isa = PBXGroup;
+			children = (
+				2B30E2DE211D875200D29958 /* Headers */,
+			);
+			path = ARKit;
+			sourceTree = "<group>";
+		};
+		2B30E2DE211D875200D29958 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				2B30E2DF211D875200D29958 /* ARLightEstimate.h */,
+				2B30E2E0211D875200D29958 /* ARFaceAnchor.h */,
+				2B30E2E1211D875200D29958 /* ARSKView.h */,
+				2B30E2E2211D875200D29958 /* ARHitTestResult.h */,
+				2B30E2E3211D875200D29958 /* ARReferenceImage.h */,
+				2B30E2E4211D875200D29958 /* ARVideoFormat.h */,
+				2B30E2E5211D875200D29958 /* ARKit.h */,
+				2B30E2E6211D875200D29958 /* ARCamera.h */,
+				2B30E2E7211D875200D29958 /* ARPlaneGeometry.h */,
+				2B30E2E8211D875200D29958 /* ARFrame.h */,
+				2B30E2E9211D875200D29958 /* ARSession.h */,
+				2B30E2EA211D875200D29958 /* ARPlaneAnchor.h */,
+				2B30E2EB211D875200D29958 /* ARSCNView.h */,
+				2B30E2EC211D875200D29958 /* ARPointCloud.h */,
+				2B30E2ED211D875200D29958 /* ARConfiguration.h */,
+				2B30E2EE211D875200D29958 /* ARError.h */,
+				2B30E2EF211D875200D29958 /* ARAnchor.h */,
+				2B30E2F0211D875200D29958 /* ARFaceGeometry.h */,
+				2B30E2F1211D875200D29958 /* ARImageAnchor.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		2B461CF020A17A7900638189 /* NSAttributedString相关 */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +663,7 @@
 		2BEA13371F3D43A00085F550 /* iOS笔记 */ = {
 			isa = PBXGroup;
 			children = (
+				2B30E2DD211D875200D29958 /* ARKit */,
 				2B1C35981FB3EED900ADDE24 /* WebKit */,
 				2BED11B61FB0315300BB474F /* UIKit */,
 				2BEA13381F3D43A00085F550 /* Supporting Files */,
