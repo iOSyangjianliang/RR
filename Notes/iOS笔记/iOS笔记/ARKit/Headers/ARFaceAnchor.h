@@ -73,22 +73,26 @@ FOUNDATION_EXTERN ARBlendShapeLocation const ARBlendShapeLocationNoseSneerRight 
 
 /**
  An anchor representing a face and its geometry.
+ 表示面部及其几何形状的锚点。
  */
 API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(macos, watchos, tvos)
 @interface ARFaceAnchor : ARAnchor <ARTrackable>
 
 /**
  The face geometry updated based on the computed blend shapes.
+ 基于计算的混合形状更新面几何。
  */
 @property (nonatomic, readonly) ARFaceGeometry *geometry;
 
 /**
  A dictionary of blend shape coefficients for each blend shape location.
  @discussion Blend shapes coefficients define the amount of displacement of a neutral shape at a specific location on the face.
+ 每个混合形状位置的混合形状系数的字典。
+   @discussion混合形状系数定义了面部特定位置的中性形状的位移量。
  */
 @property (nonatomic, readonly) NSDictionary<ARBlendShapeLocation, NSNumber*> *blendShapes;
 
-/** Unavailable */
+/** Unavailable 不可用*/
 - (instancetype)initWithTransform:(matrix_float4x4)transform NS_UNAVAILABLE;
 
 @end

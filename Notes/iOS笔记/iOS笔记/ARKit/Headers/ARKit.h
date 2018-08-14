@@ -7,6 +7,10 @@
 /** @framework ARKit
     @abstract A high-level Augmented Reality framework.
     @discussion ARKit lets you easily configure and use Augmented Reality techniques to track, detect, and render.
+
+     @framework ARKit
+     @abstract一个高级增强现实框架。
+     @discussion ARKit可让您轻松配置和使用增强现实技术来跟踪，检测和渲染。
  */
 
 #import <ARKit/ARError.h>

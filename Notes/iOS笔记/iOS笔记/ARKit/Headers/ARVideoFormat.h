@@ -17,15 +17,17 @@ NS_SWIFT_NAME(ARConfiguration.VideoFormat)
 
 /**
  Image resolution.
+ 图像分辨率。
  */
 @property (nonatomic, readonly) CGSize imageResolution;
 
 /**
  Frame rate.
+ 帧率。
  */
 @property (nonatomic, readonly) NSInteger framesPerSecond;
 
-/** Unavailable */
+/** Unavailable 不可用*/
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
