@@ -309,17 +309,27 @@ typedef NSString * UIApplicationLaunchOptionsKey;
 
 @optional
 
+// 应用生命周期
+// 应用启动完成执行
 - (void)applicationDidFinishLaunching:(UIApplication *)application;
 #if UIKIT_STRING_ENUMS
+// 应用启动进程已经开始，但部分状态没有完全恢复
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(nullable NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions NS_AVAILABLE_IOS(6_0);
+//  告诉代理启动基本完成，程序准备开始运行（加载到窗口，可以看到）
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions NS_AVAILABLE_IOS(3_0);
 #else
+// 应用启动进程已经开始，但部分状态没有完全恢复
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions NS_AVAILABLE_IOS(6_0);
+//  告诉代理启动基本完成，程序准备开始运行（加载到窗口，可以看到）
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions NS_AVAILABLE_IOS(3_0);
 #endif
 
+// 当应用程序回到激活状态执行 （回到窗口，可以看到)
 - (void)applicationDidBecomeActive:(UIApplication *)application;
+// 当应用程序将要进入非活动状态执行，在此期间，应用程序不接收消息或事件，比如来电话了
 - (void)applicationWillResignActive:(UIApplication *)application;
+
+// 请求委托打开由url标示的资源(废弃)
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, "Please use application:openURL:options:") __TVOS_PROHIBITED;
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, "Please use application:openURL:options:") __TVOS_PROHIBITED;
 
@@ -330,12 +340,17 @@ typedef NSString * UIApplicationOpenURLOptionsKey NS_EXTENSIBLE_STRING_ENUM;
 typedef NSString * UIApplicationOpenURLOptionsKey;
 #endif
 
+//没有相应的通知。 如果应用程序由于某种原因无法打开，则返回NO
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options NS_AVAILABLE_IOS(9_0); // no equiv. notification. return NO if the application can't open for some reason
 
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;      // try to clean up as much memory as possible. next step is to terminate app
+//收到内存警告 尽可能多地清理内存。下一步是终止app
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;
+
 - (void)applicationWillTerminate:(UIApplication *)application;
+//午夜，运营商时间更新，夏令时更改
 - (void)applicationSignificantTimeChange:(UIApplication *)application;        // midnight, carrier time update, daylight savings time change
 
+//状态栏改变
 - (void)application:(UIApplication *)application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration __TVOS_PROHIBITED;
 - (void)application:(UIApplication *)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation __TVOS_PROHIBITED;
 
