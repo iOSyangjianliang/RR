@@ -65,6 +65,7 @@ API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(macos, watchos, tvos)
 /**
  Determines whether this device supports the ARConfiguration.
   确定此设备是否支持ARConfiguration。
+  一般A9芯片以下设备不支持
  */
 @property (class, nonatomic, readonly) BOOL isSupported;
 
