@@ -15,8 +15,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/* Bit definitions for `edgeAntialiasingMask' property. */
-
+/* Bit definitions for `edgeAntialiasingMask' property.
+ 定义图层的边缘如何被光栅化。 对于四个边（左，右，下，上）中的每一个，如果相应的
+ 位被设置，边将被反锯齿。 通常，此属性用于禁用对邻接其他图层边缘的边缘进行抗锯齿，
+ 以消除否则会出现的接缝。 默认值是所有的边缘都是反锯齿的。
+ 
+ 通常情况下，您将使用此属性来禁用与其他图层边缘邻接的抗锯齿功能，以消除否则会出现的接缝。
+ Layer的edgeAntialiasingMask属性并不能有效抗锯齿，只需要在图片边缘加入1个像素的透明区域就可以完美实现图片抗锯齿。
+ */
 typedef NS_OPTIONS (unsigned int, CAEdgeAntialiasingMask)
 {
   kCALayerLeftEdge      = 1U << 0,      /* Minimum X edge. */
@@ -25,8 +31,9 @@ typedef NS_OPTIONS (unsigned int, CAEdgeAntialiasingMask)
   kCALayerTopEdge       = 1U << 3,      /* Maximum Y edge. */
 };
 
-/* Bit definitions for `maskedCorners' property. */
-
+/* Bit definitions for `maskedCorners' property.
+ 切圆角时切指定的角，默认切四个角
+ */
 typedef NS_OPTIONS (NSUInteger, CACornerMask)
 {
   kCALayerMinXMinYCorner = 1U << 0,
@@ -52,87 +59,73 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 }
 
 /** Layer creation and initialization. **/
-
 + (instancetype)layer;
-
 /* The designated initializer. */
-
 - (instancetype)init;
 
-/* This initializer is used by CoreAnimation to create shadow copies of
- * layers, e.g. for use as presentation layers. Subclasses can override
- * this method to copy their instance variables into the presentation
- * layer (subclasses should call the superclass afterwards). Calling this
- * method in any other situation will result in undefined behavior. */
-
+/*
+ CoreAnimation使用此初始化程序创建图层的阴影副本，例如用作presentation表示层。
+ 子类可以重写此方法以将其实例变量复制到表示层中（子类之后应调用父类）。在任何其他情况下调用此方法将导致未定义的行为。
+ */
 - (instancetype)initWithLayer:(id)layer;
 
-/* Returns a copy of the layer containing all properties as they were
- * at the start of the current transaction, with any active animations
- * applied. This gives a close approximation to the version of the layer
- * that is currently displayed. Returns nil if the layer has not yet
- * been committed.
- *
- * The effect of attempting to modify the returned layer in any way is
- * undefined.
- *
- * The `sublayers', `mask' and `superlayer' properties of the returned
- * layer return the presentation versions of these properties. This
- * carries through to read-only layer methods. E.g., calling -hitTest:
- * on the result of the -presentationLayer will query the presentation
- * values of the layer tree. */
-
+/*
+ 返回包含所有属性的图层副本，因为它们在当前事务开始时应用了任何活动动画。这给出了当前显示的图层版本的近似值。如果图层尚未提交，则返回nil。
+ 试图以任何方式修改返回层的效果未定义。。
+ 返回图层的`sublayers'，`mask'和`superlayer'属性返回这些属性的表示版本。这贯穿于只读层方法。
+ 例如，调用-hitTest：对-presentationLayer的结果将查询层树的表示值。
+ */
 - (nullable instancetype)presentationLayer;
 
-/* When called on the result of the -presentationLayer method, returns
- * the underlying layer with the current model values. When called on a
- * non-presentation layer, returns the receiver. The result of calling
- * this method after the transaction that produced the presentation
- * layer has completed is undefined. */
-
+/*
+ 调用-presentationLayer方法的结果时，返回具有当前模型值的基础图层。 在非表示层上调用时，返回接收方。
+ 在生成表示层的事务完成之后调用此方法的结果是未定义的。
+*/
 - (instancetype)modelLayer;
 
-/** Property methods. **/
-
-/* CALayer implements the standard NSKeyValueCoding protocol for all
- * Objective C properties defined by the class and its subclasses. It
- * dynamically implements missing accessor methods for properties
- * declared by subclasses.
- *
- * When accessing properties via KVC whose values are not objects, the
- * standard KVC wrapping conventions are used, with extensions to
- * support the following types:
- *
- *      C Type                  Class
- *      ------                  -----
- *      CGPoint                 NSValue
- *      CGSize                  NSValue
- *      CGRect                  NSValue
- *      CGAffineTransform       NSValue
- *      CATransform3D           NSValue  */
-
-/* Returns the default value of the named property, or nil if no
- * default value is known. Subclasses that override this method to
- * define default values for their own properties should call `super'
- * for unknown properties. */
-
+/**
+ CALayer为所有类及其子类定义的Objective C属性实现了标准的NSKeyValueCoding协议。
+ 它动态地为子类声明的属性实现缺少的访问器方法。
+ 
+ 当通过KVC访问不是对象的属性时，使用标准的KVC包装约定，扩展名为支持以下几种类型：
+ C Type                  Class
+ ------                  -----
+ CGPoint                 NSValue
+ CGSize                  NSValue
+ CGRect                  NSValue
+ CGAffineTransform       NSValue
+ CATransform3D           NSValue
+ 
+ 返回指定属性的默认值，如果没有默认值，则返回nil。 重写此方法以定义其属性的默认值
+ 的子类应该为未知属性调用“super”
+ */
 + (nullable id)defaultValueForKey:(NSString *)key;
 
-/* Method for subclasses to override. Returning true for a given
- * property causes the layer's contents to be redrawn when the property
- * is changed (including when changed by an animation attached to the
- * layer). The default implementation returns NO. Subclasses should
- * call super for properties defined by the superclass. (For example,
- * do not try to return YES for properties implemented by CALayer,
- * doing will have undefined results.) */
-
+/*
+ 子类重写的方法。 对给定的属性，当属性发生更改（包括由附加到图层的动画更改）时，
+ 将导致图层的内容重绘，这时返回true。默认实现返回NO。 子类应该为超类定义的属性
+ 调用super。 （例如，对于CALayer实现的属性不要试图返回YES是由，这样做会有未知的结果。）
+ 
+ layer首次加载时会调用 +(BOOL)needsDisplayForKey:(NSString *)key方法来判断当前指定的属性key改变是否需要重新绘制。
+ 当Core Animartion中的key或者keypath等于+(BOOL)needsDisplayForKey:(NSString *)key方法中指定的key，便会自动调用setNeedsDisplay方法，这样就会触发重绘，达到我们想要的效果。
+ 
+ layer方法响应链：
+ [layer setNeedDisplay] -> [layer displayIfNeed] -> [layer display] -> [layerDelegate displayLayer:]
+ 
+ 如果layerDelegate实现了displayLayer:协议，layer就不会再调用自身的重绘代码
+ [layer setNeedDisplay] -> [layer displayIfNeed] -> [layer display] -> [layer drawInContext:] -> [layerDelegate drawLayer: inContext:]
+ 
+ 只会在图层初始化的时候被调用一次。
+ 代码中通过判断图层的属性名称来决定是否需要对对应的Core Animation动画执行UI重绘工作(本例中就是对自定义的progress属性进行处理)。
+ 因为在needsDisplayForKey方法中指定了key的值是progress，所以这里的animationWithKeyPath动画操作会在动画执行期间，不停的促发Core Graphics的重绘工作，即不停的调用 - (void)drawInContext:(CGContextRef)ctx方法进行绘制。
+ fillMode 和 removeOnCompletion 两个属性指定动画在绘制完成后，对应的动画对象不会从内存中移除掉。
+ */
 + (BOOL)needsDisplayForKey:(NSString *)key;
 
-/* Called by the object's implementation of -encodeWithCoder:, returns
- * false if the named property should not be archived. The base
- * implementation returns YES. Subclasses should call super for
- * unknown properties. */
-
+/*
+ 由对象的-encodeWithCoder：的实现调用，如果命名属性不应归档，则返回false。
+ 可以归档返回YES。 对于未知属性子类应该调用父类方法。
+ */
 - (BOOL)shouldArchiveValueForKey:(NSString *)key;
 
 /** Geometry and layer hierarchy properties. **/
@@ -187,28 +180,31 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 @property(getter=isHidden) BOOL hidden;
 
 /* When false layers facing away from the viewer are hidden from view.
- * Defaults to YES. Animatable. */
+ * Defaults to YES. Animatable.
+ 控制图层的背面是否要被绘制,支持动画。
+ 默认为YES，如果设置为NO，那么当图层正面从相机视角消失的时候，它将不会被绘制。
+ */
 
 @property(getter=isDoubleSided) BOOL doubleSided;
 
-/* Whether or not the geometry of the layer (and its sublayers) is
- * flipped vertically. Defaults to NO. Note that even when geometry is
- * flipped, image orientation remains the same (i.e. a CGImageRef
- * stored in the `contents' property will display the same with both
- * flipped=NO and flipped=YES, assuming no transform on the layer). */
-
+/*
+ 层（及其子层）的几何是否垂直翻转。 默认为NO。 请注意，即使在翻转几何图形时，
+ 图像方向仍保持不变（即，假设在图层上没有变换，则存储在“contents”属性中的CGImageRef
+ 将在flipped=NO and flipped=YES时显示相同）。
+ 
+ 如果设置为yes，则子图层或者子视图本来相对于左上角放置改为相对于左下角放置。也可以这么理解geometryFlipped决定了一个图层的坐标是否相对于父图层垂直翻转，默认情况下是NO，也就是从左上角开始绘制，当把值改为YES的时候这个图层和他的子图层将会被垂直翻转，也就是从左下角开始绘制。
+ 
+ 该属性可以改变默认图层y坐标的方向。当翻转变换被调用时，使用该属性来调整图层的方向有的时候是必需的。如果父视图使用了翻转变换，它的子视图内容（以及它对应的图层）将经常被颠倒。在这种情况下，设置子图层的geometryFlipped属性为YES是一种修正该问题最简单的方法，但是一般不推荐使用geometryFlipped属性。
+ */
 @property(getter=isGeometryFlipped) BOOL geometryFlipped;
 
-/* Returns true if the contents of the contents property of the layer
- * will be implicitly flipped when rendered in relation to the local
- * coordinate space (e.g. if there are an odd number of layers with
- * flippedGeometry=YES from the receiver up to and including the
- * implicit container of the root layer). Subclasses should not attempt
- * to redefine this method. When this method returns true the
- * CGContextRef object passed to -drawInContext: by the default
- * -display method will have been y- flipped (and rectangles passed to
- * -setNeedsDisplayInRect: will be similarly flipped). */
-
+/*
+ 如果图层的content属性的内容在相对于局部坐标空间渲染时将被隐式地翻转（例如，如果从接收者直到并包括根层的隐式容器，有一个奇数层的flippedGeometry = YES），那就返回YES。
+ 子类不应该尝试重新定义这个方法。
+ 当这个方法返回YES时，通过默认的-display方法传递给-drawInContext的CGContextRef对象将会被y翻转（传递给-setNeedsDisplayInRect的矩形将被类似地翻转）。
+ 
+ 渲染时，图层的content被隐式的翻转就返回YES，否则返回NO。这个方法默认是返回NO的。这个方法提供了关于在绘制过程中图层内容是否被翻转的信息，你不应该尝试重写给方法返回一个不同的值，如果layer需要翻转它的content，那么就返回YES，那么在传递给图层drawInContext:方法之前，就对当前上下文实施y方向上的翻转，类似的，该图层将传递给其 setNeedsDisplayInRect:的所有矩形转换为翻转的坐标空间。
+ */
 - (BOOL)contentsAreFlipped;
 
 /* The receiver's superlayer object. Implicitly changed to match the
@@ -267,16 +263,27 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  * properties are ignored. When setting the mask to a new layer, the
  * new layer must have a nil superlayer, otherwise the behavior is
  * undefined. Nested masks (mask layers with their own masks) are
- * unsupported. */
+ * unsupported.
 
+ 将其alpha通道用作蒙版的图层，以在图层的背景和将图层内容与其过滤背景进行合成的结果之间进行选择。 默认为nil。
+ 当用作蒙板时，图层的“compositingFilter”和“backgroundFilters”属性将被忽略。 将遮罩设置为新图层时，新图层必须有一个nil的图层，
+ 否则行为未定义。 不支持嵌套蒙版（带有自己蒙版的蒙版图层）。
+ 
+ 这个属性的默认值是nil。 配置mask时，请记得设置遮罩层的大小和位置，以确保遮罩层与它遮罩的层正确对齐。
+ 您分配给此属性的图层不能有父图层。否则行为是不确定的。
+ 遮罩层必须至少有两个图层，上面的一个图层为“遮罩层”，下面的称“被遮罩层”；这两个图层中只有相重叠的地方才会被显示。也就是说在遮罩层中有对象的地方就是“透明”的，可以看到被遮罩层中的对象，而没有对象的地方就是不透明的，被遮罩层中相应位置的对象是看不见的。
+ */
 @property(nullable, strong) CALayer *mask;
 
 /* When true an implicit mask matching the layer bounds is applied to
  * the layer (including the effects of the `cornerRadius' property). If
  * both `mask' and `masksToBounds' are non-nil the two masks are
  * multiplied to get the actual mask values. Defaults to NO.
- * Animatable. */
-
+ * Animatable.
+ 当设置YES，将匹配层边界的隐式掩码应用于层(包括“角半径”属性的影响)。
+ 如果“mask”和“masksToBounds”都是非空的，则将两个mask相乘以得到实际的mask值。
+ 默认NO。支持动画(iOS11开始才有动画)
+ */
 @property BOOL masksToBounds;
 
 /** Mapping between layer coordinate and time spaces. **/
@@ -312,60 +319,44 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 
 @property(nullable, strong) id contents;
 
-/* A rectangle in normalized image coordinates defining the
- * subrectangle of the `contents' property that will be drawn into the
- * layer. If pixels outside the unit rectangles are requested, the edge
- * pixels of the contents image will be extended outwards. If an empty
- * rectangle is provided, the results are undefined. Defaults to the
- * unit rectangle [0 0 1 1]. Animatable. */
-
+/*
+ 标准化的图像坐标中的矩形定义了将被绘制到图层中的“contents”属性的子矩形。
+ 如果需要单位矩形外的像素，则内容图像的边缘像素将向外扩展。 如果提供了一个空的矩形，结果是不确定的。
+ contentRect是一个比例值[0-1]，而不是屏幕上真实的像素点，默认为单位矩形[0 0 1 1]。支持动画
+ */
 @property CGRect contentsRect;
 
-/* A string defining how the contents of the layer is mapped into its
- * bounds rect. Options are `center', `top', `bottom', `left',
- * `right', `topLeft', `topRight', `bottomLeft', `bottomRight',
- * `resize', `resizeAspect', `resizeAspectFill'. The default value is
- * `resize'. Note that "bottom" always means "Minimum Y" and "top"
- * always means "Maximum Y". */
-
+/*
+ 一个字符串定义了layer的contents是如何映射到它的边界矩形内部的，选项有`center', `top',
+ `bottom', `left', `right', `topLeft', `topRight', `bottomLeft', `bottomRight',
+ `resize', `resizeAspect', `resizeAspectFill'，默认值是`resize'，
+ 注意"bottom"意思是"Minimum Y"，"top"的意思是"Maximum Y"。
+ 
+ 和cotentMode一样，contentsGravity的目的是为了决定内容在图层的边界中怎么对齐，
+ */
 @property(copy) NSString *contentsGravity;
 
-/* Defines the scale factor applied to the contents of the layer. If
- * the physical size of the contents is '(w, h)' then the logical size
- * (i.e. for contentsGravity calculations) is defined as '(w /
- * contentsScale, h / contentsScale)'. Applies to both images provided
- * explicitly and content provided via -drawInContext: (i.e. if
- * contentsScale is two -drawInContext: will draw into a buffer twice
- * as large as the layer bounds). Defaults to one. Animatable. */
+/*
+ 定义应用于图层内容的比例因子。 如果内容的物理尺寸是“（w，h）”，那么逻辑尺寸（即用于contentGravity计算）被定义为'（w / contentsScale，h / contentsScale）'。 适用于显式提供的图像和通过-drawInContext提供的内容（即如果contentsScale是2，-drawInContext：将绘制到缓冲区大小为layer bounds的2倍）， 默认为1，可动画。
+ 
+该值定义了图层的逻辑坐标空间（以点为单位）和物理坐标空间（以像素为单位）之间的映射。 较高的比例因子表示在渲染时间层中的每个点由多于一个像素表示。 例如，如果比例因子为2.0，图层边界为50 x 50点，则用于呈现图层内容的位图大小为100 x 100像素。
+ */
 
 @property CGFloat contentsScale
   CA_AVAILABLE_STARTING (10.7, 4.0, 9.0, 2.0);
 
-/* A rectangle in normalized image coordinates defining the scaled
- * center part of the `contents' image.
- *
- * When an image is resized due to its `contentsGravity' property its
- * center part implicitly defines the 3x3 grid that controls how the
- * image is scaled to its drawn size. The center part is stretched in
- * both dimensions; the top and bottom parts are only stretched
- * horizontally; the left and right parts are only stretched
- * vertically; the four corner parts are not stretched at all. (This is
- * often called "9-slice scaling".)
- *
- * The rectangle is interpreted after the effects of the `contentsRect'
- * property have been applied. It defaults to the unit rectangle [0 0 1
- * 1] meaning that the entire image is scaled. As a special case, if
- * the width or height is zero, it is implicitly adjusted to the width
- * or height of a single source pixel centered at that position. If the
- * rectangle extends outside the [0 0 1 1] unit rectangle the result is
- * undefined. Animatable. */
-
+/*
+ 标准化图像坐标中的矩形定义“contents”图像的缩放中心部分。 当由于其“contentsGravity”属性而调整图像大小时
+ 中心部分隐含地定义了3x3网格，其控制如何将图像缩放到其绘制的大小。 中间部分在两个方向都被拉伸; 顶部和底部只有水平伸展; 左右部分只是垂直拉伸; 四个角落部分根本不被拉伸。 （这通常被称为“9-slice scaling”）。
+ 在应用“contentsRect”属性的效果之后，该矩形被解释。 它默认为单位矩形[0 0 1 1]，意味着整个图像被缩放。 作为特殊情况，如果宽度或高度为零，则隐式地调整为以该位置为中心的单个源像素的宽度或高度。 如果矩形延伸到[0 0 1 1]单位矩形之外，则结果是不确定的，支持动画。
+ */
 @property CGRect contentsCenter;
 
-/* A hint for the desired storage format of the layer contents provided by
- * -drawLayerInContext. Defaults to kCAContentsFormatRGBA8Uint. Note that this
- * does not affect the interpretation of the `contents' property directly. */
-
+/*
+ -drawLayerInContext提供的图层内容的所需存储格式的提示
+ 默认值是kCAContentsFormatRGBA8Uint。
+ UIView和图层支持的NSView对象可能会将值更改为适合当前设备的格式。
+ */
 @property(copy) NSString *contentsFormat
   CA_AVAILABLE_STARTING (10.12, 10.0, 10.0, 3.0);
 
@@ -373,14 +364,20 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  * the layer. The minification filter is used when to reduce the size
  * of image data, the magnification filter to increase the size of
  * image data. Currently the allowed values are `nearest' and `linear'.
- * Both properties default to `linear'. */
+ * Both properties default to `linear'.
+ 渲染图层的“contents”属性时使用的过滤器类型。 minification过滤器用于缩小图像数据的大小时，magnification过滤器增加图像数据的大小。
+ 目前允许的值是`nearest' 和 `linear'的。 这两个属性默认为`linear'。
+ */
 
 @property(copy) NSString *minificationFilter;
 @property(copy) NSString *magnificationFilter;
 
 /* The bias factor added when determining which levels of detail to use
  * when minifying using trilinear filtering. The default value is 0.
- * Animatable. */
+ * Animatable.
+ 在确定使用三线性滤波进行缩放时要使用哪些细节级别时添加的偏移因子。 默认值是0，可动画。
+
+*/
 
 @property float minificationFilterBias;
 
@@ -412,17 +409,20 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 - (void)displayIfNeeded;
 
 /* When true -setNeedsDisplay will automatically be called when the
- * bounds of the layer changes. Default value is NO. */
-
+ * bounds of the layer changes. Default value is NO.
+   当YES时，方法-setNeedsDisplay将在图层的边界改变时自动被调用。
+   当其值为YES时，bounds发生改变就重绘，NO就不重绘，默认值为NO。
+ */
 @property BOOL needsDisplayOnBoundsChange;
 
-/* When true, the CGContext object passed to the -drawInContext: method
- * may queue the drawing commands submitted to it, such that they will
- * be executed later (i.e. asynchronously to the execution of the
- * -drawInContext: method). This may allow the layer to complete its
- * drawing operations sooner than when executing synchronously. The
- * default value is NO. */
-
+/*
+ 如果为YES，则传递给-drawInContext：方法的CGContext对象可以对提交给它的绘图命令进行排队，以便稍后执行（即与执行-drawInContext：方法异步）。 这可能会使图层比同步执行时更快地完成绘图操作。 默认值是NO
+ 1.当此属性设置为YES时，用于绘制图层内容的图形上下文将绘制命令排队，并在后台线程上执行它们，而不是同步执行它们。 异步执行这些命令可以提高某些应用程序的性能。 但是，在启用此功能之前，您应始终测量实际的性能优势。
+ 2.该属性适用于图层内容需要反复重绘的情况，此时设成true可能会改善性能，比如需要反复绘制大量粒子的粒子发射器图层CAEmitterLayer。
+ 3.对于CATiledLayer。除了将图层再次分割成独立更新的小块（类似于脏矩形自动更新的概念），CATiledLayer还有一个有趣的特性：在多个线程中为每个小块同时调用-drawLayer:inContext:方法。这就避免了阻塞用户交互而且能够利用多核心新片来更快地绘制。只有一个小块的CATiledLayer是实现异步更新图片视图的简单方法。
+ 4.它与CATiledLayer使用的异步绘制并不相同。drawsAsynchronously的-drawLayer:inContext:方法只会在主线程调用，但是CGContext并不等待每个绘制命令的结束。相反地，它会将命令加入队列，当方法返回时，在后台线程逐个执行真正的绘制。
+ 5.这种方式就是先记录绘制命令，然后在后台线程执行。为了实现这个过程，更多的事情不得不做，更多的内存开销。最后只是把一些工作从主线程移动出来。这个过程是需要权衡，测试的。
+ */
 @property BOOL drawsAsynchronously
   CA_AVAILABLE_STARTING (10.8, 6.0, 9.0, 2.0);
 
@@ -458,7 +458,13 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  *
  * The default value is read from the boolean UIViewEdgeAntialiasing
  * property in the main bundle's Info.plist. If no value is found in
- * the Info.plist the default value is NO. */
+ * the Info.plist the default value is NO.
+ 
+ 指示是否允许图层执行边缘抗锯齿。
+ 在使用view的缩放的时候，layer.border.width随着view的放大，会出现锯齿化的问题，解决这个问题可以设置这个属性。
+ 如果为true，则允许此层根据edgeAntialiasingMask属性的值的请求对其边缘进行抗锯齿处理。
+ 默认值从主包的Info.plist中的布尔UIViewEdgeAntialiasing属性中读取。 如果Info.plist中未找到任何值，则默认值为NO。
+ */
 
 @property BOOL allowsEdgeAntialiasing;
 
@@ -469,13 +475,17 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 
 /* When positive, the background of the layer will be drawn with
  * rounded corners. Also effects the mask generated by the
- * `masksToBounds' property. Defaults to zero. Animatable. */
-
+ * `masksToBounds' property. Defaults to zero. Animatable.
+ 当为正数时，图层的背景用圆角绘制。还会影响“masksToBounds”属性生成的掩码。默认值为零。
+ 可以做成动画。(在iOS11.0之前圆角是不支持动画的)
+ */
 @property CGFloat cornerRadius;
 
 /* Defines which of the four corners receives the masking when using
- * `cornerRadius' property. Defaults to all four corners. */
-
+ * `cornerRadius' property. Defaults to all four corners.
+ 使用cornerRadius圆角属性时，定义四个角中的哪一个接收遮罩。 默认为所有四个角。
+ 例如只切两个圆角:kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
+*/
 @property CACornerMask maskedCorners
   CA_AVAILABLE_STARTING (10.13, 11.0, 11.0, 4.0);
 
@@ -811,7 +821,7 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 
 @end
 
-/** Layer `contentsGravity' values. **/
+/** contentsGravity可以取下面的值 **/
 
 CA_EXTERN NSString * const kCAGravityCenter
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
@@ -834,7 +844,7 @@ CA_EXTERN NSString * const kCAGravityBottomRight
 CA_EXTERN NSString * const kCAGravityResize
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
 CA_EXTERN NSString * const kCAGravityResizeAspect
-    CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);//kCAGravityResizeAspect的效果等同于cotentMode的UIViewContentModeScaleAspectFit，同时它还能在图层中等比例拉伸以适应图层的边界
 CA_EXTERN NSString * const kCAGravityResizeAspectFill
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
 
@@ -848,16 +858,20 @@ CA_EXTERN NSString * const kCAContentsFormatGray8Uint /* Grayscale with alpha (i
   CA_AVAILABLE_STARTING (10.12, 10.0, 10.0, 3.0);
 
 /** Contents filter names. **/
-
+//最近过滤-就是取样最近的单像素点而不管其他的颜色。这样做非常快，也不会使图片模糊。
+//但是，最明显的效果就是，会使得压缩图片更糟，图片放大之后也显得块状或是马赛克严重。
 CA_EXTERN NSString * const kCAFilterNearest
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+//采用双线性滤波算法，放大倍数比较大的时候图片就模糊不清了。
 CA_EXTERN NSString * const kCAFilterLinear
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
 
 /* Trilinear minification filter. Enables mipmap generation. Some
  * renderers may ignore this, or impose additional restrictions, such
- * as source images requiring power-of-two dimensions. */
-
+ * as source images requiring power-of-two dimensions.
+   三线缩小滤波器。 启用mipmap生成。 某些渲染器可能会忽略这一点，或施加其他限制，例如需要二维功率的源图像。
+ */
+//三线性滤波算法存储了多个大小情况下的图片（也叫多重贴图），并三维取样，同时结合大图和小图的存储进而得到最后的结果。
 CA_EXTERN NSString * const kCAFilterTrilinear
     CA_AVAILABLE_STARTING (10.6, 3.0, 9.0, 2.0);
 
