@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2B1C35BE1FB3EED900ADDE24 /* WebKit.apinotes in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C35991FB3EED900ADDE24 /* WebKit.apinotes */; };
-		2B814BD82152479E0094735C /* QuartzCore.apinotes in Resources */ = {isa = PBXBuildFile; fileRef = 2B814BCA2152479E0094735C /* QuartzCore.apinotes */; };
 		2BEA133A1F3D43A00085F550 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA13391F3D43A00085F550 /* main.m */; };
 		2BEA133D1F3D43A00085F550 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA133C1F3D43A00085F550 /* AppDelegate.m */; };
 		2BEA13451F3D43A00085F550 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BEA13441F3D43A00085F550 /* Assets.xcassets */; };
@@ -17,6 +16,7 @@
 		2BEA13631F414FAB0085F550 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA13621F414FAB0085F550 /* RootViewController.m */; };
 		2BEA13691F4299F30085F550 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA13681F4299F30085F550 /* TestViewController.m */; };
 		2BED10D41FB009C500BB474F /* UIKit.apinotes in Resources */ = {isa = PBXBuildFile; fileRef = 2BED10611FB009C500BB474F /* UIKit.apinotes */; };
+		2BF52A7A215F56E1008B3FF5 /* QuartzCore in Resources */ = {isa = PBXBuildFile; fileRef = 2BF52A79215F56E1008B3FF5 /* QuartzCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,29 +76,6 @@
 		2B30E2EF211D875200D29958 /* ARAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAnchor.h; sourceTree = "<group>"; };
 		2B30E2F0211D875200D29958 /* ARFaceGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFaceGeometry.h; sourceTree = "<group>"; };
 		2B30E2F1211D875200D29958 /* ARImageAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARImageAnchor.h; sourceTree = "<group>"; };
-		2B814BC12152479E0094735C /* CATransformLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransformLayer.h; sourceTree = "<group>"; };
-		2B814BC22152479E0094735C /* QuartzCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzCore.h; sourceTree = "<group>"; };
-		2B814BC32152479E0094735C /* CAScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAScrollLayer.h; sourceTree = "<group>"; };
-		2B814BC42152479E0094735C /* CALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CALayer.h; sourceTree = "<group>"; };
-		2B814BC52152479E0094735C /* CAMediaTimingFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMediaTimingFunction.h; sourceTree = "<group>"; };
-		2B814BC62152479E0094735C /* CAReplicatorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAReplicatorLayer.h; sourceTree = "<group>"; };
-		2B814BC72152479E0094735C /* CATextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATextLayer.h; sourceTree = "<group>"; };
-		2B814BC82152479E0094735C /* CATiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATiledLayer.h; sourceTree = "<group>"; };
-		2B814BC92152479E0094735C /* CAEmitterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAEmitterLayer.h; sourceTree = "<group>"; };
-		2B814BCA2152479E0094735C /* QuartzCore.apinotes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QuartzCore.apinotes; sourceTree = "<group>"; };
-		2B814BCB2152479E0094735C /* CADisplayLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADisplayLink.h; sourceTree = "<group>"; };
-		2B814BCC2152479E0094735C /* CAMediaTiming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMediaTiming.h; sourceTree = "<group>"; };
-		2B814BCD2152479E0094735C /* CAEAGLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAEAGLLayer.h; sourceTree = "<group>"; };
-		2B814BCE2152479E0094735C /* CoreAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreAnimation.h; sourceTree = "<group>"; };
-		2B814BCF2152479E0094735C /* CATransform3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3D.h; sourceTree = "<group>"; };
-		2B814BD02152479E0094735C /* CAEmitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAEmitterCell.h; sourceTree = "<group>"; };
-		2B814BD12152479E0094735C /* CAShapeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAShapeLayer.h; sourceTree = "<group>"; };
-		2B814BD22152479E0094735C /* CAValueFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAValueFunction.h; sourceTree = "<group>"; };
-		2B814BD32152479E0094735C /* CAMetalLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMetalLayer.h; sourceTree = "<group>"; };
-		2B814BD42152479E0094735C /* CATransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransaction.h; sourceTree = "<group>"; };
-		2B814BD52152479E0094735C /* CABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABase.h; sourceTree = "<group>"; };
-		2B814BD62152479E0094735C /* CAGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAGradientLayer.h; sourceTree = "<group>"; };
-		2B814BD72152479E0094735C /* CAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimation.h; sourceTree = "<group>"; };
 		2BEA13351F3D43A00085F550 /* iOS笔记.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS笔记.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BEA13391F3D43A00085F550 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2BEA133B1F3D43A00085F550 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -333,6 +310,7 @@
 		2BED10D11FB009C500BB474F /* UIVisualEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIVisualEffectView.h; sourceTree = "<group>"; };
 		2BED10D21FB009C500BB474F /* UIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebView.h; sourceTree = "<group>"; };
 		2BED10D31FB009C500BB474F /* UIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWindow.h; sourceTree = "<group>"; };
+		2BF52A79215F56E1008B3FF5 /* QuartzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QuartzCore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,44 +549,6 @@
 			path = "Text Display and Fonts";
 			sourceTree = "<group>";
 		};
-		2B814BBD215247710094735C /* QuartzCore */ = {
-			isa = PBXGroup;
-			children = (
-				2B814BC02152479E0094735C /* Headers */,
-			);
-			path = QuartzCore;
-			sourceTree = "<group>";
-		};
-		2B814BC02152479E0094735C /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				2B814BC12152479E0094735C /* CATransformLayer.h */,
-				2B814BC22152479E0094735C /* QuartzCore.h */,
-				2B814BC32152479E0094735C /* CAScrollLayer.h */,
-				2B814BC42152479E0094735C /* CALayer.h */,
-				2B814BC52152479E0094735C /* CAMediaTimingFunction.h */,
-				2B814BC62152479E0094735C /* CAReplicatorLayer.h */,
-				2B814BC72152479E0094735C /* CATextLayer.h */,
-				2B814BC82152479E0094735C /* CATiledLayer.h */,
-				2B814BC92152479E0094735C /* CAEmitterLayer.h */,
-				2B814BCA2152479E0094735C /* QuartzCore.apinotes */,
-				2B814BCB2152479E0094735C /* CADisplayLink.h */,
-				2B814BCC2152479E0094735C /* CAMediaTiming.h */,
-				2B814BCD2152479E0094735C /* CAEAGLLayer.h */,
-				2B814BCE2152479E0094735C /* CoreAnimation.h */,
-				2B814BCF2152479E0094735C /* CATransform3D.h */,
-				2B814BD02152479E0094735C /* CAEmitterCell.h */,
-				2B814BD12152479E0094735C /* CAShapeLayer.h */,
-				2B814BD22152479E0094735C /* CAValueFunction.h */,
-				2B814BD32152479E0094735C /* CAMetalLayer.h */,
-				2B814BD42152479E0094735C /* CATransaction.h */,
-				2B814BD52152479E0094735C /* CABase.h */,
-				2B814BD62152479E0094735C /* CAGradientLayer.h */,
-				2B814BD72152479E0094735C /* CAAnimation.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
 		2B9275341FDA518700D177E1 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,7 +665,7 @@
 		2BEA13371F3D43A00085F550 /* iOS笔记 */ = {
 			isa = PBXGroup;
 			children = (
-				2B814BBD215247710094735C /* QuartzCore */,
+				2BF52A79215F56E1008B3FF5 /* QuartzCore */,
 				2B30E2DD211D875200D29958 /* ARKit */,
 				2B1C35981FB3EED900ADDE24 /* WebKit */,
 				2BED11B61FB0315300BB474F /* UIKit */,
@@ -972,9 +912,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B814BD82152479E0094735C /* QuartzCore.apinotes in Resources */,
 				2BEA13601F414F790085F550 /* Main.storyboard in Resources */,
 				2BED10D41FB009C500BB474F /* UIKit.apinotes in Resources */,
+				2BF52A7A215F56E1008B3FF5 /* QuartzCore in Resources */,
 				2BEA13481F3D43A00085F550 /* LaunchScreen.storyboard in Resources */,
 				2B1C35BE1FB3EED900ADDE24 /* WebKit.apinotes in Resources */,
 				2BEA13451F3D43A00085F550 /* Assets.xcassets in Resources */,

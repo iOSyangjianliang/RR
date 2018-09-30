@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 @interface RootViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *mainTextView;
 
 @end
 
@@ -18,10 +19,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-    UIView * viwq =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
-    [self.view addSubview:viwq];
-
-//    NSIndexPath *h =[NSIndexPath indexPathForItem:1 inSection:1]
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers/CALayer.h" ofType:nil];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+    NSData *data = [fileHandle readDataToEndOfFile];
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    self.mainTextView.text = str;
+  
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,16 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.Selectbutton setTitle:@"API-UIView" forState:UIControlStateNormal];
-    //    self.webView.scalesPageToFit = YES;
+    [self buildUI];
+
+    NSString *Path = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers/CALayer.h" ofType:nil];
+    NSData *Data = [NSData dataWithContentsOfFile:Path];
+    NSURL *url = [NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]];
+    [self.webView loadData:Data MIMEType:@"text/plain" textEncodingName:@"UTF-8" baseURL:url];
+    return;
+    
     // 以只读方式打开文件
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"UIView" ofType:@"h"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers/CALayer" ofType:@"h"];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
     NSData *data = [fileHandle readDataToEndOfFile];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+   
     
     
-    
+    NSLog(@"%@",str);
+    /**
     // 处理字符串
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
     
@@ -68,13 +76,13 @@
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
     self.textView.attributedText = attributedString;
     
+    */
     
     
+//    [self loadRequestLocalText:str];
     
-    [self loadRequestLocalText:str];
     
-    
-    //    [self loadRequestFileResource:@"UIIView" ofType:@"txt" MIMEType:@"txt"];
+//        [self loadRequestFileResource:@"UIIView" ofType:@"txt" MIMEType:@"txt"];
     
 }
 
@@ -100,8 +108,40 @@
 //    [self.webView loadData:data MIMEType:mimeType textEncodingName:@"UTF-8" baseURL:url];
 //
 //}
+-(void)buildUI
+{
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.webView];
+}
+/**
+#pragma mark 加载本地文本文件
+-(void)loadText
+{
 
-
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"关于.txt" ofType:nil];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSLog(@"%@", [self mimeType:url]);
+  
+    NSData *data = [NSData dataWithContentsOfFile:path];
+          
+    [self.webView loadData:data MIMEType:@"text/plain" textEncodingName:@"UTF-8" baseURL:nil];
+}
+#pragma mark 获取指定URL的MIMEType类型
+- (NSString *)mimeType:(NSURL *)url
+{
+     
+    //1NSURLRequest
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        //2NSURLConnection
+          
+        //3 在NSURLResponse里，服务器告诉浏览器用什么方式打开文件。
+          
+        //使用同步方法后去MIMEType
+        NSURLResponse *response = nil;
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+        return response.MIMEType;
+}
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
