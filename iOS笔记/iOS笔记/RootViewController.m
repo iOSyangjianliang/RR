@@ -23,9 +23,19 @@
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
     NSData *data = [fileHandle readDataToEndOfFile];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
     self.mainTextView.text = str;
+    self.mainTextView.textColor = [UIColor redColor];
   
+    NSFileManager* fm = [NSFileManager defaultManager];
+    
+    NSError* error = nil;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers" ofType:nil];
+    NSArray* array =  [fm contentsOfDirectoryAtPath:filePath error:&error];//浅度遍历文件夹
+    NSArray* array1 =[fm subpathsOfDirectoryAtPath:[[NSBundle mainBundle] pathForResource:@"QuartzCore" ofType:nil] error:&error];
+    if (error) {    //遍历文件失败
+        NSLog(@"未找到－－%@",error);
+    }
+    NSLog(@"%@==%@",array,array1);
     
 }
 

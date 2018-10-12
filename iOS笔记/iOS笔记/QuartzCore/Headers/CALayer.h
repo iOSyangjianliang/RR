@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/* Bit definitions for `edgeAntialiasingMask' property.
+/*
  定义图层的边缘如何被光栅化。 对于四个边（左，右，下，上）中的每一个，如果相应的
  位被设置，边将被反锯齿。 通常，此属性用于禁用对邻接其他图层边缘的边缘进行抗锯齿，
  以消除否则会出现的接缝。 默认值是所有的边缘都是反锯齿的。
@@ -31,9 +31,7 @@ typedef NS_OPTIONS (unsigned int, CAEdgeAntialiasingMask)
   kCALayerTopEdge       = 1U << 3,      /* Maximum Y edge. */
 };
 
-/* Bit definitions for `maskedCorners' property.
- 切圆角时切指定的角，默认切四个角
- */
+/* 切圆角时切指定的角，默认切四个角*/
 typedef NS_OPTIONS (NSUInteger, CACornerMask)
 {
   kCALayerMinXMinYCorner = 1U << 0,
@@ -76,7 +74,7 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  例如，调用-hitTest：对-presentationLayer的结果将查询层树的表示值。
  
  presentationLayer是通过modelLayer提供属性进行绘制的
- 呈现层 用于显示动画
+ 展示层 用于显示动画
  */
 - (nullable instancetype)presentationLayer;
 
@@ -133,77 +131,98 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  */
 - (BOOL)shouldArchiveValueForKey:(NSString *)key;
 
-/** Geometry and layer hierarchy properties. **/
-
-/* The bounds of the layer. Defaults to CGRectZero. Animatable. */
-
+#park mark - 几何图层层次结构属性
+/*
+ 图层的坐标大小。 默认为CGRectZero。支持动画
+ */
 @property CGRect bounds;
 
-/* The position in the superlayer that the anchor point of the layer's
- * bounds rect is aligned to. Defaults to the zero point. Animatable. */
-
+/*
+ 设置CALayer在父层中的位置,在父图层中的位置(图层边界矩形的锚点是对齐的。)，默认为零点。支持动画。
+ 
+ position是layer中的anchorPoint点在superLayer中的位置坐标。
+ 因此可以说, position点是相对suerLayer的，anchorPoint点是相对layer。
+ 
+ 1、position是layer中的anchorPoint在superLayer中的位置坐标。
+ 2、互不影响原则：单独修改position与anchorPoint中任何一个属性都不影响另一个属性。
+ 3、frame、position与anchorPoint有以下关系：
+ frame.origin.x = position.x - anchorPoint.x * bounds.size.width；
+ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
+ */
 @property CGPoint position;
 
-/* The Z component of the layer's position in its superlayer. Defaults
- * to zero. Animatable. */
-
+/*
+ 图层在父图层中的位置的Z分量。 默认为nil。支持动画。
+ */
 @property CGFloat zPosition;
 
-/* Defines the anchor point of the layer's bounds rect, as a point in
- * normalized layer coordinates - '(0, 0)' is the bottom left corner of
- * the bounds rect, '(1, 1)' is the top right corner. Defaults to
- * '(0.5, 0.5)', i.e. the center of the bounds rect. Animatable. */
-
+/*
+ 定义图层边界rect的锚点，作为标准化图层坐标中的一个点 - '（0,0）'是边界rect的左下角(iOS左上角、OS X左下角)，'（1,1）'是右上角。
+ 默认为'（0.5,0.5）'，即边界rect的中心。支持动画。
+ 
+ 左上角(0,0)、右下角(1, 1)、左下角(0,1)、右上角(1,0)
+ 修改anchorPoint，但又不想要移动layer也就是不想修改frame.origin，那么根据前面的公式，就需要position做相应地修改。
+ 简单地推导，可以得到下面的公式：
+ positionNew.x = positionOld.x + (anchorPointNew.x - anchorPointOld.x)  * bounds.size.width
+ positionNew.y = positionOld.y + (anchorPointNew.y - anchorPointOld.y)  * bounds.size.height
+ 也可以在修改anchorPoint后再重新设置一遍frame就可以达到目的，这时position就会自动进行相应的改变。
+ view.layer.anchorPoint = newAnchorpoint;
+ view.frame = oldFrame;
+ */
 @property CGPoint anchorPoint;
 
-/* The Z component of the layer's anchor point (i.e. reference point for
- * position and transform). Defaults to zero. Animatable. */
-
+/*
+ 图层锚点的Z分量（即位置和变换的参考点）。 默认为零。支持动画。
+ */
 @property CGFloat anchorPointZ;
 
-/* A transform applied to the layer relative to the anchor point of its
- * bounds rect. Defaults to the identity transform. Animatable. */
-
+/*
+ 矩阵 仿射变换: 相对于其边界rect的锚点(anchorPoint)应用于图层的变换。 默认为CATransform3DIdentity。支持动画。
+ */
 @property CATransform3D transform;
 
-/* Convenience methods for accessing the `transform' property as an
- * affine transform. */
-
+/*
+ 便捷方法获取和设置仿射变换值
+ */
 - (CGAffineTransform)affineTransform;
 - (void)setAffineTransform:(CGAffineTransform)m;
 
-/* Unlike NSView, each Layer in the hierarchy has an implicit frame
- * rectangle, a function of the `position', `bounds', `anchorPoint',
- * and `transform' properties. When setting the frame the `position'
- * and `bounds.size' are changed to match the given frame. */
-
+/*
+ 与NSView不同，层次结构中的每个层都有一个隐式frame矩形，即“position”，“bounds”，“anchorPoint”和“transform”属性的函数。
+ 设置frame时，“position”和“bounds.size”会改变以匹配给定的frame。
+*/
 @property CGRect frame;
 
-/* When true the layer and its sublayers are not displayed. Defaults to
- * NO. Animatable. */
-
+/*
+ 如果为true，则不显示图层及其子图层。 默认为NO。动画。
+ */
 @property(getter=isHidden) BOOL hidden;
 
-/* When false layers facing away from the viewer are hidden from view.
- * Defaults to YES. Animatable.
+/* 
  控制图层的背面是否要被绘制,支持动画。
  默认为YES，如果设置为NO，那么当图层正面从相机视角消失的时候，它将不会被绘制。
  */
-
 @property(getter=isDoubleSided) BOOL doubleSided;
 
 /*
+ 默认为NO，设置为YES所有子图层相对于左上角的位置改为相对于左下角位置
+
  层（及其子层）的几何是否垂直翻转。 默认为NO。 请注意，即使在翻转几何图形时，
  图像方向仍保持不变（即，假设在图层上没有变换，则存储在“contents”属性中的CGImageRef
  将在flipped=NO and flipped=YES时显示相同）。
  
- 如果设置为yes，则子图层或者子视图本来相对于左上角放置改为相对于左下角放置。也可以这么理解geometryFlipped决定了一个图层的坐标是否相对于父图层垂直翻转，默认情况下是NO，也就是从左上角开始绘制，当把值改为YES的时候这个图层和他的子图层将会被垂直翻转，也就是从左下角开始绘制。
+ 如果设置为yes，则子图层或者子视图本来相对于左上角放置改为相对于左下角放置。
+ 也可以这么理解geometryFlipped决定了一个图层的坐标是否相对于父图层垂直翻转，默认情况下是NO，也就是从左上角开始绘制；
+ 当把值改为YES的时候这个图层和他的子图层将会被垂直翻转，也就是从左下角开始绘制。
  
- 该属性可以改变默认图层y坐标的方向。当翻转变换被调用时，使用该属性来调整图层的方向有的时候是必需的。如果父视图使用了翻转变换，它的子视图内容（以及它对应的图层）将经常被颠倒。在这种情况下，设置子图层的geometryFlipped属性为YES是一种修正该问题最简单的方法，但是一般不推荐使用geometryFlipped属性。
+ 该属性可以改变默认图层y坐标的方向。当翻转变换被调用时，使用该属性来调整图层的方向有的时候是必需的。
+ 如果父视图使用了翻转变换，它的子视图内容（以及它对应的图层）将经常被颠倒。在这种情况下，设置子图层的geometryFlipped属性为YES是一种修正该问题最简单的方法，但是一般不推荐使用geometryFlipped属性。
  */
 @property(getter=isGeometryFlipped) BOOL geometryFlipped;
 
 /*
+ 获取当前layer内容在Y轴方向是否被翻转了
+
  如果图层的content属性的内容在相对于局部坐标空间渲染时将被隐式地翻转（例如，如果从接收者直到并包括根层的隐式容器，有一个奇数层的flippedGeometry = YES），那就返回YES。
  子类不应该尝试重新定义这个方法。
  当这个方法返回YES时，通过默认的-display方法传递给-drawInContext的CGContextRef对象将会被y翻转（传递给-setNeedsDisplayInRect的矩形将被类似地翻转）。
@@ -212,64 +231,53 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  */
 - (BOOL)contentsAreFlipped;
 
-/* The receiver's superlayer object. Implicitly changed to match the
- * hierarchy described by the `sublayers' properties. */
-
+/*
+ 接收者的父类对象。 隐式更改以匹配'sublayers'属性所描述的层次结构。
+ */
 @property(nullable, readonly) CALayer *superlayer;
 
-/* Removes the layer from its superlayer, works both if the receiver is
- * in its superlayer's `sublayers' array or set as its `mask' value. */
-
+/*
+ 从父图层中移除图层，如果接收器位于其父图层的“子图层”数组中或设置为其“mask”值，则两者都可以“移除”。
+*/
 - (void)removeFromSuperlayer;
 
-/* The array of sublayers of this layer. The layers are listed in back
- * to front order. Defaults to nil. When setting the value of the
- * property, any newly added layers must have nil superlayers, otherwise
- * the behavior is undefined. Note that the returned array is not
- * guaranteed to retain its elements. */
-
+/*
+ 该图层的子图层数组。 这些图层按照前后顺序列出。 默认为nil。
+ 设置属性的值时，任何新添加的层必须没有父图层，否则行为未定义。 请注意，不保证返回的数组保留其元素。
+ */
 @property(nullable, copy) NSArray<CALayer *> *sublayers;
 
-/* Add 'layer' to the end of the receiver's sublayers array. If 'layer'
- * already has a superlayer, it will be removed before being added. */
-
+/*
+ 将“图层”添加到接收器的子图层数组的末尾。 如果'layer'已经有一个父图层，它将在添加之前被删除。
+*/
 - (void)addSublayer:(CALayer *)layer;
 
-/* Insert 'layer' at position 'idx' in the receiver's sublayers array.
- * If 'layer' already has a superlayer, it will be removed before being
- * inserted. */
-
+/*
+ 在接收器(self)的子图层数组中的“idx”位置插入“图层”。 如果'layer'已经有一个父图层，它将在插入之前被删除。
+ */
 - (void)insertSublayer:(CALayer *)layer atIndex:(unsigned)idx;
 
-/* Insert 'layer' either above or below the specified layer in the
- * receiver's sublayers array. If 'layer' already has a superlayer, it
- * will be removed before being inserted. */
+/*
+ 在接收器(self)的子图层数组中的指定图层的上方或下方插入“图层”。 如果'layer'已经有一个超级层，它将在插入之前被删除。
+ */
+- (void)insertSublayer:(CALayer *)layer below:(nullable CALayer *)sibling; //指定某个图层下面
+- (void)insertSublayer:(CALayer *)layer above:(nullable CALayer *)sibling; //指定某个图层上面
 
-- (void)insertSublayer:(CALayer *)layer below:(nullable CALayer *)sibling;
-- (void)insertSublayer:(CALayer *)layer above:(nullable CALayer *)sibling;
-
-/* Remove 'layer' from the sublayers array of the receiver and insert
- * 'layer2' if non-nil in its position. If the superlayer of 'layer'
- * is not the receiver, the behavior is undefined. */
-
+/*
+ 从接收器(self)的子层数组中删除“layer”，如果其位置非nil，则插入“layer2”。 如果'layer'的父层不是接收者(即layer的父图层不是self)，则行为未定义。
+ */
 - (void)replaceSublayer:(CALayer *)layer with:(CALayer *)layer2;
 
-/* A transform applied to each member of the `sublayers' array while
- * rendering its contents into the receiver's output. Typically used as
- * the projection matrix to add perspective and other viewing effects
- * into the model. Defaults to identity. Animatable. */
-
+/*
+ 子layer进行3D变换
+ 应用于“子层”数组的每个成员的转换，同时将其内容呈现到接收器(self)的输出中。 通常用作投影矩阵，以将透视和其他观看效果添加到模型中。
+ 默认为CATransform3DIdentity。支持动画。
+ */
 @property CATransform3D sublayerTransform;
 
-/* A layer whose alpha channel is used as a mask to select between the
- * layer's background and the result of compositing the layer's
- * contents with its filtered background. Defaults to nil. When used as
- * a mask the layer's `compositingFilter' and `backgroundFilters'
- * properties are ignored. When setting the mask to a new layer, the
- * new layer must have a nil superlayer, otherwise the behavior is
- * undefined. Nested masks (mask layers with their own masks) are
- * unsupported.
-
+/*
+ 图层蒙版layer
+ 
  将其alpha通道用作蒙版的图层，以在图层的背景和将图层内容与其过滤背景进行合成的结果之间进行选择。 默认为nil。
  当用作蒙板时，图层的“compositingFilter”和“backgroundFilters”属性将被忽略。 将遮罩设置为新图层时，新图层必须有一个nil的图层，
  否则行为未定义。 不支持嵌套蒙版（带有自己蒙版的蒙版图层）。
@@ -280,48 +288,40 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  */
 @property(nullable, strong) CALayer *mask;
 
-/* When true an implicit mask matching the layer bounds is applied to
- * the layer (including the effects of the `cornerRadius' property). If
- * both `mask' and `masksToBounds' are non-nil the two masks are
- * multiplied to get the actual mask values. Defaults to NO.
- * Animatable.
+/*
  当设置YES，将匹配层边界的隐式掩码应用于层(包括“角半径”属性的影响)。
  如果“mask”和“masksToBounds”都是非空的，则将两个mask相乘以得到实际的mask值。
  默认NO。支持动画(iOS11开始才有动画)
  */
 @property BOOL masksToBounds;
 
-/** Mapping between layer coordinate and time spaces. **/
+#park mark - 层坐标和时间空间之间的映射.
 
 - (CGPoint)convertPoint:(CGPoint)p fromLayer:(nullable CALayer *)l;
 - (CGPoint)convertPoint:(CGPoint)p toLayer:(nullable CALayer *)l;
 - (CGRect)convertRect:(CGRect)r fromLayer:(nullable CALayer *)l;
 - (CGRect)convertRect:(CGRect)r toLayer:(nullable CALayer *)l;
 
+//转换CAMediaTiming协议的相对时间
 - (CFTimeInterval)convertTime:(CFTimeInterval)t fromLayer:(nullable CALayer *)l;
 - (CFTimeInterval)convertTime:(CFTimeInterval)t toLayer:(nullable CALayer *)l;
 
-/** Hit testing methods. **/
-
-/* Returns the farthest descendant of the layer containing point 'p'.
- * Siblings are searched in top-to-bottom order. 'p' is defined to be
- * in the coordinate space of the receiver's nearest ancestor that
- * isn't a CATransformLayer (transform layers don't have a 2D
- * coordinate space in which the point could be specified). */
-
+#park mark - 命中测试方法。
+/*
+ 返回包含某一点的最上层的子layer
+ 返回包含点'p'的图层的最远后代。 兄弟姐妹按从上到下的顺序进行搜索。 'p'定义在接收器(self)最近的父图层的坐标空间中，该坐标空间不是CATransformLayer（变换图层没有可以指定点的2D坐标空间）。
+ */
 - (nullable CALayer *)hitTest:(CGPoint)p;
 
-/* Returns true if the bounds of the layer contains point 'p'. */
-
+/*
+ 判断layer是否包含某一点p
+*/
 - (BOOL)containsPoint:(CGPoint)p;
 
-/** Layer content properties and methods. **/
-
-/* An object providing the contents of the layer, typically a CGImageRef,
- * but may be something else. (For example, NSImage objects are
- * supported on Mac OS X 10.6 and later.) Default value is nil.
- * Animatable. */
-
+#park mark - 图层内容属性和方法。
+/*
+ 提供图层内容的对象，通常是CGImageRef，但也可能是其他内容。 （例如，Mac OS X 10.6及更高版本支持NSImage对象。）默认值为nil。支持动画。
+ */
 @property(nullable, strong) id contents;
 
 /*
@@ -346,7 +346,6 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  
 该值定义了图层的逻辑坐标空间（以点为单位）和物理坐标空间（以像素为单位）之间的映射。 较高的比例因子表示在渲染时间层中的每个点由多于一个像素表示。 例如，如果比例因子为2.0，图层边界为50 x 50点，则用于呈现图层内容的位图大小为100 x 100像素。
  */
-
 @property CGFloat contentsScale
   CA_AVAILABLE_STARTING (10.7, 4.0, 9.0, 2.0);
 
@@ -365,56 +364,45 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 @property(copy) NSString *contentsFormat
   CA_AVAILABLE_STARTING (10.12, 10.0, 10.0, 3.0);
 
-/* The filter types to use when rendering the `contents' property of
- * the layer. The minification filter is used when to reduce the size
- * of image data, the magnification filter to increase the size of
- * image data. Currently the allowed values are `nearest' and `linear'.
- * Both properties default to `linear'.
+/*
  渲染图层的“contents”属性时使用的过滤器类型。 minification过滤器用于缩小图像数据的大小时，magnification过滤器增加图像数据的大小。
  目前允许的值是`nearest' 和 `linear'的。 这两个属性默认为`linear'。
  */
-
 @property(copy) NSString *minificationFilter;
 @property(copy) NSString *magnificationFilter;
 
-/* The bias factor added when determining which levels of detail to use
- * when minifying using trilinear filtering. The default value is 0.
- * Animatable.
- 在确定使用三线性滤波进行缩放时要使用哪些细节级别时添加的偏移因子。 默认值是0，可动画。
-
+/*
+ 在确定使用三线性滤波进行缩放时要使用哪些细节级别时添加的偏移因子。 默认值是0，支持动画。
 */
-
 @property float minificationFilterBias;
 
-/* A hint marking that the layer contents provided by -drawInContext:
- * is completely opaque. Defaults to NO. Note that this does not affect
- * the interpretation of the `contents' property directly. */
-
+/*
+ 提示标记-drawInContext：提供的图层内容是完全不透明的。 默认为NO。 请注意，这不会直接影响`contents'属性的解释。
+ */
 @property(getter=isOpaque) BOOL opaque;
 
-/* Reload the content of this layer. Calls the -drawInContext: method
- * then updates the `contents' property of the layer. Typically this is
- * not called directly. */
-
+/*
+ 重新加载此图层的内容。 调用-drawInContext：方法、然后更新图层的`contents'属性。 通常，这不是直接调用的。
+ */
 - (void)display;
 
-/* Marks that -display needs to be called before the layer is next
- * committed. If a region is specified, only that region of the layer
- * is invalidated. */
-
+/*
+ 标记在下次提交图层之前需要调用-display更新图层。 如果指定了区域，则只有该区域的区域无效。
+ */
 - (void)setNeedsDisplay;
 - (void)setNeedsDisplayInRect:(CGRect)r;
 
-/* Returns true when the layer is marked as needing redrawing. */
-
+/*
+ 当图层标记为需要重绘时，返回true。
+ */
 - (BOOL)needsDisplay;
 
-/* Call -display if receiver is marked as needing redrawing. */
-
+/*
+ 如果接收器(self)被标记为需要重绘，则调用-display。
+ */
 - (void)displayIfNeeded;
 
-/* When true -setNeedsDisplay will automatically be called when the
- * bounds of the layer changes. Default value is NO.
+/*
    当YES时，方法-setNeedsDisplay将在图层的边界改变时自动被调用。
    当其值为YES时，bounds发生改变就重绘，NO就不重绘，默认值为NO。
  */
@@ -454,386 +442,302 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  */
 - (void)renderInContext:(CGContextRef)ctx;
 
-/* Defines how the edges of the layer are rasterized. For each of the
- * four edges (left, right, bottom, top) if the corresponding bit is
- * set the edge will be antialiased. Typically this property is used to
- * disable antialiasing for edges that abut edges of other layers, to
- * eliminate the seams that would otherwise occur. The default value is
- * for all edges to be antialiased.
-
+/*
  定义图层的边缘如何被光栅化。 对于四个边（左，右，下，上）中的每一个，如果相应的
  位被设置，边将被反锯齿。 通常，此属性用于禁用对邻接其他图层边缘的边缘进行抗锯齿，
  以消除否则会出现的接缝。 默认值是所有的边缘都是反锯齿的。
-
- 
  */
-
 @property CAEdgeAntialiasingMask edgeAntialiasingMask;
 
-/* When true this layer is allowed to antialias its edges, as requested
- * by the value of the edgeAntialiasingMask property.
- *
- * The default value is read from the boolean UIViewEdgeAntialiasing
- * property in the main bundle's Info.plist. If no value is found in
- * the Info.plist the default value is NO.
- 
+/*
  指示是否允许图层执行边缘抗锯齿。
  在使用view的缩放的时候，layer.border.width随着view的放大，会出现锯齿化的问题，解决这个问题可以设置这个属性。
  如果为true，则允许此层根据edgeAntialiasingMask属性的值的请求对其边缘进行抗锯齿处理。
  默认值从主包的Info.plist中的布尔UIViewEdgeAntialiasing属性中读取。 如果Info.plist中未找到任何值，则默认值为NO。
  */
-
 @property BOOL allowsEdgeAntialiasing;
 
-/* The background color of the layer. Default value is nil. Colors
- * created from tiled patterns are supported. Animatable. */
-
+/*
+ 图层的背景颜色。 默认值为nil。 支持从平铺图案创建的颜色。支持动画。
+ */
 @property(nullable) CGColorRef backgroundColor;
 
-/* When positive, the background of the layer will be drawn with
- * rounded corners. Also effects the mask generated by the
- * `masksToBounds' property. Defaults to zero. Animatable.
+/*
  当为正数时，图层的背景用圆角绘制。还会影响“masksToBounds”属性生成的掩码。默认值为零。
  支持动画。(在iOS11.0之前圆角是不支持动画的)
  */
 @property CGFloat cornerRadius;
 
-/* Defines which of the four corners receives the masking when using
- * `cornerRadius' property. Defaults to all four corners.
+/*
  使用cornerRadius圆角属性时，定义四个角中的哪一个接收遮罩。 默认为所有四个角(iOS11+)。
  例如只切两个圆角:kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
 */
 @property CACornerMask maskedCorners
   CA_AVAILABLE_STARTING (10.13, 11.0, 11.0, 4.0);
 
-/* The width of the layer's border, inset from the layer bounds. The
- * border is composited above the layer's content and sublayers and
- * includes the effects of the `cornerRadius' property. Defaults to
- * zero. Animatable. */
-
+/*
+ 图层边框的宽度，从层边界插入。边界被合成在层内容和子层之上，并包含“角半径”属性的效果。默认值为零。支持动画。
+ */
 @property CGFloat borderWidth;
 
-/* The color of the layer's border. Defaults to opaque black. Colors
- * created from tiled patterns are supported. Animatable. */
-
+/*
+ 图层边框的颜色。默认为不透明黑色。支持由瓷砖图案创建的颜色。支持动画。
+ */
 @property(nullable) CGColorRef borderColor;
 
-/* The opacity of the layer, as a value between zero and one. Defaults
- * to one. Specifying a value outside the [0,1] range will give undefined
- * results. Animatable. */
-
+/*
+ 图层的不透明度，在0和1之间的值。默认为1。在[0,1]范围之外指定一个值将给出未定义的结果。支持动画。
+ */
 @property float opacity;
 
-/* When true, and the layer's opacity property is less than one, the
- * layer is allowed to composite itself as a group separate from its
- * parent. This gives the correct results when the layer contains
- * multiple opaque components, but may reduce performance.
- *
- * The default value of the property is read from the boolean
- * UIViewGroupOpacity property in the main bundle's Info.plist. If no
- * value is found in the Info.plist the default value is YES for
- * applications linked against the iOS 7 SDK or later and NO for
- * applications linked against an earlier SDK. */
-
+/*
+ 如果为true，并且图层的opacity属性小于1，则允许该图层将其自身组合为与其父图像分开的组。 当图层包含多个不透明组件时，这会给出正确的结果，但可能会降低性能。
+ 从主包的Info.plist中的布尔UIViewGroupOpacity属性中读取属性的默认值。
+ 如果Info.plist中未找到任何值，则对于针对iOS 7 SDK或更高版本链接的应用程序，默认值为YES; 对于与早期SDK链接的应用程序，默认值为NO。
+ */
 @property BOOL allowsGroupOpacity;
 
-/* A filter object used to composite the layer with its (possibly
- * filtered) background. Default value is nil, which implies source-
- * over compositing. Animatable.
- *
- * Note that if the inputs of the filter are modified directly after
- * the filter is attached to a layer, the behavior is undefined. The
- * filter must either be reattached to the layer, or filter properties
- * should be modified by calling -setValue:forKeyPath: on each layer
- * that the filter is attached to. (This also applies to the `filters'
- * and `backgroundFilters' properties.) */
-
+/*
+ 用于将图层与其（可能已过滤）背景合成的过滤器对象。 默认值为nil，表示源代码合成。支持动画。
+ 请注意，如果在将过滤器附加到图层后直接修改过滤器的输入，则行为未定义。 必须将过滤器重新附加到图层，或者应通过在附加过滤器的每个图层上调用-setValue：forKeyPath：来修改过滤器属性。 （这也适用于`filters'和`backgroundFilters'属性。）
+ */
 @property(nullable, strong) id compositingFilter;
 
-/* An array of filters that will be applied to the contents of the
- * layer and its sublayers. Defaults to nil. Animatable. */
-
+/*
+ 将应用于图层及其子图层内容的过滤器数组。 默认为nil。支持动画。
+*/
 @property(nullable, copy) NSArray *filters;
 
-/* An array of filters that are applied to the background of the layer.
- * The root layer ignores this property. Animatable. */
-
+/*
+ 应用于图层背景的滤镜数组。
+ 根层忽略此属性。支持动画。
+*/
 @property(nullable, copy) NSArray *backgroundFilters;
 
-/* When true, the layer is rendered as a bitmap in its local coordinate
- * space ("rasterized"), then the bitmap is composited into the
- * destination (with the minificationFilter and magnificationFilter
- * properties of the layer applied if the bitmap needs scaling).
- * Rasterization occurs after the layer's filters and shadow effects
- * are applied, but before the opacity modulation. As an implementation
- * detail the rendering engine may attempt to cache and reuse the
- * bitmap from one frame to the next. (Whether it does or not will have
- * no affect on the rendered output.)
- *
- * When false the layer is composited directly into the destination
- * whenever possible (however, certain features of the compositing
- * model may force rasterization, e.g. adding filters).
- *
- * Defaults to NO. Animatable. */
-
+/*
+ 如果为YES，则图层将在其局部坐标空间（“栅格化”）中呈现为位图，然后将位图合成到目标中（如果位图需要缩放，则应用图层的minificationFilter和magnificationFilter属性）。 应用图层的滤镜和阴影效果后，但在不透明度调制之前，会发生光栅化。 作为实现细节，呈现引擎可以尝试从一帧到下一帧缓存和重用位图。 （它是否对渲染输出没有影响。）
+   
+ 如果为NO，则尽可能将图层直接合成到目标中（但是，合成模型的某些特征可能会强制光栅化，例如添加滤镜）。
+ *默认为NO。支持动画。
+ 
+ eg:当shouldRasterize设成true时,layer被渲染成一个bitmap,并缓存起来,等下次使用时不会再重新去渲染了。实现圆角本身就是在做颜色混合(blending),如果每次页面出来时都blending,消耗太大,这时shouldRasterize = yes,下次就只是简单的从渲染引擎的cache里读取那张bitmap,节约系统资源。如果在滚动tableView时,每次都执行圆角设置,肯定会阻塞UI,设置这个将会使滑动更加流畅。
+*/
 @property BOOL shouldRasterize;
 
-/* The scale at which the layer will be rasterized (when the
- * shouldRasterize property has been set to YES) relative to the
- * coordinate space of the layer. Defaults to one. Animatable. */
-
+/*
+ 将图层光栅化的比例（当shouldRasterize属性设置为YES时）相对于图层的坐标空间。 默认为1，支持动画
+ 
+ eg:切圆角shouldRasterize > cornerRadius > 要比mask高效很多。
+ self.layer.shouldRasterize = YES;
+ self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+ */
 @property CGFloat rasterizationScale;
 
-/** Shadow properties. **/
 
-/* The color of the shadow. Defaults to opaque black. Colors created
- * from patterns are currently NOT supported. Animatable. */
+#park mark - 阴影属性。
+/*
+ 设置阴影不要切超出父视图边距(clipsToBounds=NO)
+*/
 
+/*
+ 阴影颜色。 默认为不透明黑色。 目前不支持从模式创建的颜色。支持动画。
+ */
 @property(nullable) CGColorRef shadowColor;
 
-/* The opacity of the shadow. Defaults to 0. Specifying a value outside the
- * [0,1] range will give undefined results. Animatable. */
-
+/*
+ 阴影的不透明度。 默认为0. 指定[0,1]范围之外的值将给出未定义的结果。支持动画。
+ */
 @property float shadowOpacity;
 
-/* The shadow offset. Defaults to (0, -3). Animatable. */
-
+/*
+ 阴影偏移。 默认为（0，-3），x向右偏移，y向下偏移（00四周偏移）。支持动画。
+ */
 @property CGSize shadowOffset;
 
-/* The blur radius used to create the shadow. Defaults to 3. Animatable. */
-
+/*
+ 阴影的模糊半径。 默认为3.支持动画。
+ */
 @property CGFloat shadowRadius;
 
-/* When non-null this path defines the outline used to construct the
- * layer's shadow instead of using the layer's composited alpha
- * channel. The path is rendered using the non-zero winding rule.
- * Specifying the path explicitly using this property will usually
- * improve rendering performance, as will sharing the same path
- * reference across multiple layers. Upon assignment the path is copied.
- * Defaults to null. Animatable. */
-
+/*
+ 按照指定路径绘制阴影
+ 当非空时，此路径定义用于构造图层阴影的轮廓，而不是使用图层的合成Alpha通道。 使用非零缠绕规则渲染路径。 使用此属性显式指定路径通常会提高渲染性能，因为跨多个层共享相同的路径引用。 在分配时，路径被复制。
+ 默认为null。支持动画。
+ */
 @property(nullable) CGPathRef shadowPath;
 
-/** Layout methods. **/
-
-/* Returns the preferred frame size of the layer in the coordinate
- * space of the superlayer. The default implementation calls the layout
- * manager if one exists and it implements the -preferredSizeOfLayer:
- * method, otherwise returns the size of the bounds rect mapped into
- * the superlayer. */
-
+#park mark - 布局方法。
+/*
+ 返回父图层的坐标空间中图层的首选帧大小。
+ 默认实现调用布局管理器（如果存在）并且它实现-preferredSizeOfLayer：方法，否则返回映射到父图层的bounds的大小。
+ */
 - (CGSize)preferredFrameSize;
 
-/* Marks that -layoutSublayers needs to be invoked on the receiver
- * before the next update. If the receiver's layout manager implements
- * the -invalidateLayoutOfLayer: method it will be called.
- *
- * This method is automatically invoked on a layer whenever its
- * `sublayers' or `layoutManager' property is modified, and is invoked
- * on the layer and its superlayer whenever its `bounds' or `transform'
- * properties are modified. Implicit calls to -setNeedsLayout are
- * skipped if the layer is currently executing its -layoutSublayers
- * method. */
-
+/*
+ 标记在下次更新之前需要在接收器(self)上调用-layoutSublayers。
+ 如果接收者的布局管理器实现-invalidateLayoutOfLayer：方法，则会调用它。
+  
+ 只要修改了`sublayers'或`layoutManager'属性，就会在图层上自动调用此方法，并且只要修改了`bounds'或`transform'属性，就会在图层及其父图层上调用此方法。 如果图层当前正在执行其-layoutSublayers方法，则会跳过对-setNeedsLayout的隐式调用。
+ */
 - (void)setNeedsLayout;
 
-/* Returns true when the receiver is marked as needing layout. */
-
+/*
+ 当接收器(self)标记为需要布局时返回true。
+ */
 - (BOOL)needsLayout;
 
-/* Traverse upwards from the layer while the superlayer requires layout.
- * Then layout the entire tree beneath that ancestor. */
-
+/*
+ 当父图层需要布局时，从图层向上遍历。 然后在整个祖先下面布置整个树。
+ eg:[view.superview layoutIfNeeded]、父视图将在必要时布局自身及自身的整个子视图树
+ */
 - (void)layoutIfNeeded;
 
-/* Called when the layer requires layout. The default implementation
- * calls the layout manager if one exists and it implements the
- * -layoutSublayersOfLayer: method. Subclasses can override this to
- * provide their own layout algorithm, which should set the frame of
- * each sublayer. */
-
+/*
+ 当图层需要布局时调用。 默认实现调用布局管理器（如果存在）并实现-layoutSublayersOfLayer：方法。
+ 子类可以重写它以提供自己的布局算法，该算法应设置每个子层的帧。
+ */
 - (void)layoutSublayers;
 
-/** Action methods. **/
 
-/* An "action" is an object that responds to an "event" via the
- * CAAction protocol (see below). Events are named using standard
- * dot-separated key paths. Each layer defines a mapping from event key
- * paths to action objects. Events are posted by looking up the action
- * object associated with the key path and sending it the method
- * defined by the CAAction protocol.
- *
- * When an action object is invoked it receives three parameters: the
- * key path naming the event, the object on which the event happened
- * (i.e. the layer), and optionally a dictionary of named arguments
- * specific to each event.
- *
- * To provide implicit animations for layer properties, an event with
- * the same name as each property is posted whenever the value of the
- * property is modified. A suitable CAAnimation object is associated by
- * default with each implicit event (CAAnimation implements the action
- * protocol).
- *
- * The layer class also defines the following events that are not
- * linked directly to properties:
- *
- * onOrderIn
- *      Invoked when the layer is made visible, i.e. either its
- *      superlayer becomes visible, or it's added as a sublayer of a
- *      visible layer
- *
- * onOrderOut
- *      Invoked when the layer becomes non-visible. */
 
-/* Returns the default action object associated with the event named by
- * the string 'event'. The default implementation returns a suitable
- * animation object for events posted by animatable properties, nil
- * otherwise. */
+#park mark - Action动作方法
+/*
+ “动作”是通过CAAction协议响应“事件”的对象（见下文）。事件使用标准的点分隔键路径命名。每个层定义从事件键路径到操作对象的映射。通过查找与密钥路径关联的操作对象并向其发送CAAction协议定义的方法来发布事件。
+  *
+  *当调用一个动作对象时，它接收三个参数：命名事件的键路径，事件发生的对象（即图层），以及可选的特定于每个事件的命名参数字典。
+  *
+  *要为图层属性提供隐式动画，只要修改了属性的值，就会发布与每个属性同名的事件。默认情况下，合适的CAAnimation对象与每个隐式事件相关联（CAAnimation实现操作协议）。
+  *
+  *图层类还定义了以下未直接链接到属性的事件：
+  *
+  * onOrderIn  (底部定义的静态常量kCAOnOrderIn)
+  *当图层可见时调用，即其超级图层变为可见，或者将其添加为可见图层的子图层
+  *
+  * onOrderOut (底部定义的静态常量kCAOnOrderOut)
+  *当图层变得不可见时调用。 * /
+ 
+  返回与字符串'event'命名的事件关联的默认操作对象。默认实现为动画属性发布的事件返回合适的动画对象，否则返回nil。
+ */
 
 + (nullable id<CAAction>)defaultActionForKey:(NSString *)event;
 
-/* Returns the action object associated with the event named by the
- * string 'event'. The default implementation searches for an action
- * object in the following places:
- *
- * 1. if defined, call the delegate method -actionForLayer:forKey:
- * 2. look in the layer's `actions' dictionary
- * 3. look in any `actions' dictionaries in the `style' hierarchy
- * 4. call +defaultActionForKey: on the layer's class
- *
- * If any of these steps results in a non-nil action object, the
- * following steps are ignored. If the final result is an instance of
- * NSNull, it is converted to `nil'. */
-
+/*
+ 返回与字符串'event'命名的事件关联的操作对象。 默认实现在以下位置搜索操作对象：
+  *
+  * 1.如果已定义，则调用委托方法-actionForLayer：forKey：
+  * 2.查看图层的`actions'字典
+  * 3.查看“样式”层次结构中的任何“动作”词典
+  * 4.在图层的类上调用+ defaultActionForKey：
+  *
+ 如果这些步骤中的任何步骤导致非nil操作对象，则忽略以下步骤。 如果最终结果是NSNull的实例，则将其转换为“nil”。
+ */
 - (nullable id<CAAction>)actionForKey:(NSString *)event;
 
-/* A dictionary mapping keys to objects implementing the CAAction
- * protocol. Default value is nil. */
-
+/*
+ 将字符映射到实现CAAction协议的对象的字典。 默认值为nil。
+ */
 @property(nullable, copy) NSDictionary<NSString *, id<CAAction>> *actions;
 
-/** Animation methods. **/
-
-/* Attach an animation object to the layer. Typically this is implicitly
- * invoked through an action that is an CAAnimation object.
- *
- * 'key' may be any string such that only one animation per unique key
- * is added per layer. The special key 'transition' is automatically
- * used for transition animations. The nil pointer is also a valid key.
- *
- * If the `duration' property of the animation is zero or negative it
- * is given the default duration, either the value of the
- * `animationDuration' transaction property or .25 seconds otherwise.
- *
- * The animation is copied before being added to the layer, so any
- * subsequent modifications to `anim' will have no affect unless it is
- * added to another layer. */
-
+#park mark - Animation动画方法
+/*
+ 将动画对象附加到图层。 通常，这是通过作为CAAnimation对象的操作隐式调用的。
+  *
+  *'key'可以是任何字符串，使得每层仅添加每个唯一键一个动画。 特殊键“transition”(静态常量kCATransition)自动用于过渡动画。 nil指针也是有效键。
+  *
+  *如果动画的“持续时间”属性为零或为负，则给定默认持续时间，即“animationDuration”事务属性的值，否则为0.25秒。
+  *
+  *动画在被添加到图层之前被复制，因此除非将动画添加到另一个图层，否则对“动画”的任何后续修改都不会产生任何影响。
+ */
 - (void)addAnimation:(CAAnimation *)anim forKey:(nullable NSString *)key;
 
-/* Remove all animations attached to the layer. */
-
+/*
+ 删除附加到图层的所有动画。
+ */
 - (void)removeAllAnimations;
 
-/* Remove any animation attached to the layer for 'key'. */
-
+/*
+ 删除“key”值对应的附加到图层的任何动画。
+ */
 - (void)removeAnimationForKey:(NSString *)key;
 
-/* Returns an array containing the keys of all animations currently
- * attached to the receiver. The order of the array matches the order
- * in which animations will be applied. */
-
+/*
+ 返回一个数组，其中包含当前连接到接收器(self)的所有动画的键。 数组的顺序与动画的应用顺序相匹配。
+ */
 - (nullable NSArray<NSString *> *)animationKeys;
 
-/* Returns the animation added to the layer with identifier 'key', or nil
- * if no such animation exists. Attempting to modify any properties of
- * the returned object will result in undefined behavior. */
-
+/*
+ 返回添加到具有标识符“key”或nil的图层的动画
+ 如果不存在此类动画。 尝试修改返回对象(CAAnimation)的任何属性将导致未定义的行为。
+ */
 - (nullable CAAnimation *)animationForKey:(NSString *)key;
 
-
-/** Miscellaneous properties. **/
-
-/* The name of the layer. Used by some layout managers. Defaults to nil. */
-
+#park mark - 杂项属性
+/* 图层的名称。 由一些布局管理器使用。 默认为零。*/
 @property(nullable, copy) NSString *name;
 
-/* An object that will receive the CALayer delegate methods defined
- * below (for those that it implements). The value of this property is
- * not retained. Default value is nil. */
-
+/*
+ 将接收下面定义的CALayerDelegate代理方法的对象(对于它实现的方法)。此属性的值不保留。默认值为nil。
+ */
 @property(nullable, weak) id <CALayerDelegate> delegate;
 
-/* When non-nil, a dictionary dereferenced to find property values that
- * aren't explicitly defined by the layer. (This dictionary may in turn
- * have a `style' property, forming a hierarchy of default values.)
- * If the style dictionary doesn't define a value for an attribute, the
- * +defaultValueForKey: method is called. Defaults to nil.
- *
- * Note that if the dictionary or any of its ancestors are modified,
- * the values of the layer's properties are undefined until the `style'
- * property is reset. */
+/*
+ 当非nil时，取消引用字典以查找未由层明确定义的属性值。（这个字典可能反过来有一个'style'属性，形成一个默认值的层次结构。）
+ 如果样式字典未定义属性的值，则调用+ defaultValueForKey：方法。 默认为零。
 
+ 请注意，如果修改了字典或其任何祖先，则在重置“style”属性之前，不会定义图层属性的值。
+ */
 @property(nullable, copy) NSDictionary *style;
 
 @end
 
-/** Action (event handler) protocol. **/
-
+/** 动作（事件处理程序）协议。 **/
 @protocol CAAction
 
-/* Called to trigger the event named 'path' on the receiver. The object
- * (e.g. the layer) on which the event happened is 'anObject'. The
- * arguments dictionary may be nil, if non-nil it carries parameters
- * associated with the event. */
-
+/*
+ 被调用以在接收器(self)上触发名为“path”的事件。
+ 事件发生的对象（例如图层）是“anObject”。 参数字典可以是nil，如果是非nil，它携带与事件相关的参数。
+ */
 - (void)runActionForKey:(NSString *)event object:(id)anObject
     arguments:(nullable NSDictionary *)dict;
 
 @end
 
-/** NSNull protocol conformance. **/
+/** NSNull协议一致性 **/
 
 @interface NSNull (CAActionAdditions) <CAAction>
 
 @end
 
-/** Delegate methods. **/
+#park mark - CALayerDelegate代理方法
 
 @protocol CALayerDelegate <NSObject>
 @optional
 
-/* If defined, called by the default implementation of the -display
- * method, in which case it should implement the entire display
- * process (typically by setting the `contents' property). */
-
+/*
+ 如果已定义该协议方法，则由-display方法的默认实现调用，在这种情况下，它应该实现整个显示过程（通常通过设置`contents'属性）。
+ */
 - (void)displayLayer:(CALayer *)layer;
 
-/* If defined, called by the default implementation of -drawInContext: */
-
+/*
+ 如果已定义，则由-drawInContext的默认实现调用：
+ */
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
 
-/* If defined, called by the default implementation of the -display method.
- * Allows the delegate to configure any layer state affecting contents prior
- * to -drawLayer:InContext: such as `contentsFormat' and `opaque'. It will not
- * be called if the delegate implements -displayLayer. */
-
+/*
+ 如果已定义，则由-display方法的默认实现调用。允许委托在-drawLayer:InContext:之前配置影响内容的任何层状态，比如' contentsFormat'和' '。如果委托实现-displayLayer就不会调用它。
+ */
 - (void)layerWillDraw:(CALayer *)layer
   CA_AVAILABLE_STARTING (10.12, 10.0, 10.0, 3.0);
 
-/* Called by the default -layoutSublayers implementation before the layout
- * manager is checked. Note that if the delegate method is invoked, the
- * layout manager will be ignored. */
-
+/*
+ 在检查布局管理器之前，由默认的-layoutSublayers实现调用。注意，如果调用委托方法，布局管理器将被忽略。
+ */
 - (void)layoutSublayersOfLayer:(CALayer *)layer;
 
-/* If defined, called by the default implementation of the
- * -actionForKey: method. Should return an object implementating the
- * CAAction protocol. May return 'nil' if the delegate doesn't specify
- * a behavior for the current event. Returning the null object (i.e.
- * '[NSNull null]') explicitly forces no further search. (I.e. the
- * +defaultActionForKey: method will not be called.) */
-
+/*
+ 如果已定义，则由-actionForKey：方法的默认实现调用。 应返回实现CAAction协议的对象。 如果委托没有为当前事件指定行为，则可以返回'nil'。
+ 返回空对象（即'[NSNull null]'）明确强制不再进行搜索。 （即，不会调用+ defaultActionForKey：方法。）
+ */
 - (nullable id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
 
 @end
@@ -886,9 +790,10 @@ CA_EXTERN NSString * const kCAFilterLinear
 /* Trilinear minification filter. Enables mipmap generation. Some
  * renderers may ignore this, or impose additional restrictions, such
  * as source images requiring power-of-two dimensions.
-   三线缩小滤波器。 启用mipmap生成。 某些渲染器可能会忽略这一点，或施加其他限制，例如需要二维功率的源图像。
+ 三线缩小滤波器。 启用mipmap生成。 某些渲染器可能会忽略这一点，或施加其他限制，例如需要二维功率的源图像。
+ 
+ 三线性滤波算法存储了多个大小情况下的图片（也叫多重贴图），并三维取样，同时结合大图和小图的存储进而得到最后的结果。
  */
-//三线性滤波算法存储了多个大小情况下的图片（也叫多重贴图），并三维取样，同时结合大图和小图的存储进而得到最后的结果。
 CA_EXTERN NSString * const kCAFilterTrilinear
     CA_AVAILABLE_STARTING (10.6, 3.0, 9.0, 2.0);
 
