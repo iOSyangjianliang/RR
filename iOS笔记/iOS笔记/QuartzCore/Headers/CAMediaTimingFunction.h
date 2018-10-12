@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
  * function maps an input time normalized to the range [0,1] to an
  * output time also in the range [0,1]. E.g. these functions are used
  * to define the pacing of an animation over its duration (or over the
- * duration of one keyframe). */
+ * duration of one keyframe).
+
+ 表示描述时序曲线的函数的一个段。 该函数将归一化到范围[0,1]的输入时间映射到也在[0,1]范围内的输出时间。
+ 例如。 这些函数用于定义动画在其持续时间内（或在一个关键帧的持续时间内）的调步。
+ */
 
 CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 @interface CAMediaTimingFunction : NSObject <NSSecureCoding>
@@ -26,7 +30,10 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 /* A convenience method for creating common timing functions. The
  * currently supported names are `linear', `easeIn', `easeOut' and
  * `easeInEaseOut' and `default' (the curve used by implicit animations
- * created by Core Animation). */
+ * created by Core Animation).
+ 一种创建通用定时功能的便捷方法。
+ 目前支持的名称是“linear”，“easeIn”，“easeOut”和“easeInEaseOut”以及“default”（由Core Animation创建的隐式动画使用的曲线）。
+ */
 
 + (instancetype)functionWithName:(NSString *)name;
 

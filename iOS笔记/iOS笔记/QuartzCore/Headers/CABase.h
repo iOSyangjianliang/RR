@@ -190,8 +190,9 @@
 
 CA_EXTERN_C_BEGIN
 
-/* Returns the current CoreAnimation absolute time. This is the result of
- * calling mach_absolute_time () and converting the units to seconds. */
+/*
+ 返回当前CoreAnimation的绝对时间。 这是调用mach_absolute_time（）并将单位转换为秒的结果。
+ */
 
 CA_EXTERN CFTimeInterval CACurrentMediaTime (void)
     __OSX_AVAILABLE_STARTING (__MAC_10_5, __IPHONE_2_0);

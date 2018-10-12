@@ -40,7 +40,10 @@ typedef NS_OPTIONS (NSUInteger, CACornerMask)
   kCALayerMaxXMaxYCorner = 1U << 3,
 };
 
-/** The base layer class. **/
+/** CALayer
+ UIView持有一个CALayer负责展示，view是这个layer的delegate。改变view的属性实际上是在改变它持有的layer的属性，layer属性发生改变时会调用代理方法actionForLayer: forKey: 来得知此次变化是否需要动画。对同一个属性叠加动画会从当前展示状态开始叠加并最终停在modelLayer的真实位置。
+ CALayer内部控制两个属性presentationLayer和modelLayer，modelLayer为当前layer真实的状态，presentationLayer为当前layer在屏幕上展示的状态。presentationLayer会在每次屏幕刷新时更新状态，如果有动画则根据动画获取当前状态进行绘制(也就是动画在当前状态进行叠加嵌套)，动画移除后则取modelLayer的状态。
+*/
 
 CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 @interface CALayer : NSObject <NSSecureCoding, CAMediaTiming>
@@ -685,6 +688,8 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  如果样式字典未定义属性的值，则调用+ defaultValueForKey：方法。 默认为零。
 
  请注意，如果修改了字典或其任何祖先，则在重置“style”属性之前，不会定义图层属性的值。
+ 
+ eg:一个用于存储未由图层显示定义的属性值的可选字典
  */
 @property(nullable, copy) NSDictionary *style;
 
