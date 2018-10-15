@@ -40,13 +40,16 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 /* Creates a timing function modelled on a cubic Bezier curve. The end
  * points of the curve are at (0,0) and (1,1), the two points 'c1' and
  * 'c2' defined by the class instance are the control points. Thus the
- * points defining the Bezier curve are: '[(0,0), c1, c2, (1,1)]' */
-
+ * points defining the Bezier curve are: '[(0,0), c1, c2, (1,1)]'
+ 
+ 创建以三次贝塞尔曲线为模型的定时功能。 曲线的终点位于（0,0）和（1,1），由类实例定义的两个点'c1'和'c2'是控制点。
+ 因此，定义贝塞尔曲线的点是：'[（0,0），c1，c2，（1,1）]'
+ */
 + (instancetype)functionWithControlPoints:(float)c1x :(float)c1y :(float)c2x :(float)c2y;
 
 - (instancetype)initWithControlPoints:(float)c1x :(float)c1y :(float)c2x :(float)c2y;
 
-/* 'idx' is a value from 0 to 3 inclusive. */
+/* 'idx'是0到3之间的值，包括0和3。 */
 
 - (void)getControlPointAtIndex:(size_t)idx values:(float[_Nonnull 2])ptr;
 
