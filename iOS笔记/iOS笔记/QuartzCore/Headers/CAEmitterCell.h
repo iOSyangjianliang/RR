@@ -18,81 +18,63 @@ CA_CLASS_AVAILABLE (10.6, 5.0, 9.0, 2.0)
 
 + (instancetype)emitterCell;
 
-/* Emitter cells implement the same property model as defined by CALayer.
- * See CALayer.h for more details. */
-
+/* 发射器单元实现与CALayer定义的相同的属性模型。 有关详细信息，请参阅CALayer.h。 */
+//根据健 获 得 值
 + (nullable id)defaultValueForKey:(NSString *)key;
+//是否 归 档莫 键值
 - (BOOL)shouldArchiveValueForKey:(NSString *)key;
 
-/* The name of the cell. Used to construct key paths. Defaults to nil. */
-
+/* 粒子的名字。 用于构造关键路径。 默认为nil。 */
 @property(nullable, copy) NSString *name;
 
-/* Controls whether or not cells from this emitter are rendered. */
-
+/* 粒子是否被渲染 */
 @property(getter=isEnabled) BOOL enabled;
 
-/* The number of emitted objects created every second. Default value is
- * zero. Animatable. */
-
+/* 每秒创建的发射对象数。 默认值为零。支持动画。 */
 @property float birthRate;
 
-/* The lifetime of each emitted object in seconds, specified as a mean
- * value and a range about the mean. Both values default to zero.
- * Animatable. */
-
+/*
+ 每个发射对象的生命周期（以秒为单位），指定为平均值和平均值范围。 两个值都默认为零。支持动画。
+ */
+//生命周期
 @property float lifetime;
+//生命周期范围
 @property float lifetimeRange;
 
-/* The orientation of the emission angle in radians, relative to the
- * natural orientation angle of the emission shape. Note that latitude
- * here is what is typically called colatitude, the zenith or phi, the
- * angle from the z-axis. Similarly longitude is the angle in the
- * xy-plane from the x-axis, often referred to as the azimuth or
- * theta. Both values default to zero, which translates to no change
- * relative to the emission shape's direction. Both values are
- * animatable. */
+/*
+ 以弧度为单位的发射角的取向，相对于发射形状的自然取向角。 请注意，这里的纬度通常称为colatitude，天顶或phi，与z轴的角度。
+ 类似地，经度是x轴平面中与x轴的角度，通常称为方位角或θ。 两个值都默认为零，这相对于发射形状的方向没有变化。 这两个值都是支持动画的。
+ */
 
+//发射的 z 轴方向的角度
 @property CGFloat emissionLatitude;
+//x-y 平面的 发 射方向
 @property CGFloat emissionLongitude;
 
-/* An angle (in radians) defining a cone around the emission angle.
- * Emitted objects are uniformly distributed across this cone. Defaults
- * to zero.  Animatable. */
-
+/* 围绕发射角定义锥形的角度（以弧度表示）。 发射的物体均匀分布在该锥体上。 默认为零。支持动画。 */
 @property CGFloat emissionRange;
 
-/* The initial mean velocity of each emitted object, and its range. Both
- * values default to zero. Animatable. */
-
+/* 每个发射物体的初始平均速度及其范围。 两个值都默认为零。支持动画。 */
 @property CGFloat velocity;
 @property CGFloat velocityRange;
 
-/* The acceleration vector applied to emitted objects. Defaults to
- * (0, 0, 0). Animatable. */
-
+/* 应用于发射物体的加速度矢量。 默认为（0,0,0）。支持动画。*/
 @property CGFloat xAcceleration;
 @property CGFloat yAcceleration;
 @property CGFloat zAcceleration;
 
-/* The scale factor applied to each emitted object, defined as mean and
- * range about the mean. Scale defaults to one, range to zero.
- * Animatable. */
+/* 应用于每个发射对象的比例因子，定义为平均值和平均值范围。 比例默认为1，范围为零。支持动画。 */
+@property CGFloat scale;     //缩放比例
+@property CGFloat scaleRange;//缩放比例范围
+@property CGFloat scaleSpeed;//缩放比例速度
 
-@property CGFloat scale;
-@property CGFloat scaleRange;
-@property CGFloat scaleSpeed;
+/*
+ 应用于每个发射物体的自旋转速度，定义为平均值和平均值范围。 默认为零。支持动画。
+ */
+@property CGFloat spin;     //子旋转角度
+@property CGFloat spinRange;//子旋转角度范围
 
-/* The rotation speed applied to each emitted object, defined as mean
- * and range about the mean. Defaults to zero. Animatable. */
-
-@property CGFloat spin;
-@property CGFloat spinRange;
-
-/* The mean color of each emitted object, and the range from that mean
- * color. `color' defaults to opaque white, `colorRange' to (0, 0, 0,
- * 0). Animatable. */
-
+/* 粒子的颜色-每个发射物体的平均颜色，以及该平均颜色的范围。 `color'默认为opaque white，`colorRange'为（0,0,0,0）。支持动画。 */
 @property(nullable) CGColorRef color;
 
 @property float redRange;
@@ -100,48 +82,33 @@ CA_CLASS_AVAILABLE (10.6, 5.0, 9.0, 2.0)
 @property float blueRange;
 @property float alphaRange;
 
-/* The speed at which color components of emitted objects change over
- * their lifetime, defined as the rate of change per second. Defaults
- * to (0, 0, 0, 0). Animatable. */
-
+/* 发射物体的颜色分量在其寿命期间发生变化的速度，定义为每秒的变化率。 默认为（0,0,0,0）。支持动画。 */
 @property float redSpeed;
 @property float greenSpeed;
 @property float blueSpeed;
 @property float alphaSpeed;
 
-/* The cell contents, typically a CGImageRef. Defaults to nil.
- * Animatable. */
-
+/* 单元格内容，通常是CGImageRef。 默认为零。支持动画。 */
 @property(nullable, strong) id contents;
 
-/* The sub-rectangle of the contents image that will be drawn. See
- * CALayer.h for more details. Defaults to the unit rectangle [0 0 1 1].
- * Animatable. */
-
+/* 将绘制的内容图像的子矩形。 有关详细信息，请参阅CALayer.h。 默认为单位矩形[0 0 1 1]。支持动画。 */
 @property CGRect contentsRect;
 
-/* Defines the scale factor applied to the contents of the cell. See
- * CALayer.h for more details. */
-
+/* 定义应用于单元格内容的比例因子。 有关详细信息，请参阅CALayer.h。 */
 @property CGFloat contentsScale;
 
-/* The filter parameters used when rendering the `contents' image. See
- * CALayer.h for more details. */
-
+/* 渲染“内容”图像时使用的滤镜参数。 有关详细信息，请参阅CALayer.h。 */
 @property(copy) NSString *minificationFilter;
 @property(copy) NSString *magnificationFilter;
 @property float minificationFilterBias;
 
-/* An array containing the sub-cells of this cell, or nil (the default
- * value). When non-nil each particle emitted by the cell will act as
- * an emitter for each of the cell's sub-cells. The emission point is
- * the current particle position and the emission angle is relative to
- * the current direction of the particle. Animatable. */
-
+/*
+ 粒子发射的粒子
+ 包含此单元格的子单元格的数组，或nil（默认值）。 当非零时，由细胞发射的每个粒子将充当每个细胞的子细胞的发射体。
+ 发射点是当前粒子位置，发射角度是相对于粒子的当前方向。支持动画。 */
 @property(nullable, copy) NSArray<CAEmitterCell *> *emitterCells;
 
-/* Inherited attributes similar to in layers. */
-
+/* 类似于Layer图层的继承属性。 */
 @property(nullable, copy) NSDictionary *style;
 
 @end

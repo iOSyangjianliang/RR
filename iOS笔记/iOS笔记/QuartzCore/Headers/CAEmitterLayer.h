@@ -12,7 +12,16 @@
  * at layer's beginTime.
  *
  * The particles are drawn above the backgroundColor and border of the
- * layer. */
+ * layer.
+ 
+ 粒子发射层。
+ *
+ *每个发射器都有一个单元阵列，单元定义了粒子如何发射和渲染。
+ *
+ *粒子系统受图层时序的影响。 模拟从图层的beginTime开始。
+ *
+ *粒子绘制在backgroundColor和图层边框上方。
+ */
 
 #import <QuartzCore/CALayer.h>
 
@@ -23,80 +32,56 @@ NS_ASSUME_NONNULL_BEGIN
 CA_CLASS_AVAILABLE (10.6, 5.0, 9.0, 2.0)
 @interface CAEmitterLayer : CALayer
 
-/* The array of emitter cells attached to the layer. Each object must
- * have the CAEmitterCell class. */
-
+/* 附着在图层上的发射器单元阵列。 每个对象都必须具有CAEmitterCell类。 */
 @property(nullable, copy) NSArray<CAEmitterCell *> *emitterCells;
 
-/* The birth rate of each cell is multiplied by this number to give the
- * actual number of particles created every second. Default value is one.
- * Animatable. */
-
+/* 将每个细胞的出生率乘以该数，得出每秒产生的实际粒子数。 默认值为1。支持动画。 */
 @property float birthRate;
 
-/* The cell lifetime range is multiplied by this value when particles are
- * created. Defaults to one. Animatable. */
-
+/* 创建粒子时，单元生命周期范围乘以此值。 默认为1。支持动画。 */
 @property float lifetime;
 
-/* The center of the emission shape. Defaults to (0, 0, 0). Animatable. */
-
+/* 发射形状的中心。 默认为（0,0,0）。支持动画。 */
 @property CGPoint emitterPosition;
 @property CGFloat emitterZPosition;
 
-/* The size of the emission shape. Defaults to (0, 0, 0). Animatable.
- * Depending on the `emitterShape' property some of the values may be
- * ignored. */
-
+/* 发射形状的大小。 默认为（0,0,0）。支持动画。 根据`emitterShape'属性，可以忽略某些值。 */
 @property CGSize emitterSize;
 @property CGFloat emitterDepth;
 
-/* A string defining the type of emission shape used. Current options are:
- * `point' (the default), `line', `rectangle', `circle', `cuboid' and
- * `sphere'. */
-
+/*
+ 定义所用发射形状类型的字符串。 当前选项有：'point'（默认值），`line'，`rectangle'，`circle'，`cuboid'和`sphere'。
+ */
 @property(copy) NSString *emitterShape;
 
-/* A string defining how particles are created relative to the emission
- * shape. Current options are `points', `outline', `surface' and
- * `volume' (the default). */
-
+/* 一个字符串，定义如何相对于发射形状创建粒子。 当前选项是“points”，“outline”，“surface”和“volume”（默认值）。*/
 @property(copy) NSString *emitterMode;
 
-/* A string defining how particles are composited into the layer's
- * image. Current options are `unordered' (the default), `oldestFirst',
- * `oldestLast', `backToFront' (i.e. sorted into Z order) and
- * `additive'. The first four use source-over compositing, the last
- * uses additive compositing. */
-
+/*
+ 定义粒子如何合成到图层图像中的字符串。 当前选项是“unordered”（默认），“oldestFirst”，“oldestLast”，“backToFront”（即按Z顺序排序）和“additive”。 前四个使用源代码合成，最后一个使用添加剂合成。
+ */
 @property(copy) NSString *renderMode;
 
-/* When true the particles are rendered as if they directly inhabit the
- * three dimensional coordinate space of the layer's superlayer, rather
- * than being flattened into the layer's plane first. Defaults to NO.
- * If true, the effect of the `filters', `backgroundFilters' and shadow-
- * related properties of the layer is undefined. */
-
+/* 当为YES时，粒子被渲染为好像它们直接位于层的超层的三维坐标空间中，而不是首先被平展到层的平面中。 默认为NO。
+ 如果为true，则未定义图层的“filters”，“backgroundFilters”和阴影相关属性的效果。 */
 @property BOOL preservesDepth;
 
-/* Multiplies the cell-defined particle velocity. Defaults to one.
- * Animatable. */
-
+/* 将cell定义的粒子速度相乘。 默认为1。支持动画。 */
 @property float velocity;
 
-/* Multiplies the cell-defined particle scale. Defaults to one. Animatable. */
-
+/* 将细胞定义的粒子尺度相乘。 默认为1。支持动画。*/
 @property float scale;
 
-/* Multiplies the cell-defined particle spin. Defaults to one. Animatable. */
-
+/* 将细胞定义的粒子旋转相乘。 默认为1。支持动画。 */
 @property float spin;
 
 /* The seed used to initialize the random number generator. Defaults to
  * zero. Each layer has its own RNG state. For properties with a mean M
  * and a range R, random values of the properties are uniformly
- * distributed in the interval [M - R/2, M + R/2]. */
-
+ * distributed in the interval [M - R/2, M + R/2].
+ 
+ 种子用于初始化随机数发生器。 默认为零。 每个层都有自己的RNG状态。 对于具有平均值M和范围R的属性，属性的随机值均匀地分布在区间[M-R / 2，M + R / 2]中。
+ */
 @property unsigned int seed;
 
 @end
