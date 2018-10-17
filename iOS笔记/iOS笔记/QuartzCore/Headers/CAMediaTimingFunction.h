@@ -34,7 +34,6 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
  一种创建通用定时功能的便捷方法。
  目前支持的名称是“linear”，“easeIn”，“easeOut”和“easeInEaseOut”以及“default”（由Core Animation创建的隐式动画使用的曲线）。
  */
-
 + (instancetype)functionWithName:(NSString *)name;
 
 /* Creates a timing function modelled on a cubic Bezier curve. The end
@@ -57,15 +56,15 @@ CA_CLASS_AVAILABLE (10.5, 2.0, 9.0, 2.0)
 
 /** Timing function names. **/
 
-CA_EXTERN NSString * const kCAMediaTimingFunctionLinear
+CA_EXTERN NSString * const kCAMediaTimingFunctionLinear //线性匀速运动。
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
-CA_EXTERN NSString * const kCAMediaTimingFunctionEaseIn
+CA_EXTERN NSString * const kCAMediaTimingFunctionEaseIn //动画开始时会较慢,之后动画会加速。
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
-CA_EXTERN NSString * const kCAMediaTimingFunctionEaseOut
+CA_EXTERN NSString * const kCAMediaTimingFunctionEaseOut //动画在开始时会较快,之后动画速度减慢。
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
-CA_EXTERN NSString * const kCAMediaTimingFunctionEaseInEaseOut
+CA_EXTERN NSString * const kCAMediaTimingFunctionEaseInEaseOut //动画在开始和结束时速度较慢,中间时间段内速度较快。
     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
-CA_EXTERN NSString * const kCAMediaTimingFunctionDefault
+CA_EXTERN NSString * const kCAMediaTimingFunctionDefault   //和kCAMediaTimingFunctionEaseInEaseOut很类似,但是加速和减速的过程都稍微有些慢。 
     CA_AVAILABLE_STARTING (10.6, 3.0, 9.0, 2.0);
 
 NS_ASSUME_NONNULL_END
