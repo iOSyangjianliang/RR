@@ -18,24 +18,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self buildUI];
 
-    NSString *Path = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers/CALayer.h" ofType:nil];
-    NSData *Data = [NSData dataWithContentsOfFile:Path];
-    NSURL *url = [NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]];
-    [self.webView loadData:Data MIMEType:@"text/plain" textEncodingName:@"UTF-8" baseURL:url];
-    return;
+//    NSString *Path = [[NSBundle mainBundle] pathForResource:@"Frameworks/QuartzCore/Headers/CALayer.h" ofType:nil];
+//    NSData *Data = [NSData dataWithContentsOfFile:Path];
+//    NSURL *url = [NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]];
+//    [self.webView loadData:Data MIMEType:@"text/plain" textEncodingName:@"UTF-8" baseURL:url];
+//    return;
     
     // 以只读方式打开文件
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"QuartzCore/Headers/CALayer" ofType:@"h"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Frameworks/QuartzCore/Headers/Test" ofType:@"h"];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
     NSData *data = [fileHandle readDataToEndOfFile];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
    
-    
+//    NSRange range = [str rangeOfString:@"456"];
+//
+//    NSArray *arr = [str componentsSeparatedByString:@"\n"];
+//
+//    for (int i=0; i<arr.count; ++i) {
+//        NSString *str = arr[i];
+//
+//    }
+////    NSMutableArray *arraM = [NSMutableArray arrayWithArray:arr];
+////    [arraM removeObject:@""];
     
     NSLog(@"%@",str);
-    /**
+    
+    
+    
+    
     // 处理字符串
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
     
@@ -47,36 +58,36 @@
     NSUInteger pStart  ;
     NSUInteger pNext  ;
     
-    for (int i=0; i<len-1; ++i) {
-        pStart = i;
-        pNext = pStart+1;
-        
-        unichar cStart = [str characterAtIndex:pStart];
-        unichar cNext = [str characterAtIndex:pNext];
-        NSString* CStart= [NSString stringWithFormat:@"%c",cStart];
-        NSString* CNext = [NSString stringWithFormat:@"%c",cNext];
-        
-        if ([CStart isEqualToString:@"/"]&& [CNext isEqualToString:@"/"]) {
-            NSRange rangeS =NSMakeRange(0, 1);
-            
-            
-            [arrayLoc addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-        NSLog(@"%c-%@",cStart,CNext);
-        
-        
-        if ([CStart isEqualToString:@"\n"]) {
-            
-        }
-    }
+//    for (int i=0; i<len-1; ++i) {
+//        pStart = i;
+//        pNext = pStart+1;
+//
+//        unichar cStart = [str characterAtIndex:pStart];
+//        unichar cNext = [str characterAtIndex:pNext];
+//        NSString* CStart= [NSString stringWithFormat:@"%c",cStart];
+//        NSString* CNext = [NSString stringWithFormat:@"%c",cNext];
+//
+//        if ([CStart isEqualToString:@"/"]&& [CNext isEqualToString:@"/"]) {
+//            NSRange rangeS =NSMakeRange(0, 1);
+//
+//
+//            [arrayLoc addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//        NSLog(@"%c-%@",cStart,CNext);
+//
+//
+//        if ([CStart isEqualToString:@"\n"]) {
+//
+//        }
+//    }
+//
+//    NSRange rangeS =NSMakeRange(0, 1);
     
-    NSRange rangeS =NSMakeRange(0, 1);
-    
-    NSRange range = [str rangeOfString:@"杨建亮"];
+    NSRange range = [str rangeOfString:@"//"];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
     self.textView.attributedText = attributedString;
     
-    */
+
     
     
 //    [self loadRequestLocalText:str];
@@ -108,12 +119,21 @@
 //    [self.webView loadData:data MIMEType:mimeType textEncodingName:@"UTF-8" baseURL:url];
 //
 //}
--(void)buildUI
+
+-(UIWebView *)webView
 {
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.webView];
+    if (!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_webView];
+    }return _webView;
 }
-/**
+-(UITextView *)textView
+{
+    if (!_textView) {
+        _textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_textView];
+    }return _textView;
+}/**
 #pragma mark 加载本地文本文件
 -(void)loadText
 {
