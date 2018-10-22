@@ -584,7 +584,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOS&#x7b14;&#x8bb0;/TestViewController.m"
-            timestampString = "561606824.7945"
+            timestampString = "561886478.807431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -606,6 +606,22 @@
             startingLineNumber = "30"
             endingLineNumber = "30"
             landmarkName = "-initWithPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS&#x7b14;&#x8bb0;/Main/Controller/RootViewController.m"
+            timestampString = "561894669.833923"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-setData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

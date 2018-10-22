@@ -10,5 +10,8 @@
 
 @interface RootViewController : UIViewController
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutC_stateView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLayoutC_naviBar;
+@property (weak, nonatomic) IBOutlet UIButton *middleTitleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *leftSelectBtn;
 
 @end

@@ -42,8 +42,8 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FL1-Dj-i6C" userLabel="naviBar">
@@ -105,8 +105,8 @@
                             <constraint firstAttribute="trailing" secondItem="lvd-U5-KeF" secondAttribute="trailing" id="Vpb-sJ-uKq"/>
                             <constraint firstItem="Evf-Vt-rBF" firstAttribute="top" secondItem="8Ss-S9-C2m" secondAttribute="top" id="X7V-dv-jze"/>
                             <constraint firstItem="lvd-U5-KeF" firstAttribute="top" secondItem="FL1-Dj-i6C" secondAttribute="bottom" id="Xqz-qA-bwf"/>
-                            <constraint firstItem="beI-RH-Ncw" firstAttribute="top" secondItem="lvd-U5-KeF" secondAttribute="bottom" id="a8B-9q-6Bz"/>
                             <constraint firstAttribute="trailing" secondItem="FL1-Dj-i6C" secondAttribute="trailing" id="bZQ-Qd-QCX"/>
+                            <constraint firstAttribute="bottom" secondItem="lvd-U5-KeF" secondAttribute="bottom" id="hra-09-nhD"/>
                             <constraint firstItem="FL1-Dj-i6C" firstAttribute="leading" secondItem="8Ss-S9-C2m" secondAttribute="leading" id="iK8-yf-7x0"/>
                             <constraint firstItem="lvd-U5-KeF" firstAttribute="leading" secondItem="8Ss-S9-C2m" secondAttribute="leading" id="yfe-s4-cjB"/>
                         </constraints>
@@ -116,7 +116,10 @@
                     <connections>
                         <outlet property="detailTitleLabel" destination="7D2-6q-nAw" id="JcH-Qu-VIL"/>
                         <outlet property="heightLayoutC_stateView" destination="mYX-6T-YjZ" id="hFm-su-emZ"/>
+                        <outlet property="leftSelectBtn" destination="ngD-rf-f1E" id="eFU-5v-XLv"/>
                         <outlet property="mainTextView" destination="lvd-U5-KeF" id="RJC-40-PCy"/>
+                        <outlet property="middleTitleBtn" destination="ltY-n1-raB" id="sJK-GP-QnP"/>
+                        <outlet property="topLayoutC_naviBar" destination="9Nx-FW-fpH" id="Vdg-AF-17O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acf-9S-4Gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
