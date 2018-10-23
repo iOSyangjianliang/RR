@@ -15,6 +15,7 @@
 		2B4FB27C2177345700C7BA5C /* LeftSlideTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4FB27A2177345700C7BA5C /* LeftSlideTableCell.xib */; };
 		2B4FB27F2177373000C7BA5C /* Frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 2B4FB27E2177373000C7BA5C /* Frameworks */; };
 		2B67C9B2217DB79200F605D2 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B67C9B1217DB79200F605D2 /* ColorManager.m */; };
+		2B67C9BB217EC32300F605D2 /* AttStringManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B67C9BA217EC32300F605D2 /* AttStringManager.m */; };
 		2BEA133A1F3D43A00085F550 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA13391F3D43A00085F550 /* main.m */; };
 		2BEA133D1F3D43A00085F550 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA133C1F3D43A00085F550 /* AppDelegate.m */; };
 		2BEA13451F3D43A00085F550 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BEA13441F3D43A00085F550 /* Assets.xcassets */; };
@@ -38,6 +39,8 @@
 		2B4FB27E2177373000C7BA5C /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = SOURCE_ROOT; };
 		2B67C9B0217DB79200F605D2 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		2B67C9B1217DB79200F605D2 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
+		2B67C9B9217EC32300F605D2 /* AttStringManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttStringManager.h; sourceTree = "<group>"; };
+		2B67C9BA217EC32300F605D2 /* AttStringManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttStringManager.m; sourceTree = "<group>"; };
 		2BEA13351F3D43A00085F550 /* iOS笔记.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS笔记.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BEA13391F3D43A00085F550 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2BEA133B1F3D43A00085F550 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 			children = (
 				2B67C9B0217DB79200F605D2 /* ColorManager.h */,
 				2B67C9B1217DB79200F605D2 /* ColorManager.m */,
+				2B67C9B9217EC32300F605D2 /* AttStringManager.h */,
+				2B67C9BA217EC32300F605D2 /* AttStringManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				2B4FB27B2177345700C7BA5C /* LeftSlideTableCell.m in Sources */,
 				2BEA13691F4299F30085F550 /* TestViewController.m in Sources */,
 				2B4FB2742177328900C7BA5C /* LeftSlideViewController.m in Sources */,
+				2B67C9BB217EC32300F605D2 /* AttStringManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

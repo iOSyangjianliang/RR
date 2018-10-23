@@ -123,7 +123,8 @@ static NSString *const frameworks = @"Frameworks";
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(leftSlideViewControllerDidSelected:filePath:)]) {
         
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:frameworks ofType:nil];
+        NSString *filePath = [NSString string];
+        //[[NSBundle mainBundle] pathForResource:frameworks ofType:nil];
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         ApiGroupModel *groupModel = _frameworkModel.frameworks[indexPath.section];

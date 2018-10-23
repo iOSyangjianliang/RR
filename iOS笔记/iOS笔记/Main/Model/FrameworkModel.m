@@ -58,9 +58,10 @@
                 
                 [self.frameworks addObject:groupModel];
             }
-//            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
-//            NSArray *descriptors = [NSArray arrayWithObject:descriptor];
-//            NSArray *sortedArray = [arrayApi sortedArrayUsingDescriptors:descriptors];//排序
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"frameworkName" ascending:YES];
+            NSArray *descriptors = [NSArray arrayWithObject:descriptor];
+            NSArray *sortedArray = [self.frameworks sortedArrayUsingDescriptors:descriptors];//排序
+            self.frameworks = [NSMutableArray arrayWithArray:sortedArray];
         }
     }
     return self;

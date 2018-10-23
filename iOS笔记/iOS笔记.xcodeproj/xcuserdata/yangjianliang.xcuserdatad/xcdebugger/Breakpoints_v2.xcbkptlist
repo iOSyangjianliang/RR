@@ -600,7 +600,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOS&#x7b14;&#x8bb0;/Main/Model/FrameworkModel.m"
-            timestampString = "561627341.500683"
+            timestampString = "561968959.43707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -612,16 +612,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS&#x7b14;&#x8bb0;/Main/Manager/NoteAttributedString.m"
+            timestampString = "561956114.064181"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-setNoteData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS&#x7b14;&#x8bb0;/Main/Manager/NoteAttributedString.m"
+            timestampString = "561956114.064278"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-initWithString:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS&#x7b14;&#x8bb0;/Main/Controller/RootViewController.m"
-            timestampString = "561894669.833923"
+            filePath = "iOS&#x7b14;&#x8bb0;/Main/Manager/AttStringManager.m"
+            timestampString = "561968959.437175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-setData"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-isSapce_first_end:range:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

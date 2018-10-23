@@ -23,6 +23,10 @@
     {
         return [UIColor colorWithRed:120.f/255.f green:73.f/255.f blue:42.f/255.f alpha:1];
     }
+    else if (color == DisplayColor_framework)
+    {
+        return [UIColor colorWithRed:209.f/255.f green:27.f/255.f blue:47.f/255.f alpha:1];
+    }
     
     return [UIColor blackColor];
 }

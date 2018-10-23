@@ -16,7 +16,10 @@ typedef NS_ENUM(NSInteger, DisplayColorType ) {
     
     DisplayColor_keyword,         //eg: @interface的颜色
     
-    DisplayColor_macro            //eg: #import的颜色
+    DisplayColor_macro ,           //eg: #import的颜色
+    
+    DisplayColor_framework         //eg: <UIKit/UIKit.h>的颜色
+
 };
 
 @interface ColorManager : NSObject

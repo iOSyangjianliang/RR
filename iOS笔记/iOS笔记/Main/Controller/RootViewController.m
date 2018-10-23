@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 #import "LeftSlideViewController.h"
-#import "ColorManager.h"
+#import "AttStringManager.h"
 
 @interface RootViewController ()<LeftSlideViewControllerDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *mainTextView;
@@ -16,15 +16,12 @@
 
 @property (strong, nonatomic) LeftSlideViewController *leftVC;
 
-@property (strong, nonatomic) NSMutableArray *keywordTitles;
 
-@property (strong, nonatomic) NSMutableArray *macroTitles;
 
 
 @end
 
-static BOOL bo = NO;
-
+static NSString *const UD_lastApiPath = @"UD_lastApiPath";
 @implementation RootViewController
 
 - (void)viewDidLoad {
@@ -39,49 +36,16 @@ static BOOL bo = NO;
 {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.heightLayoutC_stateView.constant = [[UIApplication sharedApplication] statusBarFrame].size.height;
-    
     self.mainTextView.delegate = self;
+    
+    self.mainTextView.editable = NO;
 }
 -(void)setData
 {
-    _keywordTitles = [NSMutableArray array];
-    
-    [_keywordTitles addObject:@"@protocol"];
-    [_keywordTitles addObject:@"@typedef"];
-    [_keywordTitles addObject:@"@class"];
-    [_keywordTitles addObject:@"@private"];
-    [_keywordTitles addObject:@"@interface"];
-    [_keywordTitles addObject:@"struct"];
-    [_keywordTitles addObject:@"_Nonnull"];
-    [_keywordTitles addObject:@"instancetype"];
-    [_keywordTitles addObject:@"id"];
-    [_keywordTitles addObject:@"nullable"];
-    [_keywordTitles addObject:@"BOOL"];
-    [_keywordTitles addObject:@"@property"];
-    [_keywordTitles addObject:@"getter"];
-    [_keywordTitles addObject:@"readonly"];
-    [_keywordTitles addObject:@"void"];
-    [_keywordTitles addObject:@"readonly"];
-    [_keywordTitles addObject:@"copy"];
-    [_keywordTitles addObject:@"readonly"];
-    [_keywordTitles addObject:@"unsigned"];
-    [_keywordTitles addObject:@"float"];
-    [_keywordTitles addObject:@"strong"];
-    
-    _macroTitles = [NSMutableArray array];
-    [_macroTitles addObject:@"#"];
-    [_macroTitles addObject:@"import"];
-    [_macroTitles addObject:@"ifndef"];
-    [_macroTitles addObject:@"define"];
-    [_macroTitles addObject:@"endif"];
-//    [_macroTitles addObject:@"6666"];
-
-
-    BOOL bo = [self isOKWithText:@" #park   mark" rule:@" *\\#park +mark"];
-
-    NSRange range = [self fistShow:@"*/dsdsds*/123"];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Frameworks/QuartzCore/Headers/Test.h" ofType:nil];
+    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:UD_lastApiPath];
+    if (!path) {
+        path = [NSString stringWithFormat:@"QuartzCore/Headers/Test.h"];
+    }
     [self loadFrameworkData:path];
     self.detailTitleLabel.text = [path componentsSeparatedByString:@"/"].lastObject;
 }
@@ -90,114 +54,17 @@ static BOOL bo = NO;
     self.mainTextView.text = @"";
     [self.mainTextView setContentOffset:CGPointZero];
 
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"Frameworks" ofType:nil];
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@",bundle,filePath];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:fullPath];
     NSData *data = [fileHandle readDataToEndOfFile];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
    
-    self.mainTextView.attributedText = [self attributedTextByText:str];;
-}
-
--(NSMutableAttributedString *)attributedTextByText:(NSString *)text
-{
-
+    AttStringManager *att = [[AttStringManager alloc] initWithString:str];
+    self.mainTextView.attributedText = att.attString;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
-    NSArray *arr = [text componentsSeparatedByString:@"\n"];
-    NSUInteger curryLength = 0;
-    for (int i =0; i<arr.count; ++i) {
-        NSString *str = arr[i];
-        
-        if (!bo) {
-            for (int i= 0; i<_keywordTitles.count; ++i) {
-                NSString *key = _keywordTitles[i];
-                NSRange range_keyword = [str rangeOfString:key];//@protocol
-                if (range_keyword.location != NSNotFound) {
-                    NSRange rangeZZ = NSMakeRange(curryLength+range_keyword.location, key.length);
-                    UIColor *color = [ColorManager colorWithType:DisplayColor_keyword];
-                    [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeZZ];
-                }
-            }
-            
-            for (int i= 0; i<_macroTitles.count; ++i) {
-                NSString *key = _macroTitles[i];
-                NSRange range_keyword = [str rangeOfString:key];//#import
-                if (range_keyword.location != NSNotFound) {
-                    NSRange rangeZZ = NSMakeRange(curryLength+range_keyword.location, key.length);
-                    UIColor *color = [ColorManager colorWithType:DisplayColor_macro];
-                    [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeZZ];
-                }
-            }
-            
-            if ([self isOKWithText:str rule:@"^ *\\#park +mark.+"]) { //#park mark
-                NSRange rangeQQ = NSMakeRange(curryLength, str.length);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_macro];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeQQ];
-            }
-        }else{
-            NSRange range = [str rangeOfString:@"*/"];//首次出现range
-            if (range.location != NSNotFound) {
-                NSRange rangeQQ = NSMakeRange(curryLength,range.location+2);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_explain];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeQQ];
-                bo = NO;
-            }else{
-                NSRange rangeZZ = NSMakeRange(curryLength, str.length);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_explain];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeZZ];
-            }
-            
-        }
-        
-        
-        NSString *rule = @" *\\/\\*.*";/* 要呈现的文本应该是NSString或NSAttributedString。 默认为nil. */
-        if ([self isOKWithText:str rule:rule]) {
-            NSRange range_start = [str rangeOfString:@"/*"];
-
-            NSRange range_end = [str rangeOfString:@"*/"];//首次出现range
-            if (range_end.location != NSNotFound) {
-                NSRange rangeQQ = NSMakeRange(curryLength+range_start.location, range_end.location+2);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_explain];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeQQ];
-                bo = NO;
-            }else{
-                NSRange rangeQQ = NSMakeRange(curryLength+range_start.location, str.length-range_start.location);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_explain];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:rangeQQ];
-                
-                bo = YES;
-            }
-        }
-        
-       
-        if (!bo) {
-            NSRange range_ZZ = [str rangeOfString:@"//"];
-            if (range_ZZ.location != NSNotFound) {
-                NSRange range = NSMakeRange(curryLength+range_ZZ.location, str.length-range_ZZ.location);
-                UIColor *color = [ColorManager colorWithType:DisplayColor_explain];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
-            }
-        }
-        curryLength = curryLength + str.length +1;
-
-    }
-    
-
-    
-    return attributedString;
 }
-- (BOOL)isOKWithText:(NSString *)text rule:(NSString *)rule
-{
-//    NSString* rule= @"^ *LCDScale_iphone6_Width *\\( *[0-9]+(\\.[0-9]*(f|F|)|) *\\) *$”;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
-    BOOL isOk = [predicate evaluateWithObject:text];
-    return isOk;
-}
--(NSRange)fistShow:(NSString *)text
-{
-    NSRange range_ZZ = [text rangeOfString:@"*/"];
-//    NSRange range = NSMakeRange(<#NSUInteger loc#>, <#NSUInteger len#>)
-    return range_ZZ;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -253,6 +120,9 @@ static BOOL bo = NO;
 }
 -(void)leftSlideViewControllerDidSelected:(LeftSlideViewController *)vc filePath:(NSString *)filePath
 {
+    [[NSUserDefaults standardUserDefaults] setObject:filePath forKey:UD_lastApiPath];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     self.detailTitleLabel.text = [filePath componentsSeparatedByString:@"/"].lastObject;
     [self loadFrameworkData:filePath];
 }
