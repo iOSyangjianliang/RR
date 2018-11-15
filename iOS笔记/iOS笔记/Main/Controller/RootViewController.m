@@ -51,7 +51,7 @@ static NSString *const UD_lastApiPath = @"UD_lastApiPath";
 }
 -(void)loadFrameworkData:(NSString *)filePath
 {
-    self.mainTextView.text = @"";
+    self.mainTextView.text = nil;
     [self.mainTextView setContentOffset:CGPointZero];
 
     NSString *bundle = [[NSBundle mainBundle] pathForResource:@"Frameworks" ofType:nil];

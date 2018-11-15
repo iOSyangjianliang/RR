@@ -56,11 +56,11 @@ NS_CLASS_AVAILABLE_IOS(7_0) @interface UICollectionViewFlowLayoutInvalidationCon
 
 NS_CLASS_AVAILABLE_IOS(6_0) @interface UICollectionViewFlowLayout : UICollectionViewLayout
 
-//设置item行之间的最小间隔，基于滚动方向上的行，非水平
+//设置item行之间的最小间隔，基于滚动方向上的行，非水平(X)
 @property (nonatomic) CGFloat minimumLineSpacing;
 //设置item之间的最小间隔
 @property (nonatomic) CGFloat minimumInteritemSpacing;
-//设置item的大小
+//设置item的大小,默认size{50, 50}
 @property (nonatomic) CGSize itemSize;
 //设置item大小的估算值，默认是CGSizeZero(iOS8之后有效)
 @property (nonatomic) CGSize estimatedItemSize NS_AVAILABLE_IOS(8_0); // defaults to CGSizeZero - setting a non-zero size enables cells that self-size via -preferredLayoutAttributesFittingAttributes:默认为CGSizeZero - 设置非零大小可以通过-preferredLayoutAttributesFittingAttributes启用“自适应”的单元格：

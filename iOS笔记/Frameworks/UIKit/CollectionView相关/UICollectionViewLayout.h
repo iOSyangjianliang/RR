@@ -190,6 +190,8 @@ NS_CLASS_AVAILABLE_IOS(6_0) @interface UICollectionViewLayout : NSObject <NSCodi
 //你可以通过重载该方法去创建和配置自定义的无效上下文。如果你重载该方法，第一步应该调用super类获取无效上下文,在获得该无效上下文后，为它设置自定义的属性，并返回。
 - (UICollectionViewLayoutInvalidationContext *)invalidationContextForPreferredLayoutAttributes:(UICollectionViewLayoutAttributes *)preferredAttributes withOriginalAttributes:(UICollectionViewLayoutAttributes *)originalAttributes NS_AVAILABLE_IOS(8_0);
 
+//1. -[JLCycScrollFlowLayout targetContentOffsetForProposedContentOffset:withScrollingVelocity:]
+//2. -[JLCycleScrollerView scrollViewWillEndDragging:withVelocity:targetContentOffset:]再调用ScrollerView代理
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity; // return a point at which to rest after scrolling - for layouts that want snap-to-point scrolling behavior //返回滚动后将要停止的点 - 用于需要点对点滚动行为的布局
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset NS_AVAILABLE_IOS(7_0); // a layout can return the content offset to be applied during transition or update animations 布局可以返回在转换或更新动画期间应用的内容偏移量
 

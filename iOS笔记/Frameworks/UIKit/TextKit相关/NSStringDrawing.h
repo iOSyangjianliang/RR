@@ -42,9 +42,15 @@ NS_CLASS_AVAILABLE(10_11, 6_0) @interface NSStringDrawingContext : NSObject
 @end
 
 typedef NS_OPTIONS(NSInteger, NSStringDrawingOptions) {
+    //整个文本将以每行组成的矩形为单位计算整个文本的尺寸
     NSStringDrawingUsesLineFragmentOrigin = 1 << 0, // The specified origin is the line fragment origin, not the base line origin
+    //使用字体的行间距来计算文本占用的范围，即每一行的底部到下一行的底部的距离计算
     NSStringDrawingUsesFontLeading = 1 << 1, // Uses the font leading for calculating line heights
+    
+    //将文字以图像符号计算文本占用范围，而不是以字符计算。也即是以每一个字体所占用的空间来计算文本范围
     NSStringDrawingUsesDeviceMetrics = 1 << 3, // Uses image glyph bounds instead of typographic bounds
+    
+    //当文本不能适合的放进指定的边界之内，则自动在最后一行添加省略符号。如果NSStringDrawingUsesLineFragmentOrigin没有设置，则该选项不生效
     NSStringDrawingTruncatesLastVisibleLine NS_ENUM_AVAILABLE(10_5, 6_0) = 1 << 5, // Truncates and adds the ellipsis character to the last visible line if the text doesn't fit into the bounds specified. Ignored if NSStringDrawingUsesLineFragmentOrigin is not also set.
 
 } NS_ENUM_AVAILABLE(10_0, 6_0);

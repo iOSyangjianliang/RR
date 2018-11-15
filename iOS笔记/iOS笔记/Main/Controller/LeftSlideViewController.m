@@ -105,6 +105,11 @@ static NSString *const frameworks = @"Frameworks";
     ApiGroupModel *groupModel = _frameworkModel.frameworks[indexPath.section];
     ApiModel *model = groupModel.apiGroups[indexPath.row];;
     cell.ApiGroupLabel.text = model.apiGroupName;
+    if ([model.apiGroupName componentsSeparatedByString:@"."].count==2) {
+        cell.ApiGroupLabel.textColor = [UIColor colorWithRed:117.f/255.f green:117.f/255.f blue:117.f/255.f alpha:1];
+    }else{
+        cell.ApiGroupLabel.textColor = [UIColor colorWithRed:77.f/255 green:171.f/255 blue:255.f/255 alpha:1];
+    }
     cell.arrayGroupData = model.apiNames;
     cell.groupTableView.hidden = !model.isDeveloped;
     cell.delegate = self;
@@ -116,8 +121,25 @@ static NSString *const frameworks = @"Frameworks";
 {
     ApiGroupModel *groupModel = _frameworkModel.frameworks[indexPath.section];
     ApiModel *model = groupModel.apiGroups[indexPath.row];
-    model.isDeveloped = !model.isDeveloped;
-    [self.tableView reloadData];
+    
+    if ([model.apiGroupName componentsSeparatedByString:@"."].count==2) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(leftSlideViewControllerDidSelected:filePath:)]) {
+            
+            NSString *filePath = [NSString string];
+            ApiGroupModel *groupModel = _frameworkModel.frameworks[indexPath.section];
+            ApiModel *model = groupModel.apiGroups[indexPath.row];
+            
+            filePath = [filePath stringByAppendingPathComponent:groupModel.frameworkName];
+            filePath = [filePath stringByAppendingPathComponent:model.apiGroupName];
+            [self.delegate leftSlideViewControllerDidSelected:self filePath:filePath];
+        }
+        [self dissmissSelf];
+    }else{
+        model.isDeveloped = !model.isDeveloped;
+        [self.tableView reloadData];
+    }
+
+    
 }
 -(void)leftSlideTableCellDidSelected:(LeftSlideTableCell *)cell apiName:(NSString *)apiName
 {

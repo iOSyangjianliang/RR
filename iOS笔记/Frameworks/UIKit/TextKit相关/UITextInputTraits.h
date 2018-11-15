@@ -16,10 +16,11 @@
 // cases, these values are ignored by the keyboard/input method implementation.
 //
 typedef NS_ENUM(NSInteger, UITextAutocapitalizationType) {
-    UITextAutocapitalizationTypeNone,
-    UITextAutocapitalizationTypeWords,
-    UITextAutocapitalizationTypeSentences,
-    UITextAutocapitalizationTypeAllCharacters,
+   
+    UITextAutocapitalizationTypeNone, //不自动大写
+    UITextAutocapitalizationTypeWords,　//单词首字母大写
+    UITextAutocapitalizationTypeSentences,　//句子的首字母大写
+    UITextAutocapitalizationTypeAllCharacters, //所有字母都大写
 };
 
 //
