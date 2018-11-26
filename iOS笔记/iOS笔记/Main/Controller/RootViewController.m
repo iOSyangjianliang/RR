@@ -71,6 +71,7 @@ static NSString *const UD_lastApiPath = @"UD_lastApiPath";
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    return;
     CGFloat offset=scrollView.contentOffset.y;
     if (offset > 0) {
         CGFloat heightState = 44.f-15;
