@@ -40,14 +40,21 @@
         // 设置自定义键盘View
         _textField.inputView = self.customInputView;
         _textField.inputAccessoryView = self.customAccessoryView;
+
+//        _textField.secureTextEntry = YES;
+
+        _textField.autocorrectionType = UITextAutocorrectionTypeNo;
+
+//UISegmentedControl
     }
+
     return _textField;
 }
 
 /** 懒加载customInputView */
 - (UIView *)customInputView {
     if (!_customInputView) {
-        _customInputView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, 220)];
+        _customInputView = [[UIView alloc]initWithFrame:CGRectMake(30, 20, MAIN_SCREEN_WIDTH, 220)];
         _customInputView.backgroundColor = [UIColor lightGrayColor];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, MAIN_SCREEN_WIDTH, 40)];
         label.textAlignment = NSTextAlignmentCenter;
@@ -60,7 +67,7 @@
 /** 懒加载customAccessoryView */
 - (UIToolbar *)customAccessoryView {
     if (!_customAccessoryView) {
-        _customAccessoryView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, 40)];
+        _customAccessoryView = [[UIToolbar alloc]initWithFrame:CGRectMake(30, 30, MAIN_SCREEN_WIDTH, 40)];
         _customAccessoryView.barTintColor = [UIColor orangeColor];
         UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
@@ -79,6 +86,16 @@
     UIWindow *ww= [UIApplication sharedApplication].keyWindow;
     
     [self.textField resignFirstResponder];
+    
+    if (_textField.inputView) {
+        _textField.inputView = nil;
+    }else
+    {
+        _textField.inputView = self.customInputView;
+    }
+    
+    [_textField reloadInputViews];
+    
 }
 
 

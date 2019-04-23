@@ -47,8 +47,11 @@ NS_CLASS_AVAILABLE_IOS(3_2) @interface UIGestureRecognizer : NSObject
 // a UIGestureRecognizer receives touches hit-tested to its view and any of that view's subviews
 @property(nullable, nonatomic,readonly) UIView *view;           // the view the gesture is attached to. set by adding the recognizer to a UIView using the addGestureRecognizer: method
 
+// 识别到手势后是否发送取消触摸消息给子视图,默认为Yes检测到手势后想取消子视图的响应
 @property(nonatomic) BOOL cancelsTouchesInView;       // default is YES. causes touchesCancelled:withEvent: or pressesCancelled:withEvent: to be sent to the view for all touches or presses recognized as part of this gesture immediately before the action method is called.
+// 触摸开始时而没有识别出手势时 是否等待识别失败再向子视图发送事件
 @property(nonatomic) BOOL delaysTouchesBegan;         // default is NO.  causes all touch or press events to be delivered to the target view only after this gesture has failed recognition. set to YES to prevent views from processing any touches or presses that may be recognized as part of this gesture
+// 正确识别结束后是否发送touchsCancelled消息到子视图
 @property(nonatomic) BOOL delaysTouchesEnded;         // default is YES. causes touchesEnded or pressesEnded events to be delivered to the target view only after this gesture has failed recognition. this ensures that a touch or press that is part of the gesture can be cancelled if the gesture is recognized
 
 @property(nonatomic, copy) NSArray<NSNumber *> *allowedTouchTypes NS_AVAILABLE_IOS(9_0); // Array of UITouchTypes as NSNumbers.
@@ -57,21 +60,31 @@ NS_CLASS_AVAILABLE_IOS(3_2) @interface UIGestureRecognizer : NSObject
 // Indicates whether the gesture recognizer will consider touches of different touch types simultaneously.
 // If NO, it receives all touches that match its allowedTouchTypes.
 // If YES, once it receives a touch of a certain type, it will ignore new touches of other types, until it is reset to UIGestureRecognizerStatePossible.
+//表示手势识别器是否会同时考虑不同触摸类型的触摸。
+//如果NO，它将接收与它的allowedtouchtype匹配的所有触摸。
+//如果YES，一旦它接收到某种类型的触摸，它将忽略其他类型的新触摸，直到它被重置为UIGestureRecognizerStatePossible。
 @property (nonatomic) BOOL requiresExclusiveTouchType NS_AVAILABLE_IOS(9_2); // defaults to YES
 
 // create a relationship with another gesture recognizer that will prevent this gesture's actions from being called until otherGestureRecognizer transitions to UIGestureRecognizerStateFailed
 // if otherGestureRecognizer transitions to UIGestureRecognizerStateRecognized or UIGestureRecognizerStateBegan then this recognizer will instead transition to UIGestureRecognizerStateFailed
 // example usage: a single tap may require a double tap to fail
+//与另一个手势识别器创建一个关系，在otherGestureRecognizer转换到uigesturerecognizerstatefered之前，该手势识别器将阻止该手势的动作被调用
+//如果其他手势识别器转换到uigesturerecognizer或UIGestureRecognizerStateBegan，那么这个识别器将转换到uigesturerecognizerstatefered
+//示例用法:单点可能需要双点才能失败
 - (void)requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer;
 
 // individual UIGestureRecognizer subclasses may provide subclass-specific location information. see individual subclasses for details
+//在参数 view 上的触摸位置。如果是多点触摸则输出两点之间的位置
 - (CGPoint)locationInView:(nullable UIView*)view;                                // a generic single-point location for the gesture. usually the centroid of the touches involved
 
 #if UIKIT_DEFINE_AS_PROPERTIES
 @property(nonatomic, readonly) NSUInteger numberOfTouches;                                          // number of touches involved for which locations can be queried
 #else
+//返回手势的触摸点数量
 - (NSUInteger)numberOfTouches;                                          // number of touches involved for which locations can be queried
 #endif
+
+//返回坐标点,第一个参数为tauch数组的索引
 - (CGPoint)locationOfTouch:(NSUInteger)touchIndex inView:(nullable UIView*)view; // the location of a particular touch
 
 @property (nullable, nonatomic, copy) NSString *name API_AVAILABLE(ios(11.0), tvos(11.0)); // name for debugging to appear in logging
@@ -81,26 +94,33 @@ NS_CLASS_AVAILABLE_IOS(3_2) @interface UIGestureRecognizer : NSObject
 
 @protocol UIGestureRecognizerDelegate <NSObject>
 @optional
-// called when a gesture recognizer attempts to transition out of UIGestureRecognizerStatePossible. returning NO causes it to transition to UIGestureRecognizerStateFailed
+
+//当手势识别器尝试从UIGestureRecognizerStatePossible转换时调用。返回NO会导致它转换到UIGestureRecognizerStateFailed
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
-// called when the recognition of one of gestureRecognizer or otherGestureRecognizer would be blocked by the other
-// return YES to allow both to recognize simultaneously. the default implementation returns NO (by default no two gestures can be recognized simultaneously)
-//
-// note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture's delegate may return YES
+//当识别其中一个gestureRecognizer或otherGestureRecognizer被另一个阻止时调用
+//返回YES以允许两者同时识别。 默认实现返回NO（默认情况下，不能同时识别两个手势）
+
+//注意：保证返回YES可以同时识别。 返回NO不能保证阻止同时识别，因为另一个手势的代表可能返回YES
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;
 
 // called once per attempt to recognize, so failure requirements can be determined lazily and may be set up between recognizers across view hierarchies
 // return YES to set up a dynamic failure requirement between gestureRecognizer and otherGestureRecognizer
 //
 // note: returning YES is guaranteed to set up the failure requirement. returning NO does not guarantee that there will not be a failure requirement as the other gesture's counterpart delegate or subclass methods may return YES
+//每次尝试识别时调用一次，因此可以懒惰地确定失败要求，并且可以跨视图层次结构在识别器之间建立失败要求
+//返回YES以在gestureRecognizer和otherGestureRecognizer之间设置动态失败要求
+//
+//注意：保证返回YES已设置失败要求(调用requireGestureRecognizerToFail:设置)。 返回NO并不保证不存在失败要求，因为其他手势的对应委托或子类方法可能返回YES
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0);
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0);
 
-// called before touchesBegan:withEvent: is called on the gesture recognizer for a new touch. return NO to prevent the gesture recognizer from seeing this touch
+
+//在touchesBegan：withEvent：之前调用，在手势识别器上调用以获得新的触摸。 返回NO以防止手势识别器看到此触摸
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
 
-// called before pressesBegan:withEvent: is called on the gesture recognizer for a new press. return NO to prevent the gesture recognizer from seeing this press
+//在pressBegan：withEvent：之前调用，在手势识别器上调用新的按下。 返回NO以防止手势识别器看到此按下
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceivePress:(UIPress *)press;
 
 @end

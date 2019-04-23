@@ -18,11 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(3_2) @interface UILongPressGestureRecognizer : UIGestureRecognizer
 
-@property (nonatomic) NSUInteger numberOfTapsRequired;      // Default is 0. The number of full taps required before the press for gesture to be recognized
-@property (nonatomic) NSUInteger numberOfTouchesRequired __TVOS_PROHIBITED;   // Default is 1. Number of fingers that must be held down for the gesture to be recognized
+//默认值为0 按下确认手势前需要的全部轻击次数
+@property (nonatomic) NSUInteger numberOfTapsRequired;
+//默认值为1 要识别手势必须按住的手指数
+@property (nonatomic) NSUInteger numberOfTouchesRequired __TVOS_PROHIBITED;
 
-@property (nonatomic) CFTimeInterval minimumPressDuration; // Default is 0.5. Time in seconds the fingers must be held down for the gesture to be recognized
-@property (nonatomic) CGFloat allowableMovement;           // Default is 10. Maximum movement in pixels allowed before the gesture fails. Once recognized (after minimumPressDuration) there is no limit on finger movement for the remainder of the touch tracking
+//默认值为0.5。 必须按住手指才能识别手势的时间（以秒为单位）
+@property (nonatomic) CFTimeInterval minimumPressDuration;
+
+//默认值为10.手势失败前允许的最大像素移动量。 一旦识别（在minimumPressDuration之后），对于触摸跟踪的剩余部分，手指移动没有限制
+@property (nonatomic) CGFloat allowableMovement;          
 
 @end
 

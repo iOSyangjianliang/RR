@@ -122,26 +122,26 @@
 			children = (
 				E266EF1B1EAF34B8006E8617 /* AppDelegate.h */,
 				E266EF1C1EAF34B8006E8617 /* AppDelegate.m */,
+				E266EF241EAF34B8006E8617 /* Assets.xcassets */,
+				E266EF291EAF34B8006E8617 /* Info.plist */,
+				E266EF261EAF34B8006E8617 /* LaunchScreen.storyboard */,
+				E24A8BA51EC2F1C200CD49C1 /* mute_60s.mp3 */,
+				E266EF181EAF34B8006E8617 /* Supporting Files */,
 				E24720811EB966EE009B58D0 /* UIResponder.h */,
-				E266EF4B1EAF350D006E8617 /* ZMTestViewController.h */,
-				E266EF4C1EAF350D006E8617 /* ZMTestViewController.m */,
-				E27D41A81ECD7E7A00F0077B /* ZMCustomInputView.h */,
-				E27D41A91ECD7E7A00F0077B /* ZMCustomInputView.m */,
-				E2426D3A1ECC49BB00A55605 /* ZMKeyCommandView.h */,
-				E2426D3B1ECC49BB00A55605 /* ZMKeyCommandView.m */,
-				E2824D961EC9B1B000760E6E /* ZMMenuLabel.h */,
-				E2824D941EC9B0E100760E6E /* ZMMenuLabel.m */,
 				E26E26011EC547A000EEF527 /* ZMAudioView.h */,
 				E26E26021EC547A000EEF527 /* ZMAudioView.m */,
+				E27D41A81ECD7E7A00F0077B /* ZMCustomInputView.h */,
+				E27D41A91ECD7E7A00F0077B /* ZMCustomInputView.m */,
 				E2426D371ECC27C100A55605 /* ZMDrawingBoardView.h */,
 				E2426D381ECC27C100A55605 /* ZMDrawingBoardView.m */,
 				E26E26041EC5A93300EEF527 /* ZMFirstResponderView.h */,
 				E26E26051EC5A93300EEF527 /* ZMFirstResponderView.m */,
-				E24A8BA51EC2F1C200CD49C1 /* mute_60s.mp3 */,
-				E266EF241EAF34B8006E8617 /* Assets.xcassets */,
-				E266EF261EAF34B8006E8617 /* LaunchScreen.storyboard */,
-				E266EF291EAF34B8006E8617 /* Info.plist */,
-				E266EF181EAF34B8006E8617 /* Supporting Files */,
+				E2426D3A1ECC49BB00A55605 /* ZMKeyCommandView.h */,
+				E2426D3B1ECC49BB00A55605 /* ZMKeyCommandView.m */,
+				E2824D961EC9B1B000760E6E /* ZMMenuLabel.h */,
+				E2824D941EC9B0E100760E6E /* ZMMenuLabel.m */,
+				E266EF4B1EAF350D006E8617 /* ZMTestViewController.h */,
+				E266EF4C1EAF350D006E8617 /* ZMTestViewController.m */,
 			);
 			path = ZMResponderDemo;
 			sourceTree = "<group>";
@@ -221,7 +221,7 @@
 				TargetAttributes = {
 					E266EF141EAF34B8006E8617 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 2VZHX58HUJ;
+						DevelopmentTeam = JPK597D59E;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -443,7 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2VZHX58HUJ;
+				DEVELOPMENT_TEAM = JPK597D59E;
 				INFOPLIST_FILE = ZMResponderDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -456,7 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2VZHX58HUJ;
+				DEVELOPMENT_TEAM = JPK597D59E;
 				INFOPLIST_FILE = ZMResponderDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
